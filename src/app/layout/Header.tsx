@@ -10,10 +10,8 @@ import {
   Typography,
   Box,
 } from "@mui/material";
-import React from "react";
 import { Link } from "react-router-dom";
 import { NavLink } from "react-router-dom";
-import { useStoreContext } from "../context/StoreContext";
 import { useAppSelector } from "../store/configureStore";
 import SignedInMenu from "./SignedInMenu";
 
@@ -61,7 +59,6 @@ const navStyles = {
 };
 
 function Header({ darkMode, handleThemeChange }: IProps) {
-  // const { basket } = useStoreContext();
   const { basket } = useAppSelector((state) => state.basket);
   const { user } = useAppSelector((state) => state.account);
   const itemCount = basket?.items.reduce((sum, item) => sum + item.quantity, 0);

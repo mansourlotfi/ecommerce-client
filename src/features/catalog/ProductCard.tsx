@@ -9,31 +9,19 @@ import {
   CardHeader,
   Avatar,
 } from "@mui/material";
-import { useState } from "react";
 import { Link } from "react-router-dom";
-import agent from "../../app/api/agent";
-import { useStoreContext } from "../../app/context/StoreContext";
 import { Product } from "../../app/models/product";
 import { useAppDispatch, useAppSelector } from "../../app/store/configureStore";
 import { currencyFormat } from "../../app/util/util";
-import { addBasketItemAsync, setBasket } from "../basket/basketSlice";
+import { addBasketItemAsync } from "../basket/basketSlice";
 
 interface IProps {
   product: Product;
 }
 function ProductCard({ product }: IProps) {
-  // const [loading, setLoading] = useState(false);
-  // const { setBasket } = useStoreContext();
   const { status } = useAppSelector((state) => state.basket);
   const dispatch = useAppDispatch();
 
-  // function handleAddItem(productId: number) {
-  //   setLoading(true);
-  //   agent.Basket.addItem(productId)
-  //     .then((basket) => dispatch(setBasket(basket)))
-  //     .catch((error) => console.log("error", error))
-  //     .finally(() => setLoading(false));
-  // }
   return (
     <Card>
       <CardHeader

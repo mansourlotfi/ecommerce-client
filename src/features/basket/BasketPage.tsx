@@ -13,55 +13,15 @@ import {
   TableRow,
   Typography,
 } from "@mui/material";
-import { useState } from "react";
 import { Link } from "react-router-dom";
-import agent from "../../app/api/agent";
-import { useStoreContext } from "../../app/context/StoreContext";
 import { useAppDispatch, useAppSelector } from "../../app/store/configureStore";
-// import { removeItem, setBasket } from "./basketSlice";
-import {
-  addBasketItemAsync,
-  removeBasketItemAsync,
-  setBasket,
-} from "./basketSlice";
+import { addBasketItemAsync, removeBasketItemAsync } from "./basketSlice";
 
 import BasketSummary from "./BasketSummary";
 
 function BasketPage() {
-  // const { basket, setBasket, removeItem } = useStoreContext();
   const { basket, status } = useAppSelector((state) => state.basket);
   const dispatch = useAppDispatch();
-  // const [status, setStatus] = useState({
-  //   loading: false,
-  //   name: "",
-  // });
-
-  // function handleAddItem(productId: number, name: string) {
-  //   setStatus({ loading: true, name });
-  //   agent.Basket.addItem(productId)
-  //     .then((basket) => dispatch(setBasket(basket)))
-  //     .catch((error) => console.log("error", error))
-  //     .finally(() =>
-  //       setStatus({
-  //         loading: false,
-  //         name: "",
-  //       })
-  //     );
-  // }
-
-  // function handleRemoveItem(productId: number, quantity = 1, name: string) {
-  //   setStatus({ loading: true, name });
-
-  //   agent.Basket.removeItem(productId, quantity)
-  //     .then(() => dispatch(removeItem({ productId, quantity })))
-  //     .catch((error) => console.log("error", error))
-  //     .finally(() =>
-  //       setStatus({
-  //         loading: false,
-  //         name: "",
-  //       })
-  //     );
-  // }
 
   if (!basket)
     return <Typography variant="h3">Your basket is empty</Typography>;
