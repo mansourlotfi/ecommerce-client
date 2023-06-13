@@ -1,27 +1,41 @@
 import { Box, Typography, Pagination } from "@mui/material";
-import { IMetaData } from "../models/pagination";
+import { useState } from "react";
+import { MetaData } from "../models/pagination";
 
-interface IProps {
-  metaData: IMetaData;
+interface Props {
+  metaData: MetaData;
   onPageChange: (page: number) => void;
 }
-export default function AppPagination({ metaData, onPageChange }: IProps) {
-  const { currentPage, totalCount, totalPages, pageSize } = metaData;
+
+export default function AppPagination({ metaData, onPageChange }: Props) {
+  const { pageSize, currentPage, totalCount, totalPages } = metaData;
+  const [pageNumber, setPageNumber] = useState(currentPage);
+
+  function handlePageChange(page: number) {
+    setPageNumber(page);
+    onPageChange(page);
+  }
+
   return (
-    <Box display="flex" justifyContent="space-between" alignItems="center">
-      <Typography>
+    <Box
+      display="flex"
+      justifyContent="space-between"
+      alignItems="center"
+      sx={{ marginBottom: 3 }}
+    >
+      <Typography variant="body1">
         Displaying {(currentPage - 1) * pageSize + 1}-
-        {currentPage * pageSize > totalCount
+        {currentPage * pageSize > totalCount!
           ? totalCount
           : currentPage * pageSize}{" "}
-        of {totalCount} items
+        of {totalCount} results
       </Typography>
       <Pagination
         color="secondary"
         size="large"
         count={totalPages}
-        page={currentPage}
-        onChange={(e, page) => onPageChange(page)}
+        page={pageNumber}
+        onChange={(e, page) => handlePageChange(page)}
       />
     </Box>
   );

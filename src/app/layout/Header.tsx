@@ -8,46 +8,26 @@ import {
   Switch,
   Toolbar,
   Typography,
-  Box,
 } from "@mui/material";
-import { Link } from "react-router-dom";
-import { NavLink } from "react-router-dom";
+import { Box } from "@mui/system";
+import { Link, NavLink } from "react-router-dom";
 import { useAppSelector } from "../store/configureStore";
 import SignedInMenu from "./SignedInMenu";
 
-interface IProps {
-  darkMode: boolean;
-  handleThemeChange: () => void;
-}
-
 const midLinks = [
-  {
-    title: "catalog",
-    path: "/catalog",
-  },
-  {
-    title: "about",
-    path: "/about",
-  },
-  {
-    title: "contact",
-    path: "/contact",
-  },
+  { title: "catalog", path: "/catalog" },
+  { title: "about", path: "/about" },
+  { title: "contact", path: "/contact" },
 ];
 
 const rightLinks = [
-  {
-    title: "login",
-    path: "/login",
-  },
-  {
-    title: "register",
-    path: "/register",
-  },
+  { title: "login", path: "/login" },
+  { title: "register", path: "/register" },
 ];
 
 const navStyles = {
   color: "inherit",
+  textDecoration: "none",
   typography: "h6",
   "&:hover": {
     color: "grey.500",
@@ -55,15 +35,20 @@ const navStyles = {
   "&.active": {
     color: "text.secondary",
   },
-  textDecoration: "none",
 };
 
-function Header({ darkMode, handleThemeChange }: IProps) {
+interface Props {
+  darkMode: boolean;
+  handleThemeChange: () => void;
+}
+
+export default function Header({ handleThemeChange, darkMode }: Props) {
   const { basket } = useAppSelector((state) => state.basket);
   const { user } = useAppSelector((state) => state.account);
   const itemCount = basket?.items.reduce((sum, item) => sum + item.quantity, 0);
+
   return (
-    <AppBar position="static" sx={{ mb: 4 }}>
+    <AppBar position="static">
       <Toolbar
         sx={{
           display: "flex",
@@ -71,9 +56,9 @@ function Header({ darkMode, handleThemeChange }: IProps) {
           alignItems: "center",
         }}
       >
-        <Box sx={{ display: "flex", alignItems: "center" }}>
+        <Box display="flex" alignItems="center">
           <Typography variant="h6" component={NavLink} to="/" sx={navStyles}>
-            Store
+            RE-STORE
           </Typography>
           <Switch checked={darkMode} onChange={handleThemeChange} />
         </Box>
@@ -84,18 +69,27 @@ function Header({ darkMode, handleThemeChange }: IProps) {
               {title.toUpperCase()}
             </ListItem>
           ))}
+          {user && user.roles?.includes("Admin") && (
+            <ListItem component={NavLink} to={"/inventory"} sx={navStyles}>
+              INVENTORY
+            </ListItem>
+          )}
         </List>
-        <Box sx={{ display: "flex", alignItems: "center" }}>
+
+        <Box display="flex" alignItems="center">
           <IconButton
             component={Link}
             to="/basket"
             size="large"
-            sx={{ color: "inherit" }}
+            edge="start"
+            color="inherit"
+            sx={{ mr: 2 }}
           >
             <Badge badgeContent={itemCount} color="secondary">
               <ShoppingCart />
             </Badge>
           </IconButton>
+
           {user ? (
             <SignedInMenu />
           ) : (
@@ -117,5 +111,3 @@ function Header({ darkMode, handleThemeChange }: IProps) {
     </AppBar>
   );
 }
-
-export default Header;

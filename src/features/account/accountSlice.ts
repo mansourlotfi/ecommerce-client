@@ -1,9 +1,9 @@
 import { createAsyncThunk, createSlice, isAnyOf } from "@reduxjs/toolkit";
 import { FieldValues } from "react-hook-form";
 import { toast } from "react-toastify";
-// import { history } from "../..";
 import agent from "../../app/api/agent";
 import { User } from "../../app/models/user";
+import { router } from "../../app/router/Routes";
 import { setBasket } from "../basket/basketSlice";
 
 interface AccountState {
@@ -39,8 +39,8 @@ export const fetchCurrentUser = createAsyncThunk<User>(
       if (basket) thunkAPI.dispatch(setBasket(basket));
       localStorage.setItem("user", JSON.stringify(user));
       return user;
-    } catch (error: any) {
-      return thunkAPI.rejectWithValue({ error: error.data });
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error);
     }
   },
   {
@@ -57,7 +57,7 @@ export const accountSlice = createSlice({
     signOut: (state) => {
       state.user = null;
       localStorage.removeItem("user");
-      window.location.replace("/");
+      router.navigate("/");
     },
     setUser: (state, action) => {
       let claims = JSON.parse(atob(action.payload.token.split(".")[1]));
@@ -74,7 +74,7 @@ export const accountSlice = createSlice({
       state.user = null;
       localStorage.removeItem("user");
       toast.error("Session expired - please login again");
-      window.location.replace("/");
+      router.navigate("/");
     });
     builder.addMatcher(
       isAnyOf(signInUser.fulfilled, fetchCurrentUser.fulfilled),

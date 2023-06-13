@@ -12,60 +12,60 @@ import {
 import { useState } from "react";
 import agent from "../../app/api/agent";
 
-function AboutPage() {
+export default function AboutPage() {
   const [validationErrors, setValidationErrors] = useState<string[]>([]);
 
   function getValidationError() {
-    agent.testErrors
-      .getValidationError()
-      .then(() => console.log("should not see this"))
+    agent.TestErrors.getValidationError()
+      .then(() => console.log("should not see this!"))
       .catch((error) => setValidationErrors(error));
   }
+
   return (
     <Container>
-      <Typography gutterBottom variant="h2">
-        Error for testing purposes
+      <Typography gutterBottom variant={"h2"}>
+        Errors for testing purposes
       </Typography>
       <ButtonGroup fullWidth>
         <Button
-          variant="contained"
           onClick={() =>
-            agent.testErrors.get400Error().catch((error) => console.log(error))
+            agent.TestErrors.get400Error().catch((error) => console.log(error))
           }
+          variant={"contained"}
         >
-          Test 400 Error
+          Test 400 error
         </Button>
         <Button
-          variant="contained"
           onClick={() =>
-            agent.testErrors.get401Error().catch((error) => console.log(error))
+            agent.TestErrors.get401Error().catch((error) => console.log(error))
           }
+          variant={"contained"}
         >
-          Test 401 Error
+          Test 401 error
         </Button>
         <Button
-          variant="contained"
           onClick={() =>
-            agent.testErrors.get404Error().catch((error) => console.log(error))
+            agent.TestErrors.get404Error().catch((error) => console.log(error))
           }
+          variant={"contained"}
         >
-          Test 404 Error
+          Test 404 error
         </Button>
         <Button
-          variant="contained"
           onClick={() =>
-            agent.testErrors.get500Error().catch((error) => console.log(error))
+            agent.TestErrors.get500Error().catch((error) => console.log(error))
           }
+          variant={"contained"}
         >
-          Test 500 Error
+          Test 500 error
         </Button>
-        <Button variant="contained" onClick={getValidationError}>
-          Test Validation Error
+        <Button onClick={getValidationError} variant={"contained"}>
+          Test validation error
         </Button>
       </ButtonGroup>
       {validationErrors.length > 0 && (
         <Alert severity="error">
-          <AlertTitle>Validation Error</AlertTitle>
+          <AlertTitle>Validation Errors</AlertTitle>
           <List>
             {validationErrors.map((error) => (
               <ListItem key={error}>
@@ -78,5 +78,3 @@ function AboutPage() {
     </Container>
   );
 }
-
-export default AboutPage;

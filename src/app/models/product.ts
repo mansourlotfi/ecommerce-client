@@ -2,11 +2,11 @@ export interface Product {
   id: number;
   name: string;
   description: string;
-  price: number;
   pictureUrl: string;
-  type: string;
+  price: number;
   brand: string;
-  quantityInStock: number;
+  type?: string;
+  quantityInStock?: number;
 }
 
 export interface ProductParams {

@@ -5,26 +5,18 @@ import {
   ThemeProvider,
 } from "@mui/material";
 import { useCallback, useEffect, useState } from "react";
-import { Route, Routes } from "react-router-dom";
+import { Outlet, useLocation } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
-import AboutPage from "../../features/about/AboutPage";
-import Catalog from "../../features/catalog/Catalog";
-import ProductDetails from "../../features/catalog/ProductDetails";
-import ContactPage from "../../features/contact/ContactPage";
-import HomePage from "../../features/home/HomePage";
 import Header from "./Header";
 import "react-toastify/dist/ReactToastify.css";
-import NotFound from "../errors/NotFound";
-import BasketPage from "../../features/basket/BasketPage";
 import LoadingComponent from "./LoadingComponent";
-import CheckoutPage from "../../features/checkout/CheckoutPage";
 import { useAppDispatch } from "../store/configureStore";
 import { fetchBasketAsync } from "../../features/basket/basketSlice";
 import { fetchCurrentUser } from "../../features/account/accountSlice";
-import Login from "../../features/account/Login";
-import Register from "../../features/account/Register";
+import HomePage from "../../features/home/HomePage";
 
 function App() {
+  const location = useLocation();
   const dispatch = useAppDispatch();
   const [loading, setLoading] = useState(true);
 
@@ -42,11 +34,13 @@ function App() {
   }, [initApp]);
 
   const [darkMode, setDarkMode] = useState(false);
-  const paletteType = darkMode ? "dark" : "light";
+  const palleteType = darkMode ? "dark" : "light";
   const theme = createTheme({
     palette: {
-      mode: paletteType,
-      background: { default: paletteType === "light" ? "#eaeaea" : "#121212" },
+      mode: palleteType,
+      background: {
+        default: palleteType === "light" ? "#eaeaea" : "#121212",
+      },
     },
   });
 
@@ -54,38 +48,20 @@ function App() {
     setDarkMode(!darkMode);
   }
 
-  if (loading) return <LoadingComponent message="loading basket" />;
   return (
     <ThemeProvider theme={theme}>
-      <ToastContainer
-        position="bottom-right"
-        autoClose={5000}
-        hideProgressBar={false}
-        newestOnTop={false}
-        closeOnClick
-        rtl={false}
-        pauseOnFocusLoss
-        draggable
-        pauseOnHover
-        theme="colored"
-      />
-
+      <ToastContainer position="bottom-right" hideProgressBar theme="colored" />
       <CssBaseline />
       <Header darkMode={darkMode} handleThemeChange={handleThemeChange} />
-      <Container>
-        <Routes>
-          <Route path="/" element={<HomePage />} />
-          <Route path="/catalog" element={<Catalog />} />
-          <Route path="/Catalog/:id" element={<ProductDetails />} />
-          <Route path="/about" element={<AboutPage />} />
-          <Route path="/contact" element={<ContactPage />} />
-          <Route path="/basket" element={<BasketPage />} />
-          <Route path="/checkout" element={<CheckoutPage />} />
-          <Route path="/login" element={<Login />} />
-          <Route path="/register" element={<Register />} />
-          <Route path="*" element={<NotFound />} />
-        </Routes>
-      </Container>
+      {loading ? (
+        <LoadingComponent message="Initialising app..." />
+      ) : location.pathname === "/" ? (
+        <HomePage />
+      ) : (
+        <Container sx={{ mt: 4 }}>
+          <Outlet />
+        </Container>
+      )}
     </ThemeProvider>
   );
 }
