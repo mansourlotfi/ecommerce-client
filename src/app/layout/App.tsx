@@ -19,7 +19,6 @@ function App() {
   const location = useLocation();
   const dispatch = useAppDispatch();
   const [loading, setLoading] = useState(true);
-
   const initApp = useCallback(async () => {
     try {
       await dispatch(fetchCurrentUser());
