@@ -1,4 +1,4 @@
-import { Grid, Paper } from "@mui/material";
+import { Grid, Paper, Typography } from "@mui/material";
 import { useEffect } from "react";
 import AppPagination from "../../app/components/AppPagination";
 import CheckBoxButtons from "../../app/components/CheckBoxButtons";
@@ -16,9 +16,9 @@ import ProductList from "./ProductList";
 import ProductSearch from "./ProductSearch";
 
 const sortOptions = [
-  { value: "name", label: "Alphabetical" },
-  { value: "priceDesc", label: "Price - Hight to low" },
-  { value: "price", label: "Price - Low to hight" },
+  { value: "name", label: "حروف الفبا" },
+  { value: "priceDesc", label: "قیمت - زیاد به کم" },
+  { value: "price", label: "قیمت - کم به زیاد" },
 ];
 function Catalog() {
   // const [products, setProducts] = useState<Product[]>([]);
@@ -56,6 +56,7 @@ function Catalog() {
           <ProductSearch />
         </Paper>
         <Paper sx={{ mb: 2, p: 2 }}>
+          <Typography variant="body1">ترتیب نمایش</Typography>
           <RadioButtonGroup
             selectedValue={productParams.orderBy}
             option={sortOptions}
@@ -65,6 +66,8 @@ function Catalog() {
           />
         </Paper>
         <Paper sx={{ mb: 2, p: 2 }}>
+          <Typography variant="body1">انتخاب برند</Typography>
+
           <CheckBoxButtons
             items={brands}
             checked={productParams.brands}
@@ -74,6 +77,7 @@ function Catalog() {
           />
         </Paper>
         <Paper sx={{ mb: 2, p: 2 }}>
+          <Typography variant="body1">انتخاب نوع کالا</Typography>
           <CheckBoxButtons
             items={types}
             checked={productParams.types}

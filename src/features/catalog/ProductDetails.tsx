@@ -92,23 +92,23 @@ function ProductDetails() {
           <Table>
             <TableBody>
               <TableRow>
-                <TableCell>Name</TableCell>
+                <TableCell>نام</TableCell>
                 <TableCell>{product.name}</TableCell>
               </TableRow>
               <TableRow>
-                <TableCell>Description</TableCell>
+                <TableCell>توضیحات</TableCell>
                 <TableCell>{product.description}</TableCell>
               </TableRow>
               <TableRow>
-                <TableCell>Type</TableCell>
+                <TableCell>نوع</TableCell>
                 <TableCell>{product.type}</TableCell>
               </TableRow>
               <TableRow>
-                <TableCell>Brand</TableCell>
+                <TableCell>برند</TableCell>
                 <TableCell>{product.brand}</TableCell>
               </TableRow>
               <TableRow>
-                <TableCell>Quantity in stock</TableCell>
+                <TableCell>تعداد موجود</TableCell>
                 <TableCell>{product.quantityInStock}</TableCell>
               </TableRow>
             </TableBody>
@@ -120,7 +120,7 @@ function ProductDetails() {
               onChange={handleInputeChange}
               variant="outlined"
               type="number"
-              label="Quantity in cart"
+              label="تعداد خرید"
               fullWidth
               value={quantity}
             />
@@ -138,7 +138,7 @@ function ProductDetails() {
               variant="contained"
               fullWidth
             >
-              {item ? "Update Quantity" : "Add to Cart"}
+              {item ? "بروزرسانی تعداد" : "افزودن به سبد خرید"}
             </LoadingButton>
           </Grid>
         </Grid>

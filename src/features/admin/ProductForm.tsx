@@ -57,19 +57,19 @@ export default function ProductForm({ product, cancelEdit }: Props) {
   return (
     <Box component={Paper} sx={{ p: 4 }}>
       <Typography variant="h4" gutterBottom sx={{ mb: 4 }}>
-        Product Details
+        افزودن کالا
       </Typography>
       <form onSubmit={handleSubmit(handleSubmitData)}>
         <Grid container spacing={3}>
           <Grid item xs={12} sm={12}>
-            <AppTextInput control={control} name="name" label="Product name" />
+            <AppTextInput control={control} name="name" label="نام کالا" />
           </Grid>
           <Grid item xs={12} sm={6}>
             <AppSelectList
               control={control}
               items={brands}
               name="brand"
-              label="Brand"
+              label="برند"
             />
           </Grid>
           <Grid item xs={12} sm={6}>
@@ -77,7 +77,7 @@ export default function ProductForm({ product, cancelEdit }: Props) {
               control={control}
               items={types}
               name="type"
-              label="Type"
+              label="نوع"
             />
           </Grid>
           <Grid item xs={12} sm={6}>
@@ -85,7 +85,7 @@ export default function ProductForm({ product, cancelEdit }: Props) {
               type="number"
               control={control}
               name="price"
-              label="Price"
+              label="قیمت"
             />
           </Grid>
           <Grid item xs={12} sm={6}>
@@ -93,7 +93,7 @@ export default function ProductForm({ product, cancelEdit }: Props) {
               type="number"
               control={control}
               name="quantityInStock"
-              label="Quantity in Stock"
+              label="تعداد موجود"
             />
           </Grid>
           <Grid item xs={12}>
@@ -102,7 +102,7 @@ export default function ProductForm({ product, cancelEdit }: Props) {
               multiline={true}
               rows={4}
               name="description"
-              label="Description"
+              label="توضیحات"
             />
           </Grid>
           <Grid item xs={12}>
@@ -130,7 +130,7 @@ export default function ProductForm({ product, cancelEdit }: Props) {
         </Grid>
         <Box display="flex" justifyContent="space-between" sx={{ mt: 3 }}>
           <Button onClick={cancelEdit} variant="contained" color="inherit">
-            Cancel
+            انصراف
           </Button>
           <LoadingButton
             loading={isSubmitting}
@@ -138,7 +138,7 @@ export default function ProductForm({ product, cancelEdit }: Props) {
             variant="contained"
             color="success"
           >
-            Submit
+            ثبت
           </LoadingButton>
         </Box>
       </form>

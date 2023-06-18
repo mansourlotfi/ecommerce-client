@@ -8,30 +8,30 @@ export default function AddressForm() {
   return (
     <>
       <Typography variant="h6" gutterBottom>
-        Shipping address
+        مقصد ارسال
       </Typography>
 
       <Grid container spacing={3}>
         <Grid item xs={12} sm={12}>
-          <AppTextInput control={control} name="fullName" label="Full name" />
+          <AppTextInput control={control} name="fullName" label="نام کامل" />
         </Grid>
         <Grid item xs={12}>
-          <AppTextInput control={control} name="address1" label="Address 1" />
+          <AppTextInput control={control} name="address1" label="آدرس خط اول" />
         </Grid>
         <Grid item xs={12}>
-          <AppTextInput control={control} name="address2" label="Address 2" />
+          <AppTextInput control={control} name="address2" label="آدرس خط دوم" />
         </Grid>
         <Grid item xs={12} sm={6}>
-          <AppTextInput control={control} name="city" label="City" />
+          <AppTextInput control={control} name="city" label="شهر" />
         </Grid>
         <Grid item xs={12} sm={6}>
-          <AppTextInput control={control} name="state" label="State" />
+          <AppTextInput control={control} name="state" label="استان" />
         </Grid>
         <Grid item xs={12} sm={6}>
-          <AppTextInput control={control} name="zip" label="Zipcode" />
+          <AppTextInput control={control} name="zip" label="کد پستی" />
         </Grid>
         <Grid item xs={12} sm={6}>
-          <AppTextInput control={control} name="country" label="Country" />
+          <AppTextInput control={control} name="country" label="کشور" />
         </Grid>
       </Grid>
 
@@ -39,7 +39,7 @@ export default function AddressForm() {
         <AppCheckbox
           disabled={!formState.isDirty}
           name="saveAddress"
-          label="Save this as the default address"
+          label="ذخیره به عنوان آدرس پسشفرض برای خرید های بعدی"
           control={control}
         />
       </Grid>

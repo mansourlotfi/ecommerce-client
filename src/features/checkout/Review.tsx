@@ -8,7 +8,7 @@ export default function Review() {
   return (
     <>
       <Typography variant="h6" gutterBottom>
-        Order summary
+        جزئیات سفارش
       </Typography>
       {basket && <BasketTable items={basket.items} isBasket={false} />}
       <Grid container>

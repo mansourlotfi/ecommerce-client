@@ -61,10 +61,10 @@ function ProductCard({ product }: IProps) {
           }
           size="small"
         >
-          Add to card
+          افزودن به سبد خرید
         </LoadingButton>
         <Button component={Link} to={`/catalog/${product.id}`} size="small">
-          View
+          جزئیات
         </Button>
       </CardActions>
     </Card>

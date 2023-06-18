@@ -23,7 +23,7 @@ export default function BasketPage() {
             size="large"
             fullWidth
           >
-            Checkout
+            تکمیل سفارش
           </Button>
         </Grid>
       </Grid>

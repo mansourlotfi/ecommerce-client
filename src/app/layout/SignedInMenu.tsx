@@ -30,9 +30,9 @@ export default function SignedInMenu() {
         onClose={handleClose}
         TransitionComponent={Fade}
       >
-        <MenuItem onClick={handleClose}>Profile</MenuItem>
+        <MenuItem onClick={handleClose}>پروفایل</MenuItem>
         <MenuItem component={Link} to="/orders">
-          My orders
+          سفارشات
         </MenuItem>
         <MenuItem
           onClick={() => {
@@ -40,7 +40,7 @@ export default function SignedInMenu() {
             dispatch(clearBasket());
           }}
         >
-          Logout
+          خروج
         </MenuItem>
       </Menu>
     </>

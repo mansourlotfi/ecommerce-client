@@ -27,10 +27,10 @@ export default function BasketTable({ items, isBasket = true }: Props) {
       <Table sx={{ minWidth: 650 }} aria-label="simple table">
         <TableHead>
           <TableRow>
-            <TableCell>Product</TableCell>
-            <TableCell align="right">Price</TableCell>
-            <TableCell align="center">Quantity</TableCell>
-            <TableCell align="right">Subtotal</TableCell>
+            <TableCell>کالا</TableCell>
+            <TableCell align="right">قیمت</TableCell>
+            <TableCell align="center">تعداد</TableCell>
+            <TableCell align="right">جمع</TableCell>
             {isBasket && <TableCell align="right"></TableCell>}
           </TableRow>
         </TableHead>

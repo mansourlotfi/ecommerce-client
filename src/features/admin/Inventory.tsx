@@ -58,7 +58,7 @@ export default function Inventory() {
     <>
       <Box display="flex" justifyContent="space-between">
         <Typography sx={{ p: 2 }} variant="h4">
-          Inventory
+          لیست کالاها
         </Typography>
         <Button
           onClick={() => setEditMode(true)}
@@ -66,7 +66,7 @@ export default function Inventory() {
           size="large"
           variant="contained"
         >
-          Create
+          کالای جدید
         </Button>
       </Box>
       <TableContainer component={Paper}>
@@ -74,11 +74,11 @@ export default function Inventory() {
           <TableHead>
             <TableRow>
               <TableCell>#</TableCell>
-              <TableCell align="left">Product</TableCell>
-              <TableCell align="right">Price</TableCell>
-              <TableCell align="center">Type</TableCell>
-              <TableCell align="center">Brand</TableCell>
-              <TableCell align="center">Quantity</TableCell>
+              <TableCell align="left">کالا</TableCell>
+              <TableCell align="right">قیمت</TableCell>
+              <TableCell align="center">نوع</TableCell>
+              <TableCell align="center">برند</TableCell>
+              <TableCell align="center">تعداد</TableCell>
               <TableCell align="right"></TableCell>
             </TableRow>
           </TableHead>

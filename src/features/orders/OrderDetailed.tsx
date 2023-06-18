@@ -19,7 +19,7 @@ export default function OrderDetailed({ order, setSelectedOrder }: Props) {
     <>
       <Box display="flex" justifyContent="space-between">
         <Typography sx={{ p: 2 }} gutterBottom variant="h4">
-          Order# {order.id} - {order.orderStatus}
+          سفارش# {order.id} - {order.orderStatus}
         </Typography>
         <Button
           onClick={() => setSelectedOrder(0)}
@@ -27,7 +27,7 @@ export default function OrderDetailed({ order, setSelectedOrder }: Props) {
           size="large"
           variant="contained"
         >
-          Back to orders
+          بازگشت به لیست سفارشات
         </Button>
       </Box>
       <BasketTable items={order.orderItems as BasketItem[]} isBasket={false} />

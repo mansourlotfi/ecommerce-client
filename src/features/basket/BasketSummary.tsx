@@ -29,15 +29,15 @@ export default function BasketSummary({ subtotal }: Props) {
         <Table>
           <TableBody>
             <TableRow>
-              <TableCell colSpan={2}>Subtotal</TableCell>
+              <TableCell colSpan={2}>جمع</TableCell>
               <TableCell align="right">{currencyFormat(subtotal)}</TableCell>
             </TableRow>
             <TableRow>
-              <TableCell colSpan={2}>Delivery fee*</TableCell>
+              <TableCell colSpan={2}>هزینه ارسال*</TableCell>
               <TableCell align="right">{currencyFormat(deliveryFee)}</TableCell>
             </TableRow>
             <TableRow>
-              <TableCell colSpan={2}>Total</TableCell>
+              <TableCell colSpan={2}>جمع کل</TableCell>
               <TableCell align="right">
                 {currencyFormat(subtotal + deliveryFee)}
               </TableCell>
@@ -45,7 +45,7 @@ export default function BasketSummary({ subtotal }: Props) {
             <TableRow>
               <TableCell>
                 <span style={{ fontStyle: "italic" }}>
-                  *Orders over $100 qualify for free delivery
+                  *ارسال رایگان بالای 100 دلار
                 </span>
               </TableCell>
             </TableRow>

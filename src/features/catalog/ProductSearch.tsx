@@ -13,7 +13,7 @@ export default function ProductSearch() {
 
   return (
     <TextField
-      label="Search Products"
+      label="جستجو"
       variant="outlined"
       fullWidth
       value={searchTerm || ""}

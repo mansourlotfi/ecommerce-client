@@ -24,11 +24,11 @@ export default function AppPagination({ metaData, onPageChange }: Props) {
       sx={{ marginBottom: 3 }}
     >
       <Typography variant="body1">
-        Displaying {(currentPage - 1) * pageSize + 1}-
+        نمایش {(currentPage - 1) * pageSize + 1}-
         {currentPage * pageSize > totalCount!
           ? totalCount
           : currentPage * pageSize}{" "}
-        of {totalCount} results
+        از {totalCount}
       </Typography>
       <Pagination
         color="secondary"

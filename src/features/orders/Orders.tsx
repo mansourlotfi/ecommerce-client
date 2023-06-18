@@ -42,10 +42,10 @@ export default function Orders() {
       <Table sx={{ minWidth: 650 }} aria-label="simple table">
         <TableHead>
           <TableRow>
-            <TableCell>Order Number</TableCell>
-            <TableCell align="right">Total</TableCell>
-            <TableCell align="right">Order Date</TableCell>
-            <TableCell align="right">Order Status</TableCell>
+            <TableCell>شماره سفارش</TableCell>
+            <TableCell align="right">جمع</TableCell>
+            <TableCell align="right">تاریخ سفارش</TableCell>
+            <TableCell align="right">وضعیت</TableCell>
             <TableCell align="right"></TableCell>
           </TableRow>
         </TableHead>
@@ -65,7 +65,7 @@ export default function Orders() {
               <TableCell align="right">{order.orderStatus}</TableCell>
               <TableCell align="right">
                 <Button onClick={() => setSelectedOrderNumber(order.id)}>
-                  View
+                  نمایش
                 </Button>
               </TableCell>
             </TableRow>

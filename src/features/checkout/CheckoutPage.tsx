@@ -19,7 +19,7 @@ import agent from "../../app/api/agent";
 // import { clearBasket } from "../basket/basketSlice";
 import { LoadingButton } from "@mui/lab";
 
-const steps = ["Shipping address", "Review your order", "Payment details"];
+const steps = ["آدرس ارسال", "مرور سفارش", "پرداخت"];
 
 export default function CheckoutPage() {
   const [activeStep, setActiveStep] = useState(0);
@@ -120,7 +120,7 @@ export default function CheckoutPage() {
         sx={{ my: { xs: 3, md: 6 }, p: { xs: 2, md: 3 } }}
       >
         <Typography component="h1" variant="h4" align="center">
-          Checkout
+          تکمیل سفارش
         </Typography>
         <Stepper activeStep={activeStep} sx={{ pt: 3, pb: 5 }}>
           {steps.map((label) => (
@@ -163,7 +163,7 @@ export default function CheckoutPage() {
                   type="submit"
                   sx={{ mt: 3, ml: 1 }}
                 >
-                  {activeStep === steps.length - 1 ? "Place order" : "Next"}
+                  {activeStep === steps.length - 1 ? "ثبت سفارش" : "مرحله بعد"}
                 </LoadingButton>
               </Box>
             </form>
