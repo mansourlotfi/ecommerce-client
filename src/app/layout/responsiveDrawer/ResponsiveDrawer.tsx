@@ -20,6 +20,19 @@ import { signOut } from "../../../features/account/accountSlice";
 import { clearBasket } from "../../../features/basket/basketSlice";
 import { NavLink } from "react-router-dom";
 
+const navStyles = {
+  color: "inherit",
+  textDecoration: "none",
+  typography: "h6",
+  whiteSpace: "nowrap",
+  "&:hover": {
+    color: "grey.500",
+  },
+  "&.active": {
+    color: "text.secondary",
+  },
+};
+
 export default function ResponsiveDrawer() {
   const [isOpen, setIsOpen] = React.useState(false);
   const { user } = useAppSelector((state) => state.account);
@@ -50,6 +63,7 @@ export default function ResponsiveDrawer() {
                 disablePadding
                 component={NavLink}
                 to={item.link}
+                sx={navStyles}
               >
                 <ListItemButton>
                   <ListItemIcon>{item.icon}</ListItemIcon>
@@ -63,6 +77,7 @@ export default function ResponsiveDrawer() {
                 disablePadding
                 component={NavLink}
                 to={item.link}
+                sx={navStyles}
               >
                 <ListItemButton>
                   <ListItemIcon>{item.icon}</ListItemIcon>
@@ -80,6 +95,7 @@ export default function ResponsiveDrawer() {
                 disablePadding
                 component={NavLink}
                 to={item.link}
+                sx={navStyles}
               >
                 <ListItemButton>
                   <ListItemIcon>{item.icon}</ListItemIcon>
@@ -93,6 +109,7 @@ export default function ResponsiveDrawer() {
                 disablePadding
                 component={NavLink}
                 to={item.link}
+                sx={navStyles}
               >
                 <ListItemButton>
                   <ListItemIcon>{item.icon}</ListItemIcon>
