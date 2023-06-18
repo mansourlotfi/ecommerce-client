@@ -41,6 +41,7 @@ export const router = createBrowserRouter([
       { path: "basket", element: <BasketPage /> },
       { path: "login", element: <Login /> },
       { path: "register", element: <Register /> },
+      { path: "profile", element: <>profile</> },
       { path: "*", element: <Navigate replace to="/not-found" /> },
     ],
   },
