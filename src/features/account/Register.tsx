@@ -52,7 +52,7 @@ export default function Register() {
         <LockOutlinedIcon />
       </Avatar>
       <Typography component="h1" variant="h5">
-        Register
+        ثبت نام
       </Typography>
       <Box
         component="form"
@@ -70,7 +70,7 @@ export default function Register() {
         <TextField
           margin="normal"
           fullWidth
-          label="Username"
+          label="نام کاربری"
           autoFocus
           {...register("username", { required: "Username is required" })}
           error={!!errors.username}
@@ -79,7 +79,7 @@ export default function Register() {
         <TextField
           margin="normal"
           fullWidth
-          label="Email address"
+          label="آدرس ایمیل"
           {...register("email", {
             required: "Email is required",
             pattern: {
@@ -93,7 +93,7 @@ export default function Register() {
         <TextField
           margin="normal"
           fullWidth
-          label="Password"
+          label="رمز عبور"
           type="password"
           {...register("password", {
             required: "Password is required",
@@ -114,11 +114,11 @@ export default function Register() {
           variant="contained"
           sx={{ mt: 3, mb: 2 }}
         >
-          Register
+          ثبت نام
         </LoadingButton>
         <Grid container>
           <Grid item>
-            <Link to="/login">{"Already have an account? Sign In"}</Link>
+            <Link to="/login">{"قبلا ثبت نام کردید؟ اینجا وارد بشید"}</Link>
           </Grid>
         </Grid>
       </Box>

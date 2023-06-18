@@ -1,4 +1,4 @@
-import { ShoppingCart } from "@mui/icons-material";
+import { ShoppingCart, DarkMode } from "@mui/icons-material";
 import {
   AppBar,
   Badge,
@@ -7,7 +7,6 @@ import {
   ListItem,
   Switch,
   Toolbar,
-  Typography,
 } from "@mui/material";
 import { Box } from "@mui/system";
 import { Link, NavLink } from "react-router-dom";
@@ -15,20 +14,21 @@ import { useAppSelector } from "../store/configureStore";
 import SignedInMenu from "./SignedInMenu";
 
 const midLinks = [
-  { title: "catalog", path: "/catalog" },
-  { title: "about", path: "/about" },
-  { title: "contact", path: "/contact" },
+  { title: "محصولات", path: "/catalog" },
+  { title: "درباره ما", path: "/about" },
+  { title: "تماس با ما", path: "/contact" },
 ];
 
 const rightLinks = [
-  { title: "login", path: "/login" },
-  { title: "register", path: "/register" },
+  { title: "ورود", path: "/login" },
+  { title: "ثبت نام", path: "/register" },
 ];
 
 const navStyles = {
   color: "inherit",
   textDecoration: "none",
   typography: "h6",
+  whiteSpace: "nowrap",
   "&:hover": {
     color: "grey.500",
   },
@@ -57,12 +57,12 @@ export default function Header({ handleThemeChange, darkMode }: Props) {
         }}
       >
         <Box display="flex" alignItems="center">
-          <Typography variant="h6" component={NavLink} to="/" sx={navStyles}>
+          {/* <Typography variant="h6" component={NavLink} to="/" sx={navStyles}>
             RE-STORE
-          </Typography>
+          </Typography> */}
+          <DarkMode />
           <Switch checked={darkMode} onChange={handleThemeChange} />
         </Box>
-
         <List sx={{ display: "flex" }}>
           {midLinks.map(({ title, path }) => (
             <ListItem component={NavLink} to={path} key={path} sx={navStyles}>
@@ -71,7 +71,7 @@ export default function Header({ handleThemeChange, darkMode }: Props) {
           ))}
           {user && user.roles?.includes("Admin") && (
             <ListItem component={NavLink} to={"/inventory"} sx={navStyles}>
-              INVENTORY
+              انبار
             </ListItem>
           )}
         </List>

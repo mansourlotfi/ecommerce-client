@@ -49,7 +49,7 @@ export default function Login() {
         <LockOutlinedIcon />
       </Avatar>
       <Typography component="h1" variant="h5">
-        Sign in
+        ورود
       </Typography>
       <Box
         component="form"
@@ -60,7 +60,7 @@ export default function Login() {
         <TextField
           margin="normal"
           fullWidth
-          label="Username"
+          label="نام کاربری"
           autoFocus
           {...register("username", { required: "Username is required" })}
           error={!!errors.username}
@@ -69,7 +69,7 @@ export default function Login() {
         <TextField
           margin="normal"
           fullWidth
-          label="Password"
+          label="کلمه عبور"
           type="password"
           {...register("password", { required: "Password is required" })}
           error={!!errors.password}
@@ -83,11 +83,11 @@ export default function Login() {
           variant="contained"
           sx={{ mt: 3, mb: 2 }}
         >
-          Sign In
+          ورود
         </LoadingButton>
         <Grid container>
           <Grid item>
-            <Link to="/register">{"Don't have an account? Sign Up"}</Link>
+            <Link to="/register">{"ثبت نام"}</Link>
           </Grid>
         </Grid>
       </Box>

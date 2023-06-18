@@ -14,11 +14,21 @@ import { useAppDispatch } from "../store/configureStore";
 import { fetchBasketAsync } from "../../features/basket/basketSlice";
 import { fetchCurrentUser } from "../../features/account/accountSlice";
 import HomePage from "../../features/home/HomePage";
-
+import rtlPlugin from "stylis-plugin-rtl";
+import { CacheProvider } from "@emotion/react";
+import createCache from "@emotion/cache";
+import { prefixer } from "stylis";
 function App() {
   const location = useLocation();
   const dispatch = useAppDispatch();
   const [loading, setLoading] = useState(true);
+
+  // Create rtl cache
+  const cacheRtl = createCache({
+    key: "muirtl",
+    stylisPlugins: [prefixer, rtlPlugin],
+  });
+
   const initApp = useCallback(async () => {
     try {
       await dispatch(fetchCurrentUser());
@@ -41,6 +51,7 @@ function App() {
         default: palleteType === "light" ? "#eaeaea" : "#121212",
       },
     },
+    direction: "rtl",
   });
 
   function handleThemeChange() {
@@ -48,20 +59,26 @@ function App() {
   }
 
   return (
-    <ThemeProvider theme={theme}>
-      <ToastContainer position="bottom-right" hideProgressBar theme="colored" />
-      <CssBaseline />
-      <Header darkMode={darkMode} handleThemeChange={handleThemeChange} />
-      {loading ? (
-        <LoadingComponent message="Initialising app..." />
-      ) : location.pathname === "/" ? (
-        <HomePage />
-      ) : (
-        <Container sx={{ mt: 4 }}>
-          <Outlet />
-        </Container>
-      )}
-    </ThemeProvider>
+    <CacheProvider value={cacheRtl}>
+      <ThemeProvider theme={theme}>
+        <ToastContainer
+          position="bottom-right"
+          hideProgressBar
+          theme="colored"
+        />
+        <CssBaseline />
+        <Header darkMode={darkMode} handleThemeChange={handleThemeChange} />
+        {loading ? (
+          <LoadingComponent message="Initialising app..." />
+        ) : location.pathname === "/" ? (
+          <HomePage />
+        ) : (
+          <Container sx={{ mt: 4 }}>
+            <Outlet />
+          </Container>
+        )}
+      </ThemeProvider>
+    </CacheProvider>
   );
 }
 
