@@ -1,4 +1,4 @@
-import { ShoppingCart, DarkMode } from "@mui/icons-material";
+import { ShoppingCart, DarkMode, Home } from "@mui/icons-material";
 import {
   AppBar,
   Badge,
@@ -12,6 +12,8 @@ import { Box } from "@mui/system";
 import { Link, NavLink } from "react-router-dom";
 import { useAppSelector } from "../store/configureStore";
 import SignedInMenu from "./SignedInMenu";
+import useMediaQuery from "@mui/material/useMediaQuery";
+import ResponsiveDrawer from "./responsiveDrawer/ResponsiveDrawer";
 
 const midLinks = [
   { title: "محصولات", path: "/catalog" },
@@ -46,6 +48,7 @@ export default function Header({ handleThemeChange, darkMode }: Props) {
   const { basket } = useAppSelector((state) => state.basket);
   const { user } = useAppSelector((state) => state.account);
   const itemCount = basket?.items.reduce((sum, item) => sum + item.quantity, 0);
+  const isMobile = useMediaQuery("(max-width:600px)");
 
   return (
     <AppBar position="static">
@@ -56,25 +59,38 @@ export default function Header({ handleThemeChange, darkMode }: Props) {
           alignItems: "center",
         }}
       >
-        <Box display="flex" alignItems="center">
-          {/* <Typography variant="h6" component={NavLink} to="/" sx={navStyles}>
-            RE-STORE
-          </Typography> */}
-          <DarkMode />
-          <Switch checked={darkMode} onChange={handleThemeChange} />
-        </Box>
-        <List sx={{ display: "flex" }}>
-          {midLinks.map(({ title, path }) => (
-            <ListItem component={NavLink} to={path} key={path} sx={navStyles}>
-              {title.toUpperCase()}
-            </ListItem>
-          ))}
-          {user && user.roles?.includes("Admin") && (
-            <ListItem component={NavLink} to={"/inventory"} sx={navStyles}>
-              انبار
-            </ListItem>
-          )}
-        </List>
+        {!isMobile ? (
+          <>
+            <Box display="flex" alignItems="center">
+              <DarkMode />
+              <Switch checked={darkMode} onChange={handleThemeChange} />
+              <IconButton component={NavLink} to={"/"}>
+                <Home />
+              </IconButton>
+            </Box>
+            <List sx={{ display: "flex" }}>
+              {midLinks.map(({ title, path }) => (
+                <ListItem
+                  component={NavLink}
+                  to={path}
+                  key={path}
+                  sx={navStyles}
+                >
+                  {title.toUpperCase()}
+                </ListItem>
+              ))}
+              {user && user.roles?.includes("Admin") && (
+                <ListItem component={NavLink} to={"/inventory"} sx={navStyles}>
+                  انبار
+                </ListItem>
+              )}
+            </List>
+          </>
+        ) : (
+          <Box display="flex" alignItems="center">
+            <ResponsiveDrawer />
+          </Box>
+        )}
 
         <Box display="flex" alignItems="center">
           <IconButton
@@ -90,22 +106,26 @@ export default function Header({ handleThemeChange, darkMode }: Props) {
             </Badge>
           </IconButton>
 
-          {user ? (
-            <SignedInMenu />
-          ) : (
-            <List sx={{ display: "flex" }}>
-              {rightLinks.map(({ title, path }) => (
-                <ListItem
-                  component={NavLink}
-                  to={path}
-                  key={path}
-                  sx={navStyles}
-                >
-                  {title.toUpperCase()}
-                </ListItem>
-              ))}
-            </List>
-          )}
+          {!isMobile ? (
+            <>
+              {user ? (
+                <SignedInMenu />
+              ) : (
+                <List sx={{ display: "flex" }}>
+                  {rightLinks.map(({ title, path }) => (
+                    <ListItem
+                      component={NavLink}
+                      to={path}
+                      key={path}
+                      sx={navStyles}
+                    >
+                      {title.toUpperCase()}
+                    </ListItem>
+                  ))}
+                </List>
+              )}
+            </>
+          ) : null}
         </Box>
       </Toolbar>
     </AppBar>

@@ -23,13 +23,6 @@ export default function AppPagination({ metaData, onPageChange }: Props) {
       alignItems="center"
       sx={{ marginBottom: 3 }}
     >
-      <Typography variant="body1">
-        نمایش {(currentPage - 1) * pageSize + 1}-
-        {currentPage * pageSize > totalCount!
-          ? totalCount
-          : currentPage * pageSize}{" "}
-        از {totalCount}
-      </Typography>
       <Pagination
         color="secondary"
         size="large"
@@ -37,6 +30,13 @@ export default function AppPagination({ metaData, onPageChange }: Props) {
         page={pageNumber}
         onChange={(e, page) => handlePageChange(page)}
       />
+      <Typography variant="body1">
+        نمایش {(currentPage - 1) * pageSize + 1}-
+        {currentPage * pageSize > totalCount!
+          ? totalCount
+          : currentPage * pageSize}{" "}
+        از {totalCount}
+      </Typography>
     </Box>
   );
 }

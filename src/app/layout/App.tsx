@@ -19,6 +19,7 @@ import { CacheProvider } from "@emotion/react";
 import createCache from "@emotion/cache";
 import { prefixer } from "stylis";
 import VazirmatnRegular from "../assets/font/Vazirmatn-Regular.woff2";
+import Footer from "./footer/Footer";
 // import VazirMatnSemiBold from "../assets/font/Vazirmatn-SemiBold.woff2"
 
 function App() {
@@ -97,6 +98,7 @@ function App() {
             <Outlet />
           </Container>
         )}
+        <Footer />
       </ThemeProvider>
     </CacheProvider>
   );
