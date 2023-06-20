@@ -1,11 +1,4 @@
-import {
-  Box,
-  Container,
-  Grid,
-  List,
-  ListItem,
-  useMediaQuery,
-} from "@mui/material";
+import { Container, List, ListItem, useMediaQuery } from "@mui/material";
 import { NavLink } from "react-router-dom";
 import { links } from "./data";
 import "./styles.css";
@@ -39,7 +32,7 @@ const Footer = () => {
             ))}
           </List>
         </Container>
-        <div className="footer__socials">
+        {/* <div className="footer__socials">
           <Box display="flex" justifyContent="center">
             <ul className="c-social-list">
               <li>
@@ -107,7 +100,7 @@ const Footer = () => {
               </li>
             </ul>
           </Box>
-        </div>
+        </div> */}
       </div>
       <div className="footer__copyright">
         <small>تمامی حقوق محفوظ می باشد</small>

@@ -21,8 +21,10 @@ import {
 } from "../basket/basketSlice";
 import { fetchProductAsync, productSelectors } from "./catalogSlice";
 import { EntityId } from "@reduxjs/toolkit";
+import useMediaQuery from "@mui/material/useMediaQuery";
 
 function ProductDetails() {
+  const isMobile = useMediaQuery("(max-width:600px)");
   const { basket, status } = useAppSelector((state) => state.basket);
   const dispatch = useAppDispatch();
   const { id } = useParams<{ id: string }>();
@@ -75,15 +77,22 @@ function ProductDetails() {
 
   return (
     <Grid container spacing={6}>
-      <Grid item xs={6}>
+      <Grid item xs={3} md={6}>
         <img
           src={product.pictureUrl}
           alt={product.name}
           style={{ width: "100%" }}
         />
       </Grid>
-      <Grid item xs={6}>
-        <Typography variant="h3">{product.name}</Typography>
+      {isMobile ? (
+        <Grid item xs={9}>
+          <Typography variant="h6">{product.name}</Typography>
+        </Grid>
+      ) : null}
+      <Grid item xs={12} md={6}>
+        {!isMobile ? (
+          <Typography variant="h4">{product.name}</Typography>
+        ) : null}
         <Divider sx={{ mb: 2 }} />
         <Typography variant="h4" color="secondary">
           ${(product.price / 100).toFixed(2)}
