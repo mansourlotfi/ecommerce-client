@@ -8,11 +8,11 @@ RUN yarn install --production
 # Copy app files
 COPY . .
 # Build the app
+ENV GENERATE_SOURCEMAP=false
 RUN yarn build
 
 
 EXPOSE 80
-
 COPY .env .
 
 CMD yarn start
