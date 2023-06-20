@@ -1,4 +1,4 @@
-FROM node:16.3.0-alpine AS builder
+FROM node:16.20.0-alpine3.18 AS builder
 #Test
 WORKDIR /app
 # Cache and Install dependencies
