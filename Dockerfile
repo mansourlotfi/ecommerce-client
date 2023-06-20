@@ -11,12 +11,9 @@ COPY . .
 RUN yarn build
 
 
-# Default port exposure
 EXPOSE 80
 
-# Copy .env file and shell script to container
 COPY .env .
 
-# Start Nginx server
 CMD yarn start
 
