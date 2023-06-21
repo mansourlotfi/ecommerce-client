@@ -19,6 +19,7 @@ import {
 import { signOut } from "../../../features/account/accountSlice";
 import { clearBasket } from "../../../features/basket/basketSlice";
 import { NavLink } from "react-router-dom";
+import { DarkMode, LightMode } from "@mui/icons-material";
 
 const navStyles = {
   color: "inherit",
@@ -30,10 +31,19 @@ const navStyles = {
   },
   "&.active": {
     color: "text.secondary",
+    backgroundColor: "primary.light",
   },
 };
 
-export default function ResponsiveDrawer() {
+interface Props {
+  darkMode: boolean;
+  handleThemeChange: () => void;
+}
+
+export default function ResponsiveDrawer({
+  handleThemeChange,
+  darkMode,
+}: Props) {
   const [isOpen, setIsOpen] = React.useState(false);
   const { user } = useAppSelector((state) => state.account);
   const dispatch = useAppDispatch();
@@ -49,8 +59,18 @@ export default function ResponsiveDrawer() {
       onClick={toggleDrawer}
       onKeyDown={toggleDrawer}
     >
+      <IconButton
+        onClick={(e) => {
+          e.stopPropagation();
+          handleThemeChange();
+        }}
+        sx={{ margin: 2 }}
+      >
+        {!darkMode ? <DarkMode /> : <LightMode />}
+      </IconButton>
+
       {user ? (
-        <Grid container p={5}>
+        <Grid container pl={2}>
           <Typography>{user?.email}</Typography>
         </Grid>
       ) : null}

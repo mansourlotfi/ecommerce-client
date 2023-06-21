@@ -88,7 +88,10 @@ export default function Header({ handleThemeChange, darkMode }: Props) {
           </>
         ) : (
           <Box display="flex" alignItems="center">
-            <ResponsiveDrawer />
+            <ResponsiveDrawer
+              darkMode={darkMode}
+              handleThemeChange={handleThemeChange}
+            />
           </Box>
         )}
 

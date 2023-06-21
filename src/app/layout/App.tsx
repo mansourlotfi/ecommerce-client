@@ -20,6 +20,7 @@ import createCache from "@emotion/cache";
 import { prefixer } from "stylis";
 import VazirmatnRegular from "../assets/font/Vazirmatn-Regular.woff2";
 import Footer from "./footer/Footer";
+import { grey } from "@mui/material/colors";
 // import VazirMatnSemiBold from "../assets/font/Vazirmatn-SemiBold.woff2"
 
 function App() {
@@ -53,6 +54,37 @@ function App() {
       mode: palleteType,
       background: {
         default: palleteType === "light" ? "#eaeaea" : "#121212",
+      },
+      primary: {
+        main: "#1F56A3",
+        dark: "#153D76",
+        light: "#7FA4D8",
+        contrastText: "#F6F6FF",
+      },
+      secondary: {
+        main: "#CB1150",
+        dark: "#931846",
+        light: "#E5437A",
+        contrastText: "#F6F6FF",
+      },
+      error: {
+        main: "#DC3545",
+        light: "#FFEDEF",
+      },
+      info: {
+        main: "#0DA7A7",
+        light: "#EDFFFF",
+      },
+      success: {
+        main: "#20BC7A",
+        light: "#E9FFF6",
+      },
+      warning: {
+        main: "#FAC641",
+        light: "#FFF9EA",
+      },
+      grey: {
+        ...grey,
       },
     },
     direction: "rtl",

@@ -1,7 +1,8 @@
-import { debounce, TextField } from "@mui/material";
+import { debounce, InputAdornment, TextField } from "@mui/material";
 import { useState } from "react";
 import { useAppDispatch, useAppSelector } from "../../app/store/configureStore";
 import { setProductParams } from "./catalogSlice";
+import SearchIcon from "@mui/icons-material/Search";
 
 export default function ProductSearch() {
   const { productParams } = useAppSelector((state) => state.catalog);
@@ -20,6 +21,13 @@ export default function ProductSearch() {
       onChange={(event: any) => {
         setSearchTerm(event.target.value);
         debouncedSearchTerm(event);
+      }}
+      InputProps={{
+        endAdornment: (
+          <InputAdornment position="end">
+            <SearchIcon />
+          </InputAdornment>
+        ),
       }}
     />
   );
