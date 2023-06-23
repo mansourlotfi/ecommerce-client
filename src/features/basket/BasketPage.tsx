@@ -1,4 +1,4 @@
-import { Button, Grid, Typography } from "@mui/material";
+import { Button, Grid } from "@mui/material";
 import { Link } from "react-router-dom";
 import { useAppSelector } from "../../app/store/configureStore";
 import BasketSummary from "./BasketSummary";
@@ -11,7 +11,7 @@ export default function BasketPage() {
   const { basket } = useAppSelector((state) => state.basket);
   const isMobile = useMediaQuery("(max-width:600px)");
 
-  if (!basket) return <Typography variant="h3">سبد خرید خالی است</Typography>;
+  if (!basket) return <EmptyBasket />;
 
   return (
     <>

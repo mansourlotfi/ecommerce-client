@@ -13,16 +13,16 @@ import {
   TableBody,
 } from "@mui/material";
 import { useState } from "react";
-import agent from "../../app/api/agent";
-import AppPagination from "../../app/components/AppPagination";
-import useProducts from "../../app/hooks/useProducts";
-import { Product } from "../../app/models/product";
-import { useAppDispatch } from "../../app/store/configureStore";
-import { currencyFormat } from "../../app/util/util";
-import { removeProduct, setPageNumber } from "../catalog/catalogSlice";
+import agent from "../../../app/api/agent";
+import AppPagination from "../../../app/components/AppPagination";
+import useProducts from "../../../app/hooks/useProducts";
+import { Product } from "../../../app/models/product";
+import { useAppDispatch } from "../../../app/store/configureStore";
+import { currencyFormat } from "../../../app/util/util";
+import { removeProduct, setPageNumber } from "../../catalog/catalogSlice";
 import ProductForm from "./ProductForm";
 
-export default function Inventory() {
+export default function AdminInventory() {
   const { products, metaData } = useProducts();
   const dispatch = useAppDispatch();
   const [editMode, setEditMode] = useState(false);

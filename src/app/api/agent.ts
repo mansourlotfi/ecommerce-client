@@ -101,6 +101,15 @@ const Catalog = {
   fetchFilters: () => requests.get("products/filters"),
 };
 
+const Category = {
+  list: () => requests.get("Categories"),
+  details: (id: number) => requests.get(`Categories/${id}`),
+};
+
+const Brand = {
+  list: () => requests.get("Brands"),
+  details: (id: number) => requests.get(`Brands/${id}`),
+};
 const TestErrors = {
   get400Error: () => requests.get("buggy/bad-request"),
   get401Error: () => requests.get("buggy/unauthorised"),
@@ -135,15 +144,26 @@ const Payments = {
 };
 
 const Admin = {
+  //product
   createProduct: (product: any) =>
     requests.postForm("products", createFormData(product)),
   updateProduct: (product: any) =>
     requests.putForm("products", createFormData(product)),
   deleteProduct: (id: number) => requests.delete(`products/${id}`),
+  //category
+  createCategory: (category: any) =>
+    requests.postForm("Categories", createFormData(category)),
+  deleteCategory: (id: number) => requests.delete(`Categories/${id}`),
+  //brand
+  createBrand: (Brands: any) =>
+    requests.postForm("Brands", createFormData(Brands)),
+  deleteBrand: (id: number) => requests.delete(`Brands/${id}`),
 };
 
 const agent = {
   Catalog,
+  Category,
+  Brand,
   TestErrors,
   Basket,
   Account,

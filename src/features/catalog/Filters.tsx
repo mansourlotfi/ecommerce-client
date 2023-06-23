@@ -7,6 +7,8 @@ import RadioButtonGroup from "../../app/components/RadioButtonGroup";
 import { setProductParams } from "./catalogSlice";
 import { useAppSelector, useAppDispatch } from "../../app/store/configureStore";
 import CheckBoxButtons from "../../app/components/CheckBoxButtons";
+import useCategories from "../../app/hooks/useCategories";
+import useBrands from "../../app/hooks/useBrands";
 
 const sortOptions = [
   { value: "name", label: "حروف الفبا" },
@@ -15,9 +17,10 @@ const sortOptions = [
 ];
 
 export default function FilterAccordion() {
-  const { brands, types, productParams } = useAppSelector(
-    (state) => state.catalog
-  );
+  const { productParams } = useAppSelector((state) => state.catalog);
+  const { categories } = useCategories();
+  const { brands } = useBrands();
+
   const dispatch = useAppDispatch();
   return (
     <div>
@@ -49,7 +52,7 @@ export default function FilterAccordion() {
         </AccordionSummary>
         <AccordionDetails>
           <CheckBoxButtons
-            items={brands}
+            items={brands.map((b) => b.name)}
             checked={productParams.brands}
             onChange={(items: string[]) =>
               dispatch(setProductParams({ brands: items }))
@@ -67,7 +70,7 @@ export default function FilterAccordion() {
         </AccordionSummary>
         <AccordionDetails>
           <CheckBoxButtons
-            items={types}
+            items={categories.map((C) => C.name)}
             checked={productParams.types}
             onChange={(items: string[]) =>
               dispatch(setProductParams({ types: items }))

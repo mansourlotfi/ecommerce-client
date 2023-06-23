@@ -1,17 +1,18 @@
 import { Box, Paper, Typography, Grid, Button } from "@mui/material";
 import { useEffect } from "react";
 import { FieldValues, useForm } from "react-hook-form";
-import AppDropzone from "../../app/components/AppDropzone";
-import AppSelectList from "../../app/components/AppSelectList";
-import AppTextInput from "../../app/components/AppTextInput";
-import useProducts from "../../app/hooks/useProducts";
-import { Product } from "../../app/models/product";
+import AppDropzone from "../../../app/components/AppDropzone";
+import AppSelectList from "../../../app/components/AppSelectList";
+import AppTextInput from "../../../app/components/AppTextInput";
+import { Product } from "../../../app/models/product";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { validationSchema } from "./productValidation";
-import agent from "../../app/api/agent";
-import { useAppDispatch } from "../../app/store/configureStore";
-import { setProduct } from "../catalog/catalogSlice";
+import agent from "../../../app/api/agent";
+import { useAppDispatch } from "../../../app/store/configureStore";
+import { setProduct } from "../../catalog/catalogSlice";
 import { LoadingButton } from "@mui/lab";
+import useCategories from "../../../app/hooks/useCategories";
+import useBrands from "../../../app/hooks/useBrands";
 
 interface Props {
   product?: Product;
@@ -28,7 +29,11 @@ export default function ProductForm({ product, cancelEdit }: Props) {
   } = useForm({
     resolver: yupResolver<any>(validationSchema),
   });
-  const { brands, types } = useProducts();
+  const { brands } = useBrands();
+
+  // const { brands, types } = useProducts();
+  const { categories } = useCategories();
+  console.log("categories", categories);
   const watchFile = watch("file", null);
   const dispatch = useAppDispatch();
 
@@ -67,7 +72,7 @@ export default function ProductForm({ product, cancelEdit }: Props) {
           <Grid item xs={12} sm={6}>
             <AppSelectList
               control={control}
-              items={brands}
+              items={brands.map((B) => B.name)}
               name="brand"
               label="برند"
             />
@@ -75,9 +80,9 @@ export default function ProductForm({ product, cancelEdit }: Props) {
           <Grid item xs={12} sm={6}>
             <AppSelectList
               control={control}
-              items={types}
+              items={categories.map((C) => C.name) || []}
               name="type"
-              label="نوع"
+              label="دسته بندی"
             />
           </Grid>
           <Grid item xs={12} sm={6}>

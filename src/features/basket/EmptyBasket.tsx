@@ -8,11 +8,11 @@ function EmptyBasket() {
           src="/images/products/empty-cart.svg"
           alt="empty basket"
           width={200}
-          //   height={150}
+          height={150}
         />
       </Grid>
       <Grid item container justifyContent="center" mt={5}>
-        <Typography variant="h5" sx={{ justifyContent: "center" }}>
+        <Typography variant="h6" sx={{ justifyContent: "center" }}>
           سبد خرید شما خالی است!
         </Typography>
       </Grid>

@@ -33,8 +33,8 @@ export const AdminLinks = [
   },
   {
     id: 5,
-    link: "/inventory",
-    title: "انبار",
+    link: "/admin-dashboard",
+    title: "پنل ادمین",
     icon: <InventoryIcon />,
   },
 ];

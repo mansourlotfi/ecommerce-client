@@ -2,7 +2,6 @@ import { createBrowserRouter, Navigate } from "react-router-dom";
 import AboutPage from "../../features/about/AboutPage";
 import Login from "../../features/account/Login";
 import Register from "../../features/account/Register";
-import Inventory from "../../features/admin/Inventory";
 import BasketPage from "../../features/basket/BasketPage";
 import Catalog from "../../features/catalog/Catalog";
 import ProductDetails from "../../features/catalog/ProductDetails";
@@ -13,6 +12,8 @@ import NotFound from "../errors/NotFound";
 import ServerError from "../errors/ServerError";
 import App from "../layout/App";
 import RequireAuth from "./RequireAuth";
+import AdminDashboard from "../../features/admin/AdminDashboard";
+import TestPage from "../../features/about/TestPage";
 
 export const router = createBrowserRouter([
   {
@@ -30,7 +31,13 @@ export const router = createBrowserRouter([
       // admin routes
       {
         element: <RequireAuth roles={["Admin"]} />,
-        children: [{ path: "inventory", element: <Inventory /> }],
+        children: [
+          {
+            path: "admin-dashboard",
+            element: <AdminDashboard />,
+          },
+          { path: "test", element: <TestPage /> },
+        ],
       },
       { path: "catalog", element: <Catalog /> },
       { path: "catalog/:id", element: <ProductDetails /> },
