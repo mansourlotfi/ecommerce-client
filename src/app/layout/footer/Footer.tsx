@@ -1,29 +1,29 @@
-import { Container, List, ListItem, useMediaQuery } from "@mui/material";
-import { NavLink } from "react-router-dom";
-import { links } from "./data";
-import "./styles.css";
+// import { Container, List, ListItem, useMediaQuery } from "@mui/material";
+// import { NavLink } from "react-router-dom";
+// import { links } from "./data";
+// import "./styles.css";
 // import * as styles from "./styles";
 
-const navStyles = {
-  color: "inherit",
-  textDecoration: "none",
-  typography: "h6",
-  whiteSpace: "nowrap",
-  "&:hover": {
-    color: "grey.500",
-  },
-  "&.active": {
-    color: "text.secondary",
-  },
-};
+// const navStyles = {
+//   color: "inherit",
+//   textDecoration: "none",
+//   typography: "h6",
+//   whiteSpace: "nowrap",
+//   "&:hover": {
+//     color: "grey.500",
+//   },
+//   "&.active": {
+//     color: "text.secondary",
+//   },
+// };
 
 const Footer = () => {
-  const isMobile = useMediaQuery("(max-width:600px)");
+  // const isMobile = useMediaQuery("(max-width:600px)");
 
   return (
     <footer>
       <div>
-        <Container>
+        {/* <Container>
           <List sx={!isMobile ? { display: "flex" } : null}>
             {links.map(({ title, link }) => (
               <ListItem component={NavLink} to={link} key={link} sx={navStyles}>
@@ -31,7 +31,7 @@ const Footer = () => {
               </ListItem>
             ))}
           </List>
-        </Container>
+        </Container> */}
         {/* <div className="footer__socials">
           <Box display="flex" justifyContent="center">
             <ul className="c-social-list">
@@ -102,7 +102,10 @@ const Footer = () => {
           </Box>
         </div> */}
       </div>
-      <div className="footer__copyright">
+      <div
+        className="footer__copyright"
+        style={{ display: "flex", justifyContent: "center" }}
+      >
         <small>تمامی حقوق محفوظ می باشد</small>
       </div>
     </footer>

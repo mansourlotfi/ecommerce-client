@@ -4,7 +4,7 @@ import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/navigation";
 import { Pagination, Navigation, Autoplay } from "swiper";
-import { Grid } from "@mui/material";
+import { Grid, useMediaQuery } from "@mui/material";
 
 // const settings = {
 //   dots: true,
@@ -16,6 +16,8 @@ import { Grid } from "@mui/material";
 //   arrows: false,
 // };
 function TopSwiper() {
+  const isMobile = useMediaQuery("(max-width:600px)");
+
   return (
     <>
       {/* <Slider {...settings}>
@@ -59,33 +61,43 @@ function TopSwiper() {
         <SwiperSlide>
           <Grid container maxHeight={500}>
             <img
-              src="/images/slide3.jpg"
+              src={
+                isMobile
+                  ? "/images/mobileCover/cover1.jpg"
+                  : "/images/slide3.jpg"
+              }
               alt="baner01"
               className="img-fluid"
-              height={500}
-              width="100%"
+              width={!isMobile ? "100%" : undefined}
+              height={!isMobile ? 500 : undefined}
             />
           </Grid>
         </SwiperSlide>
         <SwiperSlide>
           <Grid container maxHeight={500}>
             <img
-              src="/images/slide2.jpg"
-              alt="baner01"
+              src={
+                isMobile
+                  ? "/images/mobileCover/cover2.jpg"
+                  : "/images/slide2.jpg"
+              }
+              alt="baner03"
               className="img-fluid"
-              height={500}
-              width="100%"
+              width={!isMobile ? "100%" : undefined}
             />
           </Grid>
         </SwiperSlide>
         <SwiperSlide>
           <Grid container maxHeight={500}>
             <img
-              src="/images/slide1.jpg"
-              alt="baner01"
+              src={
+                isMobile
+                  ? "/images/mobileCover/cover3.jpg"
+                  : "/images/slide1.jpg"
+              }
+              alt="baner03"
               className="img-fluid"
-              height={500}
-              width="100%"
+              width={!isMobile ? "100%" : undefined}
             />
           </Grid>
         </SwiperSlide>
