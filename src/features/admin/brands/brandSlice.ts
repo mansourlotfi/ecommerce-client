@@ -83,7 +83,7 @@ export const brandSlice = createSlice({
 });
 
 export const brandSelectors = brandsAdapter.getSelectors(
-  (state: RootState) => state.category
+  (state: RootState) => state.brands
 );
 
 export const { setBrand, removeBrand } = brandSlice.actions;

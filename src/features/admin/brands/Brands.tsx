@@ -29,7 +29,7 @@ export default function AdminBrands() {
   function handleDeleteBrand(id: number) {
     setLoading(true);
     setTarget(id);
-    agent.Admin.deleteCategory(id)
+    agent.Admin.deleteBrand(id)
       .then(() => dispatch(removeBrand(id)))
       .catch((error) => console.log(error))
       .finally(() => setLoading(false));
