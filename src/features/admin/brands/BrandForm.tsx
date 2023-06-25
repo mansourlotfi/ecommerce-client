@@ -8,6 +8,8 @@ import { useAppDispatch } from "../../../app/store/configureStore";
 import { LoadingButton } from "@mui/lab";
 import { Brand } from "../../../app/models/Brand";
 import { setBrand } from "./brandSlice";
+import AppDropzone from "../../../app/components/AppDropzone";
+import { useEffect } from "react";
 
 interface Props {
   cancel: () => void;
@@ -17,11 +19,21 @@ export default function BrandForm({ cancel }: Props) {
   const {
     control,
     handleSubmit,
-    formState: { isSubmitting },
+    watch,
+    reset,
+    formState: { isSubmitting, isDirty },
   } = useForm({
     resolver: yupResolver<any>(validationSchema),
   });
+  const watchFile = watch("file", null);
   const dispatch = useAppDispatch();
+
+  useEffect(() => {
+    if (!watchFile && !isDirty) reset();
+    return () => {
+      if (watchFile) URL.revokeObjectURL(watchFile.preview);
+    };
+  }, [reset, watchFile, isDirty]);
 
   async function handleSubmitData(data: FieldValues) {
     try {
@@ -43,6 +55,22 @@ export default function BrandForm({ cancel }: Props) {
         <Grid container spacing={3}>
           <Grid item xs={12} sm={12}>
             <AppTextInput control={control} name="name" label="نام  برند" />
+          </Grid>
+          <Grid item xs={12}>
+            <Box
+              display="flex"
+              justifyContent="space-between"
+              alignItems="center"
+            >
+              <AppDropzone control={control} name="file" />
+              {watchFile?.preview ? (
+                <img
+                  src={watchFile.preview}
+                  alt="preview"
+                  style={{ maxHeight: 200 }}
+                />
+              ) : null}
+            </Box>
           </Grid>
         </Grid>
         <Box display="flex" justifyContent="space-between" sx={{ mt: 3 }}>

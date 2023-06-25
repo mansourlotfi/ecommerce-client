@@ -1,3 +1,4 @@
+import Brands from "./Brands";
 import Categories from "./Categories";
 import FeturedProducts from "./FeturedProducts";
 import TopSwiper from "./TopSwiper";
@@ -8,6 +9,7 @@ export default function HomePage() {
     <>
       <TopSwiper />
       <Categories />
+      <Brands />
       <FeturedProducts />
       <NewProducts />
     </>

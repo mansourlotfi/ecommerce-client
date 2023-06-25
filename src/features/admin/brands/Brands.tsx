@@ -62,6 +62,7 @@ export default function AdminBrands() {
             <TableRow>
               <TableCell>#</TableCell>
               <TableCell align="left">نام</TableCell>
+              <TableCell align="left">تصویر</TableCell>
               <TableCell align="right"></TableCell>
             </TableRow>
           </TableHead>
@@ -77,6 +78,15 @@ export default function AdminBrands() {
                 <TableCell align="left">
                   <Box display="flex" alignItems="center">
                     <span>{brand.name}</span>
+                  </Box>
+                </TableCell>
+                <TableCell align="left">
+                  <Box display="flex" alignItems="center">
+                    <img
+                      src={brand.pictureUrl}
+                      alt={brand.name}
+                      style={{ height: 50, marginRight: 20 }}
+                    />
                   </Box>
                 </TableCell>
 
