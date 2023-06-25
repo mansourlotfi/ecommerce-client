@@ -1,6 +1,14 @@
-import { Box, Paper, Typography, Grid, Button } from "@mui/material";
+import {
+  Box,
+  Paper,
+  Typography,
+  Grid,
+  Button,
+  Checkbox,
+  FormControlLabel,
+} from "@mui/material";
 import { useEffect } from "react";
-import { FieldValues, useForm } from "react-hook-form";
+import { Controller, FieldValues, useForm } from "react-hook-form";
 import AppDropzone from "../../../app/components/AppDropzone";
 import AppSelectList from "../../../app/components/AppSelectList";
 import AppTextInput from "../../../app/components/AppTextInput";
@@ -33,7 +41,7 @@ export default function ProductForm({ product, cancelEdit }: Props) {
 
   // const { brands, types } = useProducts();
   const { categories } = useCategories();
-  console.log("categories", categories);
+
   const watchFile = watch("file", null);
   const dispatch = useAppDispatch();
 
@@ -109,6 +117,20 @@ export default function ProductForm({ product, cancelEdit }: Props) {
               name="description"
               label="توضیحات"
             />
+          </Grid>
+          <Grid item xs={12}>
+            <Box>
+              <FormControlLabel
+                control={
+                  <Controller
+                    name="isFeatured"
+                    control={control}
+                    render={({ field }) => <Checkbox {...field} />}
+                  />
+                }
+                label="محصول پرفروش"
+              />
+            </Box>
           </Grid>
           <Grid item xs={12}>
             <Box
