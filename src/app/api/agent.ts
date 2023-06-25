@@ -94,6 +94,7 @@ const requests = {
 
 const Catalog = {
   list: (params: URLSearchParams) => requests.get("products", params),
+  featuredist: () => requests.get("products/GetFeaturedProducts"),
   details: (id: number) => requests.get(`products/${id}`),
   fetchFilters: () => requests.get("products/filters"),
 };
