@@ -16,6 +16,9 @@ interface CatalogState {
   types: string[];
   productParams: ProductParams;
   metaData: MetaData | null;
+  featuredProducts: Product[];
+  featuredProductsLoaded: boolean;
+  featuredStatus: string;
 }
 
 const productsAdapter = createEntityAdapter<Product>();
@@ -44,6 +47,20 @@ export const fetchProductsAsync = createAsyncThunk<
     var response = await agent.Catalog.list(params);
     thunkAPI.dispatch(setMetaData(response.metaData));
     return response.items;
+  } catch (error: any) {
+    return thunkAPI.rejectWithValue({ error: error.data });
+  }
+});
+
+export const fetchFeaturedProductsAsync = createAsyncThunk<
+  Product[],
+  void,
+  { state: RootState }
+>("catalog/fetchFeaturedProductsAsync", async (_, thunkAPI) => {
+  try {
+    var response = await agent.Catalog.featuredist();
+    console.log("response", response);
+    return response;
   } catch (error: any) {
     return thunkAPI.rejectWithValue({ error: error.data });
   }
@@ -92,6 +109,9 @@ export const catalogSlice = createSlice({
     types: [],
     productParams: initParams(),
     metaData: null,
+    featuredProducts: [],
+    featuredProductsLoaded: false,
+    featuredStatus: "idle",
   }),
   reducers: {
     setProductParams: (state, action) => {
@@ -134,6 +154,23 @@ export const catalogSlice = createSlice({
       console.log(action.payload);
       state.status = "idle";
     });
+    //
+    builder.addCase(fetchFeaturedProductsAsync.pending, (state, action) => {
+      state.featuredStatus = "pendingFetchFeaturedProducts";
+    });
+    builder.addCase(fetchFeaturedProductsAsync.fulfilled, (state, action) => {
+      console.log("action", action);
+      // productsAdapter.setAll(state, action.payload);
+      state.featuredProducts = action.payload;
+      state.featuredStatus = "idle";
+      state.featuredProductsLoaded = true;
+    });
+    builder.addCase(fetchFeaturedProductsAsync.rejected, (state, action) => {
+      console.log(action.payload);
+      state.featuredStatus = "idle";
+    });
+
+    //
     builder.addCase(fetchProductAsync.pending, (state) => {
       state.status = "pendingFetchProduct";
     });

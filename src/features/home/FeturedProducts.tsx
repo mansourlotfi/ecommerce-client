@@ -6,9 +6,11 @@ import "swiper/css/navigation";
 import { Pagination, Navigation, Autoplay } from "swiper";
 import { Grid } from "@mui/material";
 import useMediaQuery from "@mui/material/useMediaQuery";
+import useProducts from "../../app/hooks/useProducts";
 
 function FeturedProducts() {
   const isMobile = useMediaQuery("(max-width:600px)");
+  const { featuredProducts } = useProducts();
 
   return (
     <Grid container justifyContent="center" mt={10}>
@@ -23,23 +25,23 @@ function FeturedProducts() {
             clickable: true,
           }}
           autoplay
-          speed={1000}
-          navigation={!isMobile ?? false}
+          speed={800}
+          navigation={isMobile ? false : true}
           modules={[Pagination, Navigation, Autoplay]}
+          style={{ width: "100%" }}
         >
-          {Array(12)
-            .fill(null)
-            .map((A, i) => (
-              <SwiperSlide>
-                <Grid container maxHeight={500}>
-                  <img
-                    src="/images/products/p1.jpg"
-                    alt="baner01"
-                    width="100%"
-                  />
-                </Grid>
-              </SwiperSlide>
-            ))}
+          {featuredProducts.map((P, i) => (
+            <SwiperSlide key={i} style={{ padding: 8 }}>
+              <Grid container height={400} width={400}>
+                <img
+                  src={P.pictureUrl}
+                  alt={P.name}
+                  width="100%"
+                  style={{ borderRadius: 16 }}
+                />
+              </Grid>
+            </SwiperSlide>
+          ))}
         </Swiper>
       </Grid>
     </Grid>
