@@ -37,7 +37,7 @@ function Categories() {
               to={"/catalog"}
               sx={navStyles}
               onClick={(e) => {
-                dispatch(setProductParams({ type: [C.name] }));
+                dispatch(setProductParams({ types: [C.name] }));
               }}
             >
               <CardActionArea>
