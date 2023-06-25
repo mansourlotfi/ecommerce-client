@@ -65,7 +65,6 @@ export const brandSlice = createSlice({
       state.brandsLoaded = true;
     });
     builder.addCase(fetchBrandsAsync.rejected, (state, action) => {
-      console.log(action.payload);
       state.status = "idle";
     });
     builder.addCase(fetchBrandAsync.pending, (state) => {
@@ -76,7 +75,6 @@ export const brandSlice = createSlice({
       state.status = "idle";
     });
     builder.addCase(fetchBrandAsync.rejected, (state, action) => {
-      console.log(action);
       state.status = "idle";
     });
   },

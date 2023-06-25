@@ -83,7 +83,6 @@ export default function CheckoutPage() {
     console.log("address", address);
     try {
     } catch (error) {
-      console.log(error);
       setLoading(false);
     }
   }

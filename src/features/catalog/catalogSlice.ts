@@ -59,7 +59,6 @@ export const fetchFeaturedProductsAsync = createAsyncThunk<
 >("catalog/fetchFeaturedProductsAsync", async (_, thunkAPI) => {
   try {
     var response = await agent.Catalog.featuredist();
-    console.log("response", response);
     return response;
   } catch (error: any) {
     return thunkAPI.rejectWithValue({ error: error.data });
@@ -151,7 +150,6 @@ export const catalogSlice = createSlice({
       state.productsLoaded = true;
     });
     builder.addCase(fetchProductsAsync.rejected, (state, action) => {
-      console.log(action.payload);
       state.status = "idle";
     });
     //
@@ -159,14 +157,12 @@ export const catalogSlice = createSlice({
       state.featuredStatus = "pendingFetchFeaturedProducts";
     });
     builder.addCase(fetchFeaturedProductsAsync.fulfilled, (state, action) => {
-      console.log("action", action);
       // productsAdapter.setAll(state, action.payload);
       state.featuredProducts = action.payload;
       state.featuredStatus = "idle";
       state.featuredProductsLoaded = true;
     });
     builder.addCase(fetchFeaturedProductsAsync.rejected, (state, action) => {
-      console.log(action.payload);
       state.featuredStatus = "idle";
     });
 
@@ -179,7 +175,6 @@ export const catalogSlice = createSlice({
       state.status = "idle";
     });
     builder.addCase(fetchProductAsync.rejected, (state, action) => {
-      console.log(action);
       state.status = "idle";
     });
     builder.addCase(fetchFilters.pending, (state) => {

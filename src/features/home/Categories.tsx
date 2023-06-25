@@ -42,7 +42,7 @@ function Categories() {
             >
               <CardActionArea>
                 <CardMedia
-                  sx={{ borderRadius: 4, objectFit: "cover" }}
+                  sx={{ borderRadius: 4, objectFit: "contain" }}
                   component="img"
                   height={140}
                   width={140}
@@ -50,7 +50,14 @@ function Categories() {
                   alt={C.name}
                 />
                 <CardContent sx={{ background: "transparent" }}>
-                  <Typography gutterBottom variant="h6" component="div">
+                  <Typography
+                    gutterBottom
+                    variant="h6"
+                    style={{
+                      overflow: "hidden",
+                      textOverflow: "ellipsis",
+                    }}
+                  >
                     {C.name}
                   </Typography>
                 </CardContent>

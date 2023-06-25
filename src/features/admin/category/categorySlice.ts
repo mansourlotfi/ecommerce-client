@@ -65,7 +65,6 @@ export const categorySlice = createSlice({
       state.categoriesLoaded = true;
     });
     builder.addCase(fetchCategoriesAsync.rejected, (state, action) => {
-      console.log(action.payload);
       state.status = "idle";
     });
     builder.addCase(fetchCategoryAsync.pending, (state) => {
@@ -76,7 +75,6 @@ export const categorySlice = createSlice({
       state.status = "idle";
     });
     builder.addCase(fetchCategoryAsync.rejected, (state, action) => {
-      console.log(action);
       state.status = "idle";
     });
   },
