@@ -56,6 +56,7 @@ function Categories() {
                     style={{
                       overflow: "hidden",
                       textOverflow: "ellipsis",
+                      textAlign: "center",
                     }}
                   >
                     {C.name}

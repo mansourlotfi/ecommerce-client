@@ -57,6 +57,7 @@ function Brands() {
                     style={{
                       overflow: "hidden",
                       textOverflow: "ellipsis",
+                      textAlign: "center",
                     }}
                   >
                     {C.name}
