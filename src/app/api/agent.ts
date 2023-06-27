@@ -153,11 +153,16 @@ export interface ICreatePaymentIntent {
 const Payments = {
   createPaymentIntent: (body: ICreatePaymentIntent) =>
     axios
-      .post("https://nextpay.org/nx/gateway/token", {
-        ...body,
-        auto_verify: "yes",
-        headers: { "Content-Type": "application/x-www-form-urlencoded" },
-      })
+      .post(
+        "https://nextpay.org/nx/gateway/token",
+        {
+          ...body,
+          auto_verify: "yes",
+        },
+        {
+          headers: { "Content-Type": "application/x-www-form-urlencoded" },
+        }
+      )
       .then(responseBody),
 };
 
