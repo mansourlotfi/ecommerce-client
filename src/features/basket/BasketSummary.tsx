@@ -45,7 +45,7 @@ export default function BasketSummary({ subtotal }: Props) {
             <TableRow>
               <TableCell>
                 <span style={{ fontStyle: "italic" }}>
-                  *ارسال رایگان بالای 100 دلار
+                  *ارسال رایگان بالای 300 هزار تومان
                 </span>
               </TableCell>
             </TableRow>

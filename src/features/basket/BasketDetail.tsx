@@ -26,9 +26,9 @@ function BasketDetail({ items, isBasket = true }: Props) {
 
   return (
     <Grid container spacing={6}>
-      {items.map((I) => (
+      {items.map((I, i) => (
         <>
-          <Grid item xs={3} md={6}>
+          <Grid item xs={3} md={6} key={i}>
             <img src={I.pictureUrl} alt={I.name} style={{ width: "100%" }} />
           </Grid>
 

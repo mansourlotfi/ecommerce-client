@@ -14,31 +14,31 @@ import PaymentForm from "./PaymentForm";
 import Review from "./Review";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { validationSchema } from "./checkoutValidation";
-// import { useAppDispatch, useAppSelector } from "../../app/store/configureStore";
 import agent from "../../app/api/agent";
-// import { clearBasket } from "../basket/basketSlice";
 import { LoadingButton } from "@mui/lab";
+// import { clearBasket } from "../basket/basketSlice";
+// import { useAppDispatch, useAppSelector } from "../../app/store/configureStore";
+import { useAppSelector } from "../../app/store/configureStore";
+import { useNavigate } from "react-router-dom";
 
 const steps = ["آدرس ارسال", "مرور سفارش", "پرداخت"];
 
 export default function CheckoutPage() {
+  const navigate = useNavigate();
+
+  // const dispatch = useAppDispatch();
+  const { basket } = useAppSelector((state) => state.basket);
   const [activeStep, setActiveStep] = useState(0);
-  const [orderNumber, setOrderNumber] = useState(0);
+  const [orderNumber, setOrderNumber] = useState("");
   const [loading, setLoading] = useState(false);
 
-  const [cardComplete, setCardComplete] = useState<any>({
-    cardNumber: false,
-    cardExpiry: false,
-    cardCvc: false,
-  });
-  const [paymentMessage, setPaymentMessage] = useState("");
-  const [paymentSucceeded, setPaymentSucceeded] = useState(false);
-  // const { basket } = useAppSelector((state) => state.basket);
-  console.log("first", setOrderNumber, setPaymentMessage, setPaymentSucceeded);
+  // const [paymentMessage, setPaymentMessage] = useState("");
+  // const [paymentSucceeded, setPaymentSucceeded] = useState(false);
 
-  function onCardInputChange(event: any) {
-    setCardComplete({ ...cardComplete, [event.elementType]: event.complete });
-  }
+  const subtotal =
+    basket?.items.reduce((sum, item) => sum + item.quantity * item.price, 0) ??
+    0;
+  const deliveryFee = subtotal > 300000 ? 0 : 30000;
 
   function getStepContent(step: number) {
     switch (step) {
@@ -47,12 +47,7 @@ export default function CheckoutPage() {
       case 1:
         return <Review />;
       case 2:
-        return (
-          <PaymentForm
-            cardState={"asd"}
-            onCardInputChange={onCardInputChange}
-          />
-        );
+        return <PaymentForm orderNumber={orderNumber} />;
       default:
         throw new Error("Unknown step");
     }
@@ -78,17 +73,54 @@ export default function CheckoutPage() {
   }, [methods]);
 
   async function submitOrder(data: FieldValues) {
+    console.log("data", data);
     setLoading(true);
-    const { nameOnCard, saveAddress, ...address } = data;
-    console.log("address", address);
     try {
+      const paymentResult = await agent.Payments.createPaymentIntent({
+        api_key: "376de118-4aa6-451e-94c0-3cf1e848a6e6",
+        order_id: orderNumber,
+        amount: subtotal + deliveryFee,
+        callback_uri: "https://www.blushgallery.com/checkout",
+        customer_phone: +data.phoneNumber,
+        payer_name: data.fullName,
+      });
+      console.log(paymentResult);
+      if (paymentResult.code === -1) {
+        navigate(
+          `https://nextpay.org/nx/gateway/payment/${paymentResult.trans_id}`
+        );
+
+        // setPaymentSucceeded(true);
+        // setActiveStep(activeStep + 1);
+        // dispatch(clearBasket());
+        setLoading(false);
+      } else {
+        // setPaymentSucceeded(false);
+        setLoading(false);
+        // setActiveStep(activeStep + 1);
+      }
     } catch (error) {
+      console.log(error);
+
       setLoading(false);
     }
   }
 
   const handleNext = async (data: FieldValues) => {
-    if (activeStep === steps.length - 1) {
+    const { saveAddress, ...address } = data;
+    if (activeStep === 1) {
+      setLoading(true);
+      const orderNumber = await agent.Orders.create({
+        saveAddress,
+        shippingAddress: address,
+      });
+      setOrderNumber(orderNumber);
+      setActiveStep(activeStep + 1);
+      // setPaymentSucceeded(true);
+      // setPaymentMessage("Thank you - we have received your payment");
+      // dispatch(clearBasket());
+      setLoading(false);
+    } else if (activeStep === steps.length - 1) {
       await submitOrder(data);
     } else {
       setActiveStep(activeStep + 1);
@@ -101,12 +133,7 @@ export default function CheckoutPage() {
 
   function submitDisabled(): boolean {
     if (activeStep === steps.length - 1) {
-      return (
-        !cardComplete.cardCvc ||
-        !cardComplete.cardExpiry ||
-        !cardComplete.cardNumber ||
-        !methods.formState.isValid
-      );
+      return !methods.formState.isValid;
     } else {
       return !methods.formState.isValid;
     }
@@ -130,22 +157,7 @@ export default function CheckoutPage() {
         </Stepper>
         <>
           {activeStep === steps.length ? (
-            <>
-              <Typography variant="h5" gutterBottom>
-                {paymentMessage}
-              </Typography>
-              {paymentSucceeded ? (
-                <Typography variant="subtitle1">
-                  Your order number is #{orderNumber}. We have not emailed your
-                  order confirmation, and will not send you an update when your
-                  order has shipped as this is a fake store!
-                </Typography>
-              ) : (
-                <Button variant="contained" onClick={handleBack}>
-                  Go back and try again
-                </Button>
-              )}
-            </>
+            <></>
           ) : (
             <form onSubmit={methods.handleSubmit(handleNext)}>
               {getStepContent(activeStep)}
@@ -162,7 +174,7 @@ export default function CheckoutPage() {
                   type="submit"
                   sx={{ mt: 3, ml: 1 }}
                 >
-                  {activeStep === steps.length - 1 ? "ثبت سفارش" : "مرحله بعد"}
+                  {activeStep === steps.length - 1 ? "پرداخت" : "مرحله بعد"}
                 </LoadingButton>
               </Box>
             </form>

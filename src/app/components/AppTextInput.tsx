@@ -1,7 +1,9 @@
-import { TextField } from "@mui/material";
+import { TextField, TextFieldProps } from "@mui/material";
 import { useController, UseControllerProps } from "react-hook-form";
 
-interface Props extends UseControllerProps {
+interface Props
+  extends UseControllerProps,
+    Omit<TextFieldProps, "required" | "onChange" | "defaultValue" | "name"> {
   label: string;
   multiline?: boolean;
   rows?: number;

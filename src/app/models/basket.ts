@@ -12,4 +12,5 @@ export interface Basket {
   id: number;
   buyerId: string;
   items: BasketItem[];
+  Order_id?: string;
 }

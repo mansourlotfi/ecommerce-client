@@ -1,67 +1,38 @@
-import { Typography, Grid, TextField } from "@mui/material";
-import { useFormContext } from "react-hook-form";
-import AppTextInput from "../../app/components/AppTextInput";
+import { Typography, Grid, Box } from "@mui/material";
+import { useEffect } from "react";
+// import AppTextInput from "../../app/components/AppTextInput";
 
 interface Props {
-  cardState: any;
-  onCardInputChange: (event: any) => void;
+  orderNumber: string;
 }
 
-export default function PaymentForm({ cardState, onCardInputChange }: Props) {
-  const { control } = useFormContext();
+export default function PaymentForm(props: Props) {
+  useEffect(() => {
+    const script = document.createElement("script");
+
+    script.src = "https://nextpay.org/nx/js-trust/58592";
+    script.async = true;
+
+    document.body.appendChild(script);
+
+    return () => {
+      document.body.removeChild(script);
+    };
+  }, []);
 
   return (
     <>
       <Typography variant="h6" gutterBottom>
-        Payment method
+        شماره سفارش : {props.orderNumber}
       </Typography>
-      <Grid container spacing={3}>
-        <Grid item xs={12} md={6}>
-          <AppTextInput
-            name="nameOnCard"
-            label="Name on card"
-            control={control}
-          />
-        </Grid>
-        <Grid item xs={12} md={6}>
-          <TextField
-            onChange={onCardInputChange}
-            error={!!cardState.elementError.cardNumber}
-            helperText={cardState.elementError.cardNumber}
-            id="cardNumber"
-            label="Card number"
-            fullWidth
-            autoComplete="cc-number"
-            variant="outlined"
-            InputLabelProps={{ shrink: true }}
-          />
-        </Grid>
-        <Grid item xs={12} md={6}>
-          <TextField
-            onChange={onCardInputChange}
-            error={!!cardState.elementError.cardExpiry}
-            helperText={cardState.elementError.cardExpiry}
-            id="expDate"
-            label="Expiry date"
-            fullWidth
-            autoComplete="cc-exp"
-            variant="outlined"
-            InputLabelProps={{ shrink: true }}
-          />
-        </Grid>
-        <Grid item xs={12} md={6}>
-          <TextField
-            onChange={onCardInputChange}
-            error={!!cardState.elementError.cardCvc}
-            helperText={cardState.elementError.cardCvc}
-            id="cvv"
-            label="CVV"
-            fullWidth
-            autoComplete="cc-csc"
-            variant="outlined"
-            InputLabelProps={{ shrink: true }}
-          />
-        </Grid>
+
+      <Typography variant="h6" gutterBottom>
+        پرداخت با استفاده از درگاه پرداخت نکست پی
+      </Typography>
+      <Grid container>
+        <Box>
+          <div id="nextpay" style={{ margin: "auto", width: 80 }}></div>
+        </Box>
       </Grid>
     </>
   );

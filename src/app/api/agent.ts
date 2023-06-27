@@ -137,8 +137,28 @@ const Orders = {
   create: (values: any) => requests.post("orders", values),
 };
 
+export interface ICreatePaymentIntent {
+  api_key: string;
+  order_id: string;
+  amount: number;
+  callback_uri: string;
+  currency?: "IRR" | "IRT";
+  customer_phone?: number;
+  custom_json_fields?: object;
+  payer_name?: string;
+  payer_desc?: string;
+  auto_verify?: "yes";
+  allowed_card?: string;
+}
 const Payments = {
-  createPaymentIntent: () => requests.post("payments", {}),
+  createPaymentIntent: (body: ICreatePaymentIntent) =>
+    axios
+      .post("https://nextpay.org/nx/gateway/token", {
+        ...body,
+        auto_verify: "yes",
+        headers: { "Content-Type": "application/x-www-form-urlencoded" },
+      })
+      .then(responseBody),
 };
 
 const Admin = {
