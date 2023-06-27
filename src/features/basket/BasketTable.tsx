@@ -13,6 +13,7 @@ import {
 import { BasketItem } from "../../app/models/basket";
 import { useAppSelector, useAppDispatch } from "../../app/store/configureStore";
 import { removeBasketItemAsync, addBasketItemAsync } from "./basketSlice";
+import { currencyFormat } from "../../app/util/util";
 
 interface Props {
   items: BasketItem[];
@@ -50,9 +51,7 @@ export default function BasketTable({ items, isBasket = true }: Props) {
                   <span>{item.name}</span>
                 </Box>
               </TableCell>
-              <TableCell align="right">
-                ${(item.price / 100).toFixed(2)}
-              </TableCell>
+              <TableCell align="right">{currencyFormat(item.price)}</TableCell>
               <TableCell align="center">
                 {isBasket && (
                   <LoadingButton
@@ -89,7 +88,7 @@ export default function BasketTable({ items, isBasket = true }: Props) {
                 )}
               </TableCell>
               <TableCell align="right">
-                ${((item.price / 100) * item.quantity).toFixed(2)}
+                {currencyFormat(item.price * item.quantity)}
               </TableCell>
               {isBasket && (
                 <TableCell align="right">

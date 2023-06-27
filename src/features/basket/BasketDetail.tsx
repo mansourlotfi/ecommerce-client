@@ -13,6 +13,7 @@ import { useAppDispatch, useAppSelector } from "../../app/store/configureStore";
 import { Remove, Add, Delete } from "@mui/icons-material";
 import { LoadingButton } from "@mui/lab";
 import { removeBasketItemAsync, addBasketItemAsync } from "./basketSlice";
+import { currencyFormat } from "../../app/util/util";
 
 interface Props {
   items: BasketItem[];
@@ -43,7 +44,7 @@ function BasketDetail({ items, isBasket = true }: Props) {
                 <TableBody>
                   <TableRow>
                     <TableCell>قیمت</TableCell>
-                    <TableCell>${(I.price / 100).toFixed(2)}</TableCell>
+                    <TableCell>{currencyFormat(I.price)}</TableCell>
                   </TableRow>
 
                   <TableRow>
@@ -88,7 +89,7 @@ function BasketDetail({ items, isBasket = true }: Props) {
                     <TableCell>جمع</TableCell>
                     <TableCell>
                       <TableCell align="right">
-                        ${((I.price / 100) * I.quantity).toFixed(2)}
+                        {currencyFormat(I.price * I.quantity)}
                       </TableCell>
                     </TableCell>
                     {isBasket && (

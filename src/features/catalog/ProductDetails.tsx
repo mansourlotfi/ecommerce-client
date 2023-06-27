@@ -22,6 +22,7 @@ import {
 import { fetchProductAsync, productSelectors } from "./catalogSlice";
 import { EntityId } from "@reduxjs/toolkit";
 import useMediaQuery from "@mui/material/useMediaQuery";
+import { currencyFormat } from "../../app/util/util";
 
 function ProductDetails() {
   const isMobile = useMediaQuery("(max-width:600px)");
@@ -95,7 +96,7 @@ function ProductDetails() {
         ) : null}
         <Divider sx={{ mb: 2 }} />
         <Typography variant="h4" color="secondary">
-          ${(product.price / 100).toFixed(2)}
+          {currencyFormat(product.price)}
         </Typography>
         <TableContainer>
           <Table>
