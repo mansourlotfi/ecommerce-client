@@ -76,18 +76,25 @@ export default function CheckoutPage() {
     console.log("data", data);
     setLoading(true);
     try {
-      const paymentResult = await agent.Payments.createPaymentIntent({
-        api_key: "376de118-4aa6-451e-94c0-3cf1e848a6e6",
-        order_id: orderNumber,
-        amount: subtotal + deliveryFee,
-        callback_uri: "https://www.blushgallery.com/checkout",
-        customer_phone: +data.phoneNumber,
-        payer_name: data.fullName,
-      });
-      console.log(paymentResult);
-      if (paymentResult.code === -1) {
+      const paymentResult = await agent.Payments.createPaymentIntent(
+        JSON.stringify({
+          api_key: "376de118-4aa6-451e-94c0-3cf1e848a6e6",
+          order_id: orderNumber,
+          amount: subtotal + deliveryFee,
+          callback_uri: "https://www.blushgallery.com/checkout",
+          customer_phone: +data.phoneNumber,
+          payer_name: data.fullName,
+          auto_verify: "yes",
+        })
+      );
+      console.log("p", paymentResult);
+      console.log("JSON.parse(paymentResult)", JSON.parse(paymentResult));
+
+      if (JSON.parse(paymentResult.code) === -1) {
         navigate(
-          `https://nextpay.org/nx/gateway/payment/${paymentResult.trans_id}`
+          `https://nextpay.org/nx/gateway/payment/${JSON.parse(
+            paymentResult.trans_id
+          )}`
         );
 
         // setPaymentSucceeded(true);
