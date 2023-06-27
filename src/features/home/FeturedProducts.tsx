@@ -7,6 +7,7 @@ import { Pagination, Navigation, Autoplay } from "swiper";
 import { Grid } from "@mui/material";
 import useMediaQuery from "@mui/material/useMediaQuery";
 import useProducts from "../../app/hooks/useProducts";
+import { NavLink } from "react-router-dom";
 
 function FeturedProducts() {
   const isMobile = useMediaQuery("(max-width:600px)");
@@ -31,8 +32,16 @@ function FeturedProducts() {
           style={{ width: "100%" }}
         >
           {featuredProducts.map((P, i) => (
-            <SwiperSlide key={i} style={{ padding: 8 }}>
-              <Grid container height={400} width={400}>
+            <SwiperSlide key={i}>
+              <Grid
+                container
+                // height={400}
+                // width={400}
+                width="100%"
+                component={NavLink}
+                to={`/catalog/${P.id}`}
+                justifyContent="center"
+              >
                 <img
                   src={P.pictureUrl}
                   alt={P.name}
