@@ -180,7 +180,9 @@ export default function CheckoutPage() {
                   type="submit"
                   sx={{ mt: 3, ml: 1 }}
                 >
-                  {activeStep === steps.length - 1 ? "پرداخت" : "مرحله بعد"}
+                  {activeStep === steps.length - 1 || activeStep === 1
+                    ? "پرداخت"
+                    : "مرحله بعد"}
                 </LoadingButton>
               </Box>
             </form>

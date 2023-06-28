@@ -12,6 +12,7 @@ export default function PaymentForm(props: Props) {
 
     script.src = "https://nextpay.org/nx/js-trust/58592";
     script.async = true;
+    script.type = "text/javascript";
 
     document.body.appendChild(script);
 
