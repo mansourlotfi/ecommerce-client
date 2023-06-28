@@ -153,7 +153,7 @@ export interface ICreatePaymentIntent {
 const Payments = {
   createPaymentIntent: (body: any) =>
     axios
-      .post("https://nextpay.org/nx/gateway/token", body, {
+      .post("https://nextpay.org/nx/gateway/token", new URLSearchParams(body), {
         headers: { "Content-Type": "application/x-www-form-urlencoded" },
       })
       .then(responseBody),
