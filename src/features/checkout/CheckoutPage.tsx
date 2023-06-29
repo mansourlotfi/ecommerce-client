@@ -33,6 +33,7 @@ export default function CheckoutPage() {
   const [orderNumber, setOrderNumber] = useState("");
   const [loading, setLoading] = useState(false);
 
+  console.log("set", setOrderNumber);
   // const [paymentMessage, setPaymentMessage] = useState("");
   // const [paymentSucceeded, setPaymentSucceeded] = useState(false);
 
@@ -117,11 +118,12 @@ export default function CheckoutPage() {
     const { saveAddress, ...address } = data;
     if (activeStep === 1) {
       setLoading(true);
-      const orderNumber = await agent.Orders.create({
+      const orderObj = await agent.Orders.create({
         saveAddress,
         shippingAddress: address,
       });
-      setOrderNumber(orderNumber);
+      console.log("orderObj", orderObj);
+      // setOrderNumber(orderNumber);
       setActiveStep(activeStep + 1);
       // setPaymentSucceeded(true);
       // setPaymentMessage("Thank you - we have received your payment");
