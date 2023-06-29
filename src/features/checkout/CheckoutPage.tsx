@@ -1,6 +1,7 @@
 import {
   Box,
   Button,
+  Grid,
   Paper,
   Step,
   StepLabel,
@@ -167,12 +168,26 @@ export default function CheckoutPage() {
           ) : (
             <form onSubmit={methods.handleSubmit(handleNext)}>
               {getStepContent(activeStep)}
+              {activeStep === 1 ? (
+                <Grid container justifyContent="flex-end">
+                  <Grid item md={2} xs={6} mt={4}>
+                    <img
+                      src="https://nextpay.org/storage/2019/12/nextpay-pay-button.png"
+                      loading="lazy"
+                      alt="nextPay"
+                      width="100%"
+                      height={60}
+                    />
+                  </Grid>
+                </Grid>
+              ) : null}
               <Box sx={{ display: "flex", justifyContent: "flex-end" }}>
                 {activeStep !== 0 && (
                   <Button onClick={handleBack} sx={{ mt: 3, ml: 1 }}>
                     Back
                   </Button>
                 )}
+
                 <LoadingButton
                   loading={loading}
                   disabled={submitDisabled()}
@@ -181,7 +196,7 @@ export default function CheckoutPage() {
                   sx={{ mt: 3, ml: 1 }}
                 >
                   {activeStep === steps.length - 1 || activeStep === 1
-                    ? "پرداخت"
+                    ? "پرداخت با درگاه اینترنتی معتبر"
                     : "مرحله بعد"}
                 </LoadingButton>
               </Box>
