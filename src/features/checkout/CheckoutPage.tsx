@@ -92,13 +92,7 @@ export default function CheckoutPage() {
       })
         .then((res) => {
           if (res.code === -1) {
-            window.location.replace(
-              `https://nextpay.org/nx/gateway/payment/${res.trans_id}`
-            );
-            console.log("orderObj", res);
-
-            console.log("JSON.parse", JSON.parse(res));
-            setLoading(false);
+            window.location.href = `https://nextpay.org/nx/gateway/payment/${res.trans_id}`;
           }
         })
         .catch((err) => {
