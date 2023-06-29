@@ -5,6 +5,7 @@ interface Props {
   orderNumber: string;
   transId: string;
   amount: string;
+  status: string;
 }
 
 export default function PaymentForm(props: Props) {
@@ -22,9 +23,11 @@ export default function PaymentForm(props: Props) {
         مبلغ سفارش : {props.amount}
       </Typography>
 
-      <Typography variant="h6" gutterBottom>
-        با تشکر از خرید شما. پس از بررسی ارسال انجام میگیرد
-      </Typography>
+      {props.status === "OK" ? (
+        <Typography variant="h6" gutterBottom>
+          با تشکر از خرید شما. پس از بررسی ارسال انجام میگیرد
+        </Typography>
+      ) : null}
     </>
   );
 }

@@ -31,6 +31,7 @@ export default function CheckoutPage() {
   let transId = searchParams.get("trans_id");
   let orderId = searchParams.get("order_id");
   let amount = searchParams.get("amount");
+  let status = searchParams.get("np_status");
 
   console.log("transId", transId);
   console.log("orderId", orderId);
@@ -61,6 +62,7 @@ export default function CheckoutPage() {
             orderNumber={orderId ?? ""}
             amount={amount ?? ""}
             transId={transId ?? ""}
+            status={status ?? ""}
           />
         );
       default:
@@ -137,8 +139,8 @@ export default function CheckoutPage() {
   }
 
   useEffect(() => {
-    if (callback) {
-      setActiveStep(steps.length);
+    if (callback === "true") {
+      setActiveStep(2);
       dispatch(clearBasket());
     }
   }, [callback, dispatch]);
@@ -160,11 +162,12 @@ export default function CheckoutPage() {
           ))}
         </Stepper>
         <>
-          {activeStep === steps.length ? (
+          {activeStep === 2 ? (
             <PaymentForm
               orderNumber={orderId ?? ""}
               amount={amount ?? ""}
               transId={transId ?? ""}
+              status={status ?? ""}
             />
           ) : (
             <form onSubmit={methods.handleSubmit(handleNext)}>
