@@ -89,32 +89,32 @@ export default function CheckoutPage() {
     const { saveAddress, ...address } = data;
     if (activeStep === 1) {
       setLoading(true);
-      const orderObj = await agent.Orders.create({
-        saveAddress,
-        shippingAddress: address,
-      });
+      // const orderObj = await agent.Orders.create({
+      //   saveAddress,
+      //   shippingAddress: address,
+      // });
 
-      console.log("orderObj", orderObj);
-      console.log("JSON.parse", JSON.parse(orderObj));
+      // console.log("orderObj", orderObj);
+      // console.log("JSON.parse", JSON.parse(orderObj));
 
-      if (JSON.parse(orderObj.code) === -1) {
-        navigate(
-          `https://nextpay.org/nx/gateway/payment/${JSON.parse(
-            orderObj.trans_id
-          )}`
-        );
+      // if (JSON.parse(orderObj.code) === -1) {
+      //   navigate(
+      //     `https://nextpay.org/nx/gateway/payment/${JSON.parse(
+      //       orderObj.trans_id
+      //     )}`
+      //   );
 
-        // setPaymentSucceeded(true);
-        // setActiveStep(activeStep + 1);
-        // dispatch(clearBasket());
-        setLoading(false);
-      } else {
-        // setPaymentSucceeded(false);
-        toast.error("پرداخت با مشکل مواجه شد");
+      //   // setPaymentSucceeded(true);
+      //   // setActiveStep(activeStep + 1);
+      //   // dispatch(clearBasket());
+      //   setLoading(false);
+      // } else {
+      //   // setPaymentSucceeded(false);
+      //   toast.error("پرداخت با مشکل مواجه شد");
 
-        setLoading(false);
-        // setActiveStep(activeStep + 1);
-      }
+      //   setLoading(false);
+      //   // setActiveStep(activeStep + 1);
+      // }
       // setOrderNumber(orderNumber);
       // setActiveStep(activeStep + 1);
       // setPaymentSucceeded(true);
