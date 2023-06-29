@@ -94,6 +94,9 @@ export default function CheckoutPage() {
         shippingAddress: address,
       });
 
+      console.log("orderObj", orderObj);
+      console.log("JSON.parse", JSON.parse(orderObj));
+
       if (JSON.parse(orderObj.code) === -1) {
         navigate(
           `https://nextpay.org/nx/gateway/payment/${JSON.parse(
