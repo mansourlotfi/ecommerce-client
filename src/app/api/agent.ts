@@ -150,14 +150,6 @@ export interface ICreatePaymentIntent {
   auto_verify?: "yes";
   allowed_card?: string;
 }
-const Payments = {
-  createPaymentIntent: (body: any) =>
-    axios
-      .post("https://nextpay.org/nx/gateway/token", new URLSearchParams(body), {
-        headers: { "Content-Type": "application/x-www-form-urlencoded" },
-      })
-      .then(responseBody),
-};
 
 const Admin = {
   //product
@@ -184,7 +176,6 @@ const agent = {
   Basket,
   Account,
   Orders,
-  Payments,
   Admin,
 };
 

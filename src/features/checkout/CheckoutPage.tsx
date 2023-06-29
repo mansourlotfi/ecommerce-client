@@ -19,7 +19,6 @@ import agent from "../../app/api/agent";
 import { LoadingButton } from "@mui/lab";
 // import { clearBasket } from "../basket/basketSlice";
 // import { useAppDispatch, useAppSelector } from "../../app/store/configureStore";
-import { useAppSelector } from "../../app/store/configureStore";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 
@@ -29,7 +28,7 @@ export default function CheckoutPage() {
   const navigate = useNavigate();
 
   // const dispatch = useAppDispatch();
-  const { basket } = useAppSelector((state) => state.basket);
+  // const { basket } = useAppSelector((state) => state.basket);
   const [activeStep, setActiveStep] = useState(0);
   const [orderNumber, setOrderNumber] = useState("");
   const [loading, setLoading] = useState(false);
@@ -38,10 +37,10 @@ export default function CheckoutPage() {
   // const [paymentMessage, setPaymentMessage] = useState("");
   // const [paymentSucceeded, setPaymentSucceeded] = useState(false);
 
-  const subtotal =
-    basket?.items.reduce((sum, item) => sum + item.quantity * item.price, 0) ??
-    0;
-  const deliveryFee = subtotal > 300000 ? 0 : 30000;
+  // const subtotal =
+  //   basket?.items.reduce((sum, item) => sum + item.quantity * item.price, 0) ??
+  //   0;
+  // const deliveryFee = subtotal > 300000 ? 0 : 30000;
 
   function getStepContent(step: number) {
     switch (step) {
@@ -79,35 +78,6 @@ export default function CheckoutPage() {
     console.log("data", data);
     setLoading(true);
     try {
-      const paymentResult = await agent.Payments.createPaymentIntent({
-        api_key: "376de118-4aa6-451e-94c0-3cf1e848a6e6",
-        order_id: orderNumber,
-        amount: subtotal + deliveryFee,
-        callback_uri: "https://www.blushgallery.com/checkout",
-        customer_phone: +data.phoneNumber,
-        payer_name: data.fullName,
-        auto_verify: "yes",
-      });
-      console.log("p", paymentResult);
-      console.log("JSON.parse(paymentResult)", JSON.parse(paymentResult));
-      console.log("new URLSearchParams", new URLSearchParams(paymentResult));
-
-      if (JSON.parse(paymentResult.code) === -1) {
-        navigate(
-          `https://nextpay.org/nx/gateway/payment/${JSON.parse(
-            paymentResult.trans_id
-          )}`
-        );
-
-        // setPaymentSucceeded(true);
-        // setActiveStep(activeStep + 1);
-        // dispatch(clearBasket());
-        setLoading(false);
-      } else {
-        // setPaymentSucceeded(false);
-        setLoading(false);
-        // setActiveStep(activeStep + 1);
-      }
     } catch (error) {
       console.log(error);
 
@@ -143,7 +113,7 @@ export default function CheckoutPage() {
         // setActiveStep(activeStep + 1);
       }
       // setOrderNumber(orderNumber);
-      setActiveStep(activeStep + 1);
+      // setActiveStep(activeStep + 1);
       // setPaymentSucceeded(true);
       // setPaymentMessage("Thank you - we have received your payment");
       // dispatch(clearBasket());
