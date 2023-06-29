@@ -19,14 +19,11 @@ import agent from "../../app/api/agent";
 import { LoadingButton } from "@mui/lab";
 // import { clearBasket } from "../basket/basketSlice";
 // import { useAppDispatch, useAppSelector } from "../../app/store/configureStore";
-import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 
 const steps = ["آدرس ارسال", "مرور سفارش", "پرداخت"];
 
 export default function CheckoutPage() {
-  const navigate = useNavigate();
-
   // const dispatch = useAppDispatch();
   // const { basket } = useAppSelector((state) => state.basket);
   const [activeStep, setActiveStep] = useState(0);
@@ -95,8 +92,9 @@ export default function CheckoutPage() {
       })
         .then((res) => {
           if (res.code === -1) {
-            navigate(`https://nextpay.org/nx/gateway/payment/${res.trans_id}`);
-
+            window.location.replace(
+              `https://nextpay.org/nx/gateway/payment/${res.trans_id}`
+            );
             console.log("orderObj", res);
 
             console.log("JSON.parse", JSON.parse(res));
