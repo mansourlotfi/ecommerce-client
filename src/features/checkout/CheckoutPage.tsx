@@ -100,25 +100,9 @@ export default function CheckoutPage() {
           setLoading(false);
         });
 
-      // if (JSON.parse(orderObj.code) === -1) {
-
-      //   // setPaymentSucceeded(true);
-      //   // setActiveStep(activeStep + 1);
-      //   // dispatch(clearBasket());
-      //   setLoading(false);
-      // } else {
-      //   // setPaymentSucceeded(false);
-      //   toast.error("پرداخت با مشکل مواجه شد");
-
-      //   setLoading(false);
-      //   // setActiveStep(activeStep + 1);
-      // }
-      // setOrderNumber(orderNumber);
-      // setActiveStep(activeStep + 1);
       // setPaymentSucceeded(true);
       // setPaymentMessage("Thank you - we have received your payment");
       // dispatch(clearBasket());
-      setLoading(false);
     } else if (activeStep === steps.length - 1) {
       await submitOrder(data);
     } else {
