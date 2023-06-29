@@ -1,5 +1,4 @@
-import { Typography, Grid, Box } from "@mui/material";
-import { useEffect } from "react";
+import { Typography } from "@mui/material";
 // import AppTextInput from "../../app/components/AppTextInput";
 
 interface Props {
@@ -7,20 +6,6 @@ interface Props {
 }
 
 export default function PaymentForm(props: Props) {
-  useEffect(() => {
-    const script = document.createElement("script");
-
-    script.src = "https://nextpay.org/nx/js-trust/58592";
-    script.async = true;
-    script.type = "text/javascript";
-
-    document.body.appendChild(script);
-
-    return () => {
-      document.body.removeChild(script);
-    };
-  }, []);
-
   return (
     <>
       <Typography variant="h6" gutterBottom>
@@ -30,11 +15,6 @@ export default function PaymentForm(props: Props) {
       <Typography variant="h6" gutterBottom>
         پرداخت با استفاده از درگاه پرداخت نکست پی
       </Typography>
-      <Grid container>
-        <Box>
-          <div id="nextpay" style={{ margin: "auto", width: 80 }}></div>
-        </Box>
-      </Grid>
     </>
   );
 }
