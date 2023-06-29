@@ -21,6 +21,7 @@ import { LoadingButton } from "@mui/lab";
 // import { useAppDispatch, useAppSelector } from "../../app/store/configureStore";
 import { useAppSelector } from "../../app/store/configureStore";
 import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 
 const steps = ["آدرس ارسال", "مرور سفارش", "پرداخت"];
 
@@ -122,7 +123,25 @@ export default function CheckoutPage() {
         saveAddress,
         shippingAddress: address,
       });
-      console.log("orderObj", orderObj);
+
+      if (JSON.parse(orderObj.code) === -1) {
+        navigate(
+          `https://nextpay.org/nx/gateway/payment/${JSON.parse(
+            orderObj.trans_id
+          )}`
+        );
+
+        // setPaymentSucceeded(true);
+        // setActiveStep(activeStep + 1);
+        // dispatch(clearBasket());
+        setLoading(false);
+      } else {
+        // setPaymentSucceeded(false);
+        toast.error("پرداخت با مشکل مواجه شد");
+
+        setLoading(false);
+        // setActiveStep(activeStep + 1);
+      }
       // setOrderNumber(orderNumber);
       setActiveStep(activeStep + 1);
       // setPaymentSucceeded(true);
