@@ -89,20 +89,26 @@ export default function CheckoutPage() {
     const { saveAddress, ...address } = data;
     if (activeStep === 1) {
       setLoading(true);
-      // const orderObj = await agent.Orders.create({
-      //   saveAddress,
-      //   shippingAddress: address,
-      // });
+      agent.Orders.create({
+        saveAddress,
+        shippingAddress: address,
+      })
+        .then((res) => {
+          if (res.code === -1) {
+            navigate(`https://nextpay.org/nx/gateway/payment/${res.trans_id}`);
 
-      // console.log("orderObj", orderObj);
-      // console.log("JSON.parse", JSON.parse(orderObj));
+            console.log("orderObj", res);
+
+            console.log("JSON.parse", JSON.parse(res));
+            setLoading(false);
+          }
+        })
+        .catch((err) => {
+          toast.error("پرداخت با مشکل مواجه شد");
+          setLoading(false);
+        });
 
       // if (JSON.parse(orderObj.code) === -1) {
-      //   navigate(
-      //     `https://nextpay.org/nx/gateway/payment/${JSON.parse(
-      //       orderObj.trans_id
-      //     )}`
-      //   );
 
       //   // setPaymentSucceeded(true);
       //   // setActiveStep(activeStep + 1);
