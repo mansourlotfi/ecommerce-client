@@ -3,6 +3,8 @@ import { Typography } from "@mui/material";
 
 interface Props {
   orderNumber: string;
+  transId: string;
+  amount: string;
 }
 
 export default function PaymentForm(props: Props) {
@@ -13,7 +15,15 @@ export default function PaymentForm(props: Props) {
       </Typography>
 
       <Typography variant="h6" gutterBottom>
-        پرداخت با استفاده از درگاه پرداخت نکست پی
+        شماره تراکنش : {props.transId}
+      </Typography>
+
+      <Typography variant="h6" gutterBottom>
+        مبلغ سفارش : {props.amount}
+      </Typography>
+
+      <Typography variant="h6" gutterBottom>
+        با تشکر از خرید شما. پس از بررسی ارسال انجام میگیرد
       </Typography>
     </>
   );

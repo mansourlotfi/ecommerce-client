@@ -17,20 +17,30 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { validationSchema } from "./checkoutValidation";
 import agent from "../../app/api/agent";
 import { LoadingButton } from "@mui/lab";
-// import { clearBasket } from "../basket/basketSlice";
-// import { useAppDispatch, useAppSelector } from "../../app/store/configureStore";
+import { clearBasket } from "../basket/basketSlice";
+import { useAppDispatch } from "../../app/store/configureStore";
 import { toast } from "react-toastify";
+import { useSearchParams } from "react-router-dom";
 
 const steps = ["آدرس ارسال", "مرور سفارش", "پرداخت"];
 
 export default function CheckoutPage() {
-  // const dispatch = useAppDispatch();
+  const [searchParams] = useSearchParams();
+
+  let callback = searchParams.get("callback");
+  let transId = searchParams.get("trans_id");
+  let orderId = searchParams.get("order_id");
+  let amount = searchParams.get("amount");
+
+  console.log("transId", transId);
+  console.log("orderId", orderId);
+  console.log("amount", amount);
+
+  const dispatch = useAppDispatch();
   // const { basket } = useAppSelector((state) => state.basket);
   const [activeStep, setActiveStep] = useState(0);
-  const [orderNumber, setOrderNumber] = useState("");
   const [loading, setLoading] = useState(false);
 
-  console.log("set", setOrderNumber);
   // const [paymentMessage, setPaymentMessage] = useState("");
   // const [paymentSucceeded, setPaymentSucceeded] = useState(false);
 
@@ -46,7 +56,13 @@ export default function CheckoutPage() {
       case 1:
         return <Review />;
       case 2:
-        return <PaymentForm orderNumber={orderNumber} />;
+        return (
+          <PaymentForm
+            orderNumber={orderId ?? ""}
+            amount={amount ?? ""}
+            transId={transId ?? ""}
+          />
+        );
       default:
         throw new Error("Unknown step");
     }
@@ -71,18 +87,18 @@ export default function CheckoutPage() {
     });
   }, [methods]);
 
-  async function submitOrder(data: FieldValues) {
-    console.log("data", data);
-    setLoading(true);
-    try {
-    } catch (error) {
-      console.log(error);
+  // async function submitOrder(data: FieldValues) {
+  //   console.log("data", data);
+  //   setLoading(true);
+  //   try {
+  //   } catch (error) {
+  //     console.log(error);
 
-      setLoading(false);
-    }
-  }
+  //     setLoading(false);
+  //   }
+  // }
 
-  const handleNext = async (data: FieldValues) => {
+  const handleNext = (data: FieldValues) => {
     const { saveAddress, ...address } = data;
     if (activeStep === 1) {
       setLoading(true);
@@ -103,8 +119,6 @@ export default function CheckoutPage() {
       // setPaymentSucceeded(true);
       // setPaymentMessage("Thank you - we have received your payment");
       // dispatch(clearBasket());
-    } else if (activeStep === steps.length - 1) {
-      await submitOrder(data);
     } else {
       setActiveStep(activeStep + 1);
     }
@@ -121,6 +135,13 @@ export default function CheckoutPage() {
       return !methods.formState.isValid;
     }
   }
+
+  useEffect(() => {
+    if (callback) {
+      setActiveStep(steps.length);
+      dispatch(clearBasket());
+    }
+  }, [callback, dispatch]);
 
   return (
     <FormProvider {...methods}>
@@ -140,7 +161,11 @@ export default function CheckoutPage() {
         </Stepper>
         <>
           {activeStep === steps.length ? (
-            <></>
+            <PaymentForm
+              orderNumber={orderId ?? ""}
+              amount={amount ?? ""}
+              transId={transId ?? ""}
+            />
           ) : (
             <form onSubmit={methods.handleSubmit(handleNext)}>
               {getStepContent(activeStep)}
@@ -171,7 +196,7 @@ export default function CheckoutPage() {
                   type="submit"
                   sx={{ mt: 3, ml: 1 }}
                 >
-                  {activeStep === steps.length - 1 || activeStep === 1
+                  {activeStep === 1
                     ? "پرداخت با درگاه اینترنتی معتبر"
                     : "مرحله بعد"}
                 </LoadingButton>
