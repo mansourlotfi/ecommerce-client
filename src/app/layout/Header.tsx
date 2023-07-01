@@ -64,7 +64,13 @@ export default function Header({ handleThemeChange, darkMode }: Props) {
             <Box display="flex" alignItems="center">
               <DarkMode />
               <Switch checked={darkMode} onChange={handleThemeChange} />
-              <IconButton component={NavLink} to={"/"}>
+              <IconButton
+                style={{
+                  color: "white",
+                }}
+                component={NavLink}
+                to={"/"}
+              >
                 <Home />
               </IconButton>
             </Box>
