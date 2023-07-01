@@ -5,7 +5,7 @@ export interface Product {
   pictureUrl: string;
   price: number;
   brand: string;
-  isFeatured: boolean;
+  isFeatured?: boolean;
   type?: string;
   quantityInStock?: number;
 }

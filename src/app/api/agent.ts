@@ -166,6 +166,12 @@ const Admin = {
   createBrand: (Brands: any) =>
     requests.postForm("Brands", createFormData(Brands)),
   deleteBrand: (id: number) => requests.delete(`Brands/${id}`),
+  //broker
+  BrokerList: () => requests.get("Brokers"),
+  createBroker: (Brokers: any) =>
+    requests.postForm("Brokers", createFormData(Brokers)),
+  deleteBroker: (id: number) => requests.delete(`Brokers/${id}`),
+  brokerDetails: (id: number) => requests.get(`Brokers/${id}`),
 };
 
 const agent = {

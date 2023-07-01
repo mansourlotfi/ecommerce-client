@@ -1,5 +1,6 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
+import { CookiesProvider } from "react-cookie";
 import "./app/layout/styles.css";
 import reportWebVitals from "./reportWebVitals";
 // import "@fontsource/roboto/300.css";
@@ -21,7 +22,9 @@ const root = ReactDOM.createRoot(
 root.render(
   <React.StrictMode>
     <Provider store={store}>
-      <RouterProvider router={router} />
+      <CookiesProvider>
+        <RouterProvider router={router} />
+      </CookiesProvider>
     </Provider>
   </React.StrictMode>
 );

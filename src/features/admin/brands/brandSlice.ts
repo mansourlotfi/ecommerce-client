@@ -68,7 +68,7 @@ export const brandSlice = createSlice({
       state.status = "idle";
     });
     builder.addCase(fetchBrandAsync.pending, (state) => {
-      state.status = "pendingFetchCategory";
+      state.status = "pendingFetchBrand";
     });
     builder.addCase(fetchBrandAsync.fulfilled, (state, action) => {
       brandsAdapter.upsertOne(state, action.payload);

@@ -21,6 +21,7 @@ import { clearBasket } from "../basket/basketSlice";
 import { useAppDispatch } from "../../app/store/configureStore";
 import { toast } from "react-toastify";
 import { useSearchParams } from "react-router-dom";
+import { useCookies } from "react-cookie";
 
 const steps = ["آدرس ارسال", "مرور سفارش", "پرداخت"];
 
@@ -32,10 +33,9 @@ export default function CheckoutPage() {
   let orderId = searchParams.get("order_id");
   let amount = searchParams.get("amount");
   let status = searchParams.get("np_status");
+  let ref = searchParams.get("ref");
 
-  console.log("transId", transId);
-  console.log("orderId", orderId);
-  console.log("amount", amount);
+  const [cookies, setCookie] = useCookies(["ref"]);
 
   const dispatch = useAppDispatch();
   // const { basket } = useAppSelector((state) => state.basket);
@@ -107,6 +107,7 @@ export default function CheckoutPage() {
       agent.Orders.create({
         saveAddress,
         shippingAddress: address,
+        ref: cookies.ref ?? null,
       })
         .then((res) => {
           if (res.code === -1) {
@@ -144,6 +145,16 @@ export default function CheckoutPage() {
       dispatch(clearBasket());
     }
   }, [callback, dispatch]);
+
+  useEffect(() => {
+    if (ref?.length) {
+      setCookie("ref", ref, {
+        path: "/",
+        expires: new Date(new Date().setDate(new Date().getDate() + 7)),
+        maxAge: 604800,
+      });
+    }
+  }, [ref, setCookie]);
 
   return (
     <FormProvider {...methods}>

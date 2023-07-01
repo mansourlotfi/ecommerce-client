@@ -7,7 +7,9 @@ import {
 
 export default function useCategories() {
   const categories = useAppSelector(categorySelectors.selectAll);
-  const { categoriesLoaded } = useAppSelector((state) => state.category);
+  const { categoriesLoaded, status } = useAppSelector(
+    (state) => state.category
+  );
   const dispatch = useAppDispatch();
 
   useEffect(() => {
@@ -17,5 +19,6 @@ export default function useCategories() {
   return {
     categories,
     categoriesLoaded,
+    status,
   };
 }

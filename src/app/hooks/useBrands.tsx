@@ -7,7 +7,7 @@ import {
 
 export default function useBrands() {
   const brands = useAppSelector(brandSelectors.selectAll);
-  const { brandsLoaded } = useAppSelector((state) => state.brands);
+  const { brandsLoaded, status } = useAppSelector((state) => state.brands);
   const dispatch = useAppDispatch();
 
   useEffect(() => {
@@ -17,5 +17,6 @@ export default function useBrands() {
   return {
     brands,
     brandsLoaded,
+    status,
   };
 }

@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, useSearchParams } from "react-router-dom";
 import {
   Divider,
   Grid,
@@ -23,6 +23,7 @@ import { fetchProductAsync, productSelectors } from "./catalogSlice";
 import { EntityId } from "@reduxjs/toolkit";
 import useMediaQuery from "@mui/material/useMediaQuery";
 import { currencyFormat } from "../../app/util/util";
+import { useCookies } from "react-cookie";
 
 function ProductDetails() {
   const isMobile = useMediaQuery("(max-width:600px)");
@@ -37,6 +38,20 @@ function ProductDetails() {
   const [quantity, setQuantity] = useState(0);
 
   const item = basket?.items.find((i) => i.productId === product?.id);
+
+  const [searchParams] = useSearchParams();
+  let ref = searchParams.get("ref");
+  const [, setCookie] = useCookies(["ref"]);
+
+  useEffect(() => {
+    if (ref?.length) {
+      setCookie("ref", ref, {
+        path: "/",
+        expires: new Date(new Date().setDate(new Date().getDate() + 7)),
+        maxAge: 604800,
+      });
+    }
+  }, [ref, setCookie]);
 
   useEffect(() => {
     if (item) {

@@ -5,6 +5,7 @@ import { basketSlice } from "../../features/basket/basketSlice";
 import { catalogSlice } from "../../features/catalog/catalogSlice";
 import { categorySlice } from "../../features/admin/category/categorySlice";
 import { brandSlice } from "../../features/admin/brands/brandSlice";
+import { brokerSlice } from "../../features/admin/broker/brokerSlice";
 
 export const store = configureStore({
   reducer: {
@@ -13,6 +14,7 @@ export const store = configureStore({
     account: accountSlice.reducer,
     category: categorySlice.reducer,
     brands: brandSlice.reducer,
+    brokers: brokerSlice.reducer,
   },
 });
 

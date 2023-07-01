@@ -12,6 +12,8 @@ import {
 import ProductList from "./ProductList";
 import ProductSearch from "./ProductSearch";
 import FilterAccordion from "./Filters";
+import { useSearchParams } from "react-router-dom";
+import { useCookies } from "react-cookie";
 
 function Catalog() {
   // const [products, setProducts] = useState<Product[]>([]);
@@ -21,6 +23,19 @@ function Catalog() {
   );
   const dispatch = useAppDispatch();
   // const [loading, setLoading] = useState(true);
+  const [searchParams] = useSearchParams();
+  let ref = searchParams.get("ref");
+  const [, setCookie] = useCookies(["ref"]);
+
+  useEffect(() => {
+    if (ref?.length) {
+      setCookie("ref", ref, {
+        path: "/",
+        expires: new Date(new Date().setDate(new Date().getDate() + 7)),
+        maxAge: 604800,
+      });
+    }
+  }, [ref, setCookie]);
 
   useEffect(() => {
     // agent.Catalog.list()

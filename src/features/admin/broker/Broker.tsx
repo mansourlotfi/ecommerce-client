@@ -15,48 +15,45 @@ import {
 import { useState } from "react";
 import agent from "../../../app/api/agent";
 import { useAppDispatch } from "../../../app/store/configureStore";
-import CategoryForm from "./CategoryForm";
-import useCategories from "../../../app/hooks/useCategories";
-import { removeCategory } from "./categorySlice";
+import BrokerForm from "./BrokerForm";
+import { removeBroker } from "./brokerSlice";
+import useBrokers from "../../../app/hooks/useBrokers";
 
-export default function AdminCategory() {
-  const { categories, categoriesLoaded, status } = useCategories();
+export default function AdminBrokers() {
+  const { brokers, brokersLoaded, status } = useBrokers();
   const dispatch = useAppDispatch();
-  //   const [editMode, setEditMode] = useState(false);
-  const [createCategoryMode, setCreateCategoryMode] = useState(false);
-
+  const [createBrokerMode, setCreateBrokerMode] = useState(false);
   const [loading, setLoading] = useState(false);
   const [target, setTarget] = useState(0);
 
-  function handleDeleteCategory(id: number) {
+  function handleDeleteBroker(id: number) {
     setLoading(true);
     setTarget(id);
-    agent.Admin.deleteCategory(id)
-      .then(() => dispatch(removeCategory(id)))
+    agent.Admin.deleteBroker(id)
+      .then(() => dispatch(removeBroker(id)))
       .catch((error) => console.log(error))
       .finally(() => setLoading(false));
   }
 
-  function cancelCreateCategory() {
-    setCreateCategoryMode(false);
+  function cancelCreateBrand() {
+    setCreateBrokerMode(false);
   }
-  if (!categoriesLoaded && status === "idle")
-    return <>something bad happened</>;
-  if (createCategoryMode) return <CategoryForm cancel={cancelCreateCategory} />;
+  if (!brokersLoaded && status === "idle") return <>something bad happened</>;
+  if (createBrokerMode) return <BrokerForm cancel={cancelCreateBrand} />;
 
   return (
     <>
       <Box display="flex" justifyContent="space-between">
         <Typography sx={{ p: 2 }} variant="h4">
-          لیست دسته بندی
+          لیست فروشنده ها
         </Typography>
         <Button
-          onClick={() => setCreateCategoryMode(true)}
+          onClick={() => setCreateBrokerMode(true)}
           sx={{ m: 2 }}
           size="large"
           variant="contained"
         >
-          دسته بندی جدید
+          فروشنده جدید
         </Button>
       </Box>
       <TableContainer component={Paper}>
@@ -64,43 +61,45 @@ export default function AdminCategory() {
           <TableHead>
             <TableRow>
               <TableCell>#</TableCell>
-              <TableCell align="left">نام</TableCell>
-              <TableCell align="left">تصویر</TableCell>
+              <TableCell align="left">نام کامل</TableCell>
+              <TableCell align="left">شماره همراه</TableCell>
+              <TableCell align="left">شماره ریفرنس</TableCell>
               <TableCell align="right"></TableCell>
             </TableRow>
           </TableHead>
           <TableBody>
-            {categories.map((category) => (
+            {brokers.map((broker) => (
               <TableRow
-                key={category.id}
+                key={broker.id}
                 sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
               >
                 <TableCell component="th" scope="row">
-                  {category.id}
+                  {broker.id}
                 </TableCell>
                 <TableCell align="left">
                   <Box display="flex" alignItems="center">
-                    <span>{category.name}</span>
+                    <span>{broker.fullName}</span>
                   </Box>
                 </TableCell>
                 <TableCell align="left">
                   <Box display="flex" alignItems="center">
-                    <img
-                      src={category.pictureUrl}
-                      alt={category.name}
-                      style={{ height: 50, marginRight: 20 }}
-                    />
+                    <span>{broker.phoneNumber}</span>
+                  </Box>
+                </TableCell>
+                <TableCell align="left">
+                  <Box display="flex" alignItems="center">
+                    <span>{broker.ref}</span>
                   </Box>
                 </TableCell>
 
                 <TableCell align="right">
                   {/* <Button
-                    onClick={() => handleSelectProduct(category)}
+                    onClick={() => handleSelectProduct(brand)}
                     startIcon={<Edit />}
                   /> */}
                   <LoadingButton
-                    loading={loading && target === category.id}
-                    onClick={() => handleDeleteCategory(category.id)}
+                    loading={loading && target === broker.id}
+                    onClick={() => handleDeleteBroker(broker.id)}
                     startIcon={<Delete />}
                     color="error"
                   />

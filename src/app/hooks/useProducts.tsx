@@ -19,6 +19,7 @@ export default function useProducts() {
     featuredProducts,
     featuredStatus,
     featuredProductsLoaded,
+    status,
   } = useAppSelector((state) => state.catalog);
   const dispatch = useAppDispatch();
 
@@ -36,6 +37,7 @@ export default function useProducts() {
 
   return {
     products,
+    status,
     productsLoaded,
     filtersLoaded,
     brands,

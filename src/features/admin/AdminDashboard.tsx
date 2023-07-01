@@ -11,12 +11,14 @@ import { useCallback, useState } from "react";
 import AdminInventory from "./inventory/Inventory";
 import AdminCategory from "./category/Category";
 import AdminBrands from "./brands/Brands";
+import AdminBrokers from "./broker/Broker";
 
 function AdminDashboard() {
   const [state, setState] = useState({
     showProducts: true,
     showCategories: false,
     showBrands: false,
+    showBroker: false,
   });
 
   const handleOpenProducts = useCallback(() => {
@@ -46,6 +48,16 @@ function AdminDashboard() {
     }));
   }, []);
 
+  const handleOpenBrokers = useCallback(() => {
+    setState((prev) => ({
+      ...prev,
+      showProducts: false,
+      showBrands: false,
+      showCategories: false,
+      showBroker: true,
+    }));
+  }, []);
+
   return (
     <Grid container minHeight={"90vh"} component={Paper}>
       <Grid item container xs={3}>
@@ -63,6 +75,10 @@ function AdminDashboard() {
               <ListItemIcon></ListItemIcon>
               <ListItemText>برند ها</ListItemText>
             </MenuItem>
+            <MenuItem onClick={handleOpenBrokers}>
+              <ListItemIcon></ListItemIcon>
+              <ListItemText>فروشنده ها</ListItemText>
+            </MenuItem>
           </MenuList>
         </Paper>
       </Grid>
@@ -74,6 +90,8 @@ function AdminDashboard() {
             <AdminCategory />
           ) : state.showBrands ? (
             <AdminBrands />
+          ) : state.showBroker ? (
+            <AdminBrokers />
           ) : null}
         </Container>
       </Grid>

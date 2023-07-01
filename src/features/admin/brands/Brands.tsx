@@ -20,7 +20,7 @@ import useBrands from "../../../app/hooks/useBrands";
 import { removeBrand } from "./brandSlice";
 
 export default function AdminBrands() {
-  const { brands, brandsLoaded } = useBrands();
+  const { brands, brandsLoaded, status } = useBrands();
   const dispatch = useAppDispatch();
   const [createBrandMode, setCreateBrandMode] = useState(false);
   const [loading, setLoading] = useState(false);
@@ -38,7 +38,7 @@ export default function AdminBrands() {
   function cancelCreateBrand() {
     setCreateBrandMode(false);
   }
-  if (!brandsLoaded) return <>something bad happened</>;
+  if (!brandsLoaded && status === "idle") return <>something bad happened</>;
   if (createBrandMode) return <BrandForm cancel={cancelCreateBrand} />;
 
   return (

@@ -26,4 +26,6 @@ export interface Order {
   subtotal: number;
   orderStatus: string;
   total: number;
+  order_id: string;
+  ref: number;
 }
