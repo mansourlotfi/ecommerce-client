@@ -6,6 +6,7 @@ import TopSwiper from "./TopSwiper";
 import NewProducts from "./newProducts ";
 import { useSearchParams } from "react-router-dom";
 import { useEffect } from "react";
+import { Container } from "@mui/material";
 
 export default function HomePage() {
   const [searchParams] = useSearchParams();
@@ -25,10 +26,12 @@ export default function HomePage() {
   return (
     <>
       <TopSwiper />
-      <Categories />
-      <Brands />
-      <FeturedProducts />
-      <NewProducts />
+      <Container>
+        <Categories />
+        <Brands />
+        <FeturedProducts />
+        <NewProducts />
+      </Container>
     </>
   );
 }
