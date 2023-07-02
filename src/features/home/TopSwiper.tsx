@@ -64,7 +64,7 @@ function TopSwiper() {
               src={
                 isMobile
                   ? "/images/mobileCover/cover1.jpg"
-                  : "/images/slide3.jpg"
+                  : "/images/slide1.jpg"
               }
               alt="baner01"
               className="img-fluid"
@@ -93,7 +93,7 @@ function TopSwiper() {
               src={
                 isMobile
                   ? "/images/mobileCover/cover3.jpg"
-                  : "/images/slide1.jpg"
+                  : "/images/slide3.jpg"
               }
               alt="baner03"
               className="img-fluid"
