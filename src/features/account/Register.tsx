@@ -97,11 +97,11 @@ export default function Register() {
           type="password"
           {...register("password", {
             required: "Password is required",
-            pattern: {
-              value:
-                /(?=^.{6,10}$)(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&amp;*()_+}{&quot;:;'?/&gt;.&lt;,])(?!.*\s).*$/,
-              message: "Password is not complex enough",
-            },
+            // pattern: {
+            //   value:
+            //     /(?=^.{6,10}$)(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&amp;*()_+}{&quot;:;'?/&gt;.&lt;,])(?!.*\s).*$/,
+            //   message: "Password is not complex enough",
+            // },
           })}
           error={!!errors.password}
           helperText={<>{errors?.password?.message}</>}
