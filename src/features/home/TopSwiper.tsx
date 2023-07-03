@@ -99,7 +99,7 @@ function TopSwiper() {
               backgroundRepeat: "no-repeat",
               backgroundPosition: "center center",
               // objectFit: "fill",
-              backgroundSize: "contain",
+              backgroundSize: "cover",
             }}
           ></div>
           {/* <Grid container maxHeight={500}>
@@ -128,7 +128,7 @@ function TopSwiper() {
               backgroundRepeat: "no-repeat",
               backgroundPosition: "center center",
               // objectFit: "fill",
-              backgroundSize: "contain",
+              backgroundSize: "cover",
             }}
           ></div>
           {/* <Grid container maxHeight={500}>
@@ -157,7 +157,7 @@ function TopSwiper() {
               backgroundRepeat: "no-repeat",
               backgroundPosition: "center center",
               // objectFit: "fill",
-              backgroundSize: "contain",
+              backgroundSize: "cover",
             }}
           ></div>
           {/* <Grid container maxHeight={500}>
