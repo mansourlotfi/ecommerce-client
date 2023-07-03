@@ -48,7 +48,7 @@ function FeturedProducts() {
                 to={`/catalog/${P.id}`}
                 justifyContent="center"
               >
-                <div
+                {/* <div
                   style={{
                     backgroundImage: `url(${P.pictureUrl})`,
                     height: 400,
@@ -60,13 +60,13 @@ function FeturedProducts() {
                     backgroundSize: "cover",
                     overflow: "hidden",
                   }}
-                ></div>
-                {/* <img
+                ></div> */}
+                <img
                   src={P.pictureUrl}
                   alt={P.name}
                   width="100%"
                   style={{ borderRadius: 16 }}
-                /> */}
+                />
               </Grid>
             </SwiperSlide>
           ))}
