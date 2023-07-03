@@ -73,19 +73,6 @@ function TopSwiper() {
               backgroundSize: "cover",
             }}
           ></div>
-          {/* <Grid container maxHeight={500}>
-            <img
-              src={
-                isMobile
-                  ? "/images/mobileCover/cover1.jpg"
-                  : "/images/slide1.jpg"
-              }
-              alt="baner01"
-              className="img-fluid"
-              width={!isMobile ? "100%" : undefined}
-              height={!isMobile ? "100%" : undefined}
-            />
-          </Grid> */}
         </SwiperSlide>
         <SwiperSlide>
           <div
@@ -102,19 +89,6 @@ function TopSwiper() {
               backgroundSize: "cover",
             }}
           ></div>
-          {/* <Grid container maxHeight={500}>
-            <img
-              src={
-                isMobile
-                  ? "/images/mobileCover/cover1.jpg"
-                  : "/images/slide1.jpg"
-              }
-              alt="baner01"
-              className="img-fluid"
-              width={!isMobile ? "100%" : undefined}
-              height={!isMobile ? "100%" : undefined}
-            />
-          </Grid> */}
         </SwiperSlide>
         <SwiperSlide>
           <div
@@ -131,19 +105,6 @@ function TopSwiper() {
               backgroundSize: "cover",
             }}
           ></div>
-          {/* <Grid container maxHeight={500}>
-            <img
-              src={
-                isMobile
-                  ? "/images/mobileCover/cover1.jpg"
-                  : "/images/slide1.jpg"
-              }
-              alt="baner01"
-              className="img-fluid"
-              width={!isMobile ? "100%" : undefined}
-              height={!isMobile ? "100%" : undefined}
-            />
-          </Grid> */}
         </SwiperSlide>
         <SwiperSlide>
           <div
@@ -160,48 +121,7 @@ function TopSwiper() {
               backgroundSize: "cover",
             }}
           ></div>
-          {/* <Grid container maxHeight={500}>
-            <img
-              src={
-                isMobile
-                  ? "/images/mobileCover/cover1.jpg"
-                  : "/images/slide1.jpg"
-              }
-              alt="baner01"
-              className="img-fluid"
-              width={!isMobile ? "100%" : undefined}
-              height={!isMobile ? "100%" : undefined}
-            />
-          </Grid> */}
         </SwiperSlide>
-        {/* <SwiperSlide>
-          <Grid container maxHeight={500}>
-            <img
-              src={
-                isMobile
-                  ? "/images/mobileCover/cover2.jpg"
-                  : "/images/slide2.jpg"
-              }
-              alt="baner03"
-              className="img-fluid"
-              width={!isMobile ? "100%" : undefined}
-            />
-          </Grid>
-        </SwiperSlide>
-        <SwiperSlide>
-          <Grid container maxHeight={500}>
-            <img
-              src={
-                isMobile
-                  ? "/images/mobileCover/cover3.jpg"
-                  : "/images/slide3.jpg"
-              }
-              alt="baner03"
-              className="img-fluid"
-              width={!isMobile ? "100%" : undefined}
-            />
-          </Grid>
-        </SwiperSlide> */}
       </Swiper>
     </>
   );
