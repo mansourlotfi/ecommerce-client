@@ -5,7 +5,7 @@ function EmptyBasket() {
     <Grid container justifyContent="center">
       <Grid item container justifyContent="center">
         <img
-          src="/images/products/empty-cart.svg"
+          src="/images/empty-cart.svg"
           alt="empty basket"
           width={200}
           height={150}
