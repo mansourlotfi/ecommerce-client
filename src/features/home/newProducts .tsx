@@ -29,7 +29,13 @@ function NewProducts() {
           speed={1000}
           navigation={isMobile ? false : true}
           modules={[Pagination, Navigation, Autoplay]}
-          style={{ width: "100%" }}
+          style={{
+            width: "100%",
+            overflow: "hidden",
+            display: "flex",
+            justifyContent: "center",
+            marginRight: 40,
+          }}
         >
           {products.map((P, i) => (
             <SwiperSlide key={i}>
