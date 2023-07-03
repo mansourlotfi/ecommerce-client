@@ -24,12 +24,13 @@ function Categories() {
     "&.active": {
       color: "text.secondary",
     },
+    width: "100%",
   };
   if (!categoriesLoaded) return <LoadingComponent />;
   return (
     <Grid container justifyContent="center" mt={10}>
       <Typography variant="h5">دسته بندی کالاها</Typography>
-      <Grid container spacing={5} p={2}>
+      <Grid container spacing={5} mt={1}>
         {categories.map((C, i) => (
           <Grid item xs={6} md={2} key={C.id}>
             <Card
@@ -42,16 +43,18 @@ function Categories() {
             >
               <CardActionArea>
                 <CardMedia
-                  sx={{ borderRadius: 4, objectFit: "contain" }}
+                  sx={{
+                    borderRadius: 4,
+                    objectFit: "fill",
+                  }}
                   component="img"
-                  height={140}
-                  width={140}
+                  // height={140}
+                  // width={140}
                   image={C.pictureUrl}
                   alt={C.name}
                 />
                 <CardContent sx={{ background: "transparent" }}>
                   <Typography
-                    gutterBottom
                     variant="h6"
                     style={{
                       overflow: "hidden",

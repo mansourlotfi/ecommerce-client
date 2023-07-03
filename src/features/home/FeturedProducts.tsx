@@ -19,7 +19,7 @@ function FeturedProducts() {
       <Grid container mt={10} spacing={5} p={isMobile ? 0 : 2}>
         <Swiper
           slidesPerView={isMobile ? 1 : 4}
-          spaceBetween={30}
+          spaceBetween={isMobile ? 0 : 30}
           slidesPerGroup={1}
           loop={true}
           pagination={{
@@ -29,7 +29,13 @@ function FeturedProducts() {
           speed={800}
           navigation={isMobile ? false : true}
           modules={[Pagination, Navigation, Autoplay]}
-          style={{ width: "100%" }}
+          style={{
+            width: "100%",
+            overflow: "hidden",
+            display: "flex",
+            justifyContent: "center",
+            marginRight: 40,
+          }}
         >
           {featuredProducts.map((P, i) => (
             <SwiperSlide key={i}>
@@ -42,12 +48,25 @@ function FeturedProducts() {
                 to={`/catalog/${P.id}`}
                 justifyContent="center"
               >
-                <img
+                <div
+                  style={{
+                    backgroundImage: `url(${P.pictureUrl})`,
+                    height: 400,
+                    width: "100%",
+                    aspectRatio: "auto",
+                    backgroundRepeat: "no-repeat",
+                    backgroundPosition: "center center",
+                    // objectFit: "fill",
+                    backgroundSize: "cover",
+                    overflow: "hidden",
+                  }}
+                ></div>
+                {/* <img
                   src={P.pictureUrl}
                   alt={P.name}
                   width="100%"
                   style={{ borderRadius: 16 }}
-                />
+                /> */}
               </Grid>
             </SwiperSlide>
           ))}

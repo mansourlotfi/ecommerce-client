@@ -4,7 +4,7 @@ import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/navigation";
 import { Pagination, Navigation, Autoplay } from "swiper";
-import { Grid, useMediaQuery } from "@mui/material";
+import { useMediaQuery } from "@mui/material";
 
 // const settings = {
 //   dots: true,
@@ -59,7 +59,19 @@ function TopSwiper() {
         className="mySwiper"
       >
         <SwiperSlide>
-          <Grid container maxHeight={500}>
+          <div
+            style={{
+              backgroundImage: "url(images/mobileCover/cover1.jpg)",
+              height: 400,
+              width: "100%",
+              aspectRatio: "auto",
+              backgroundRepeat: "no-repeat",
+              backgroundPosition: "center center",
+              // objectFit: "fill",
+              backgroundSize: "cover",
+            }}
+          ></div>
+          {/* <Grid container maxHeight={500}>
             <img
               src={
                 isMobile
@@ -69,11 +81,11 @@ function TopSwiper() {
               alt="baner01"
               className="img-fluid"
               width={!isMobile ? "100%" : undefined}
-              height={!isMobile ? 500 : undefined}
+              height={!isMobile ? "100%" : undefined}
             />
-          </Grid>
+          </Grid> */}
         </SwiperSlide>
-        <SwiperSlide>
+        {/* <SwiperSlide>
           <Grid container maxHeight={500}>
             <img
               src={
@@ -100,7 +112,7 @@ function TopSwiper() {
               width={!isMobile ? "100%" : undefined}
             />
           </Grid>
-        </SwiperSlide>
+        </SwiperSlide> */}
       </Swiper>
     </>
   );

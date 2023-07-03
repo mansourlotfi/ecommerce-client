@@ -30,7 +30,7 @@ function Brands() {
   return (
     <Grid container justifyContent="center" mt={10}>
       <Typography variant="h5">برند ها</Typography>
-      <Grid container spacing={5} p={2}>
+      <Grid container spacing={5} mt={1}>
         {brands.map((C, i) => (
           <Grid item xs={6} md={2} key={C.id}>
             <Card
@@ -43,7 +43,7 @@ function Brands() {
             >
               <CardActionArea>
                 <CardMedia
-                  sx={{ borderRadius: 4, objectFit: "contain" }}
+                  sx={{ borderRadius: 4, objectFit: "fill" }}
                   component="img"
                   height={140}
                   width={140}
@@ -52,7 +52,6 @@ function Brands() {
                 />
                 <CardContent sx={{ background: "transparent" }}>
                   <Typography
-                    gutterBottom
                     variant="h6"
                     style={{
                       overflow: "hidden",
