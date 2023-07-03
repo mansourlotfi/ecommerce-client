@@ -39,7 +39,7 @@ function ProductCard({ product }: IProps) {
         sx={{
           height: 140,
           backgroundSize: "contain",
-          bgcolor: "primary.light",
+          // bgcolor: "primary.light",
         }}
         image={product.pictureUrl}
         title={product.name}

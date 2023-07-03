@@ -54,14 +54,16 @@ function TopSwiper() {
           delay: 8000,
         }}
         speed={1500}
-        navigation={true}
+        navigation={isMobile ? false : true}
         modules={[Pagination, Navigation, Autoplay]}
         className="mySwiper"
       >
         <SwiperSlide>
           <div
             style={{
-              backgroundImage: "url(images/mobileCover/cover1.jpg)",
+              backgroundImage: isMobile
+                ? "url(images/cover/cover1.jpg)"
+                : "url(images/cover/slide1.jpg)",
               height: 400,
               width: "100%",
               aspectRatio: "auto",
@@ -69,6 +71,93 @@ function TopSwiper() {
               backgroundPosition: "center center",
               // objectFit: "fill",
               backgroundSize: "cover",
+            }}
+          ></div>
+          {/* <Grid container maxHeight={500}>
+            <img
+              src={
+                isMobile
+                  ? "/images/mobileCover/cover1.jpg"
+                  : "/images/slide1.jpg"
+              }
+              alt="baner01"
+              className="img-fluid"
+              width={!isMobile ? "100%" : undefined}
+              height={!isMobile ? "100%" : undefined}
+            />
+          </Grid> */}
+        </SwiperSlide>
+        <SwiperSlide>
+          <div
+            style={{
+              backgroundImage: isMobile
+                ? "url(images/cover/cover2.jpg)"
+                : "url(images/cover/slide2.jpg)",
+              height: 400,
+              width: "100%",
+              aspectRatio: "auto",
+              backgroundRepeat: "no-repeat",
+              backgroundPosition: "center center",
+              // objectFit: "fill",
+              backgroundSize: "contain",
+            }}
+          ></div>
+          {/* <Grid container maxHeight={500}>
+            <img
+              src={
+                isMobile
+                  ? "/images/mobileCover/cover1.jpg"
+                  : "/images/slide1.jpg"
+              }
+              alt="baner01"
+              className="img-fluid"
+              width={!isMobile ? "100%" : undefined}
+              height={!isMobile ? "100%" : undefined}
+            />
+          </Grid> */}
+        </SwiperSlide>
+        <SwiperSlide>
+          <div
+            style={{
+              backgroundImage: isMobile
+                ? "url(images/cover/cover3.jpg)"
+                : "url(images/cover/slide3.jpg)",
+              height: 400,
+              width: "100%",
+              aspectRatio: "auto",
+              backgroundRepeat: "no-repeat",
+              backgroundPosition: "center center",
+              // objectFit: "fill",
+              backgroundSize: "contain",
+            }}
+          ></div>
+          {/* <Grid container maxHeight={500}>
+            <img
+              src={
+                isMobile
+                  ? "/images/mobileCover/cover1.jpg"
+                  : "/images/slide1.jpg"
+              }
+              alt="baner01"
+              className="img-fluid"
+              width={!isMobile ? "100%" : undefined}
+              height={!isMobile ? "100%" : undefined}
+            />
+          </Grid> */}
+        </SwiperSlide>
+        <SwiperSlide>
+          <div
+            style={{
+              backgroundImage: isMobile
+                ? "url(images/cover/cover4.jpg)"
+                : "url(images/cover/slide4.jpg)",
+              height: 400,
+              width: "100%",
+              aspectRatio: "auto",
+              backgroundRepeat: "no-repeat",
+              backgroundPosition: "center center",
+              // objectFit: "fill",
+              backgroundSize: "contain",
             }}
           ></div>
           {/* <Grid container maxHeight={500}>
