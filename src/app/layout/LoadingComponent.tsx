@@ -5,7 +5,9 @@ interface Props {
   message?: string;
 }
 
-export default function LoadingComponent({ message = "Loading..." }: Props) {
+export default function LoadingComponent({
+  message = "در حال بارگزاری...",
+}: Props) {
   const isMobile = useMediaQuery("(max-width:600px)");
 
   return (

@@ -121,7 +121,7 @@ function App() {
         <CssBaseline />
         <Header darkMode={darkMode} handleThemeChange={handleThemeChange} />
         {loading ? (
-          <LoadingComponent message="Initialising app..." />
+          <LoadingComponent message="در حال بارگزاری..." />
         ) : location.pathname === "/" ? (
           <HomePage />
         ) : (

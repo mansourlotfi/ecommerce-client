@@ -21,6 +21,7 @@ import { setProduct } from "../../catalog/catalogSlice";
 import { LoadingButton } from "@mui/lab";
 import useCategories from "../../../app/hooks/useCategories";
 import useBrands from "../../../app/hooks/useBrands";
+import { toast } from "react-toastify";
 
 interface Props {
   product?: Product;
@@ -63,6 +64,8 @@ export default function ProductForm({ product, cancelEdit }: Props) {
       dispatch(setProduct(response));
       cancelEdit();
     } catch (error) {
+      toast.error("خطا در بارگزاری");
+
       console.log(error);
     }
   }
