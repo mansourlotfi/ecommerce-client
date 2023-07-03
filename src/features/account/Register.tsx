@@ -59,7 +59,7 @@ export default function Register() {
         onSubmit={handleSubmit((data: any) =>
           agent.Account.register(data)
             .then(() => {
-              toast.success("Registration successful - you can now login");
+              toast.success("ثبت نام با موفقیت انجام شد");
               navigate("/login");
             })
             .catch((error) => handleApiErrors(error))
@@ -72,7 +72,7 @@ export default function Register() {
           fullWidth
           label="نام کاربری"
           autoFocus
-          {...register("username", { required: "Username is required" })}
+          {...register("username", { required: "نام کاربری اجباری" })}
           error={!!errors.username}
           helperText={<>{errors?.username?.message}</>}
         />
@@ -81,7 +81,7 @@ export default function Register() {
           fullWidth
           label="آدرس ایمیل"
           {...register("email", {
-            required: "Email is required",
+            required: "ایمیل اجباری",
             pattern: {
               value: /^\w+[\w-.]*@\w+((-\w+)|(\w*)).[a-z]{2,3}$/,
               message: "Not a valid email address",
@@ -96,7 +96,7 @@ export default function Register() {
           label="رمز عبور"
           type="password"
           {...register("password", {
-            required: "Password is required",
+            required: "رمز عبور اجباری",
             // pattern: {
             //   value:
             //     /(?=^.{6,10}$)(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&amp;*()_+}{&quot;:;'?/&gt;.&lt;,])(?!.*\s).*$/,

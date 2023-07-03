@@ -112,6 +112,9 @@ export default function CheckoutPage() {
         .then((res) => {
           if (res.code === -1) {
             window.location.href = `https://nextpay.org/nx/gateway/payment/${res.trans_id}`;
+          } else {
+            toast.error(`خطای شماره ${res.code}`);
+            setLoading(false);
           }
         })
         .catch((err) => {
