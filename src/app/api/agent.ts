@@ -5,9 +5,9 @@ import { router } from "../router/Routes";
 import { store } from "../store/configureStore";
 
 const sleep = () => new Promise((resolve) => setTimeout(resolve, 500));
-axios.defaults.baseURL = "http://localhost:5000/api/";
+// axios.defaults.baseURL = "http://localhost:5000/api/";
 
-// axios.defaults.baseURL = process.env.REACT_APP_BASE_URL;
+axios.defaults.baseURL = process.env.REACT_APP_BASE_URL;
 
 axios.defaults.withCredentials = true;
 
