@@ -11,10 +11,25 @@ COPY . .
 ENV GENERATE_SOURCEMAP=false
 RUN yarn build
 
+# Bundle static assets with nginx
+FROM nginx:1.21.0-alpine as production
 
+COPY conf /etc/nginx
+
+# Static build
+COPY --from=builder /app/build /usr/share/nginx/html/
+
+# Default port exposure
 EXPOSE 80
-EXPOSE 3000
 
+# Copy .env file and shell script to container
+WORKDIR /usr/share/nginx/html
+COPY ./env.sh .
 COPY .env .
 
-CMD yarn start
+# Make our shell script executable
+RUN chmod +x env.sh
+
+# Start Nginx server
+CMD ["/bin/sh", "-c", "/usr/share/nginx/html/env.sh && nginx -g \"daemon off;\""]
+
