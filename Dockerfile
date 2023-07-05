@@ -14,12 +14,13 @@ RUN yarn build
 # Choose NGINX as our base Docker image
 FROM nginx:alpine
 
+# Remove default nginx static assets
+RUN rm ../etc/nginx/conf.d/default.conf
+COPY ./nginx-configs ../etc/nginx/conf.d
+
 # Set working directory to nginx asset directory
 WORKDIR /usr/share/nginx/html
 
-# Remove default nginx static assets
-RUN rm -rf *
-COPY ./nginx-configs ../etc/nginx/conf.d
 
 # Copy static assets from builder stage
 COPY --from=builder /app/build .
