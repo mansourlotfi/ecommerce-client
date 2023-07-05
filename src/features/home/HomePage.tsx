@@ -27,10 +27,10 @@ export default function HomePage() {
     <>
       <TopSwiper />
       <Container>
+        <NewProducts />
         <Categories />
         <Brands />
         <FeturedProducts />
-        <NewProducts />
       </Container>
     </>
   );
