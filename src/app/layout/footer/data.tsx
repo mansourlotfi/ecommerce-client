@@ -14,16 +14,16 @@ export const socials = [
   {
     id: 1,
     link: "https://wa.me/+989113360715",
-    icon: <WhatsAppIcon color="primary" />,
+    icon: <WhatsAppIcon />,
   },
   {
     id: 3,
-    icon: <TelegramIcon color="primary" />,
+    icon: <TelegramIcon />,
     link: "https://telegram.me/mansourlotfi",
   },
   {
     id: 2,
-    icon: <AlternateEmailIcon color="primary" />,
+    icon: <AlternateEmailIcon />,
     link: "mailto:mansourlotfi@gmail.com",
   },
 ];

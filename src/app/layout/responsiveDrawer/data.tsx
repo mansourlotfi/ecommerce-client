@@ -8,7 +8,10 @@ import InventoryIcon from "@mui/icons-material/Inventory";
 import ShoppingBasketIcon from "@mui/icons-material/ShoppingBasket";
 import HowToRegIcon from "@mui/icons-material/HowToReg";
 import VerifiedUserIcon from "@mui/icons-material/VerifiedUser";
-
+import WhatsAppIcon from "@mui/icons-material/WhatsApp";
+import TelegramIcon from "@mui/icons-material/Telegram";
+import AlternateEmailIcon from "@mui/icons-material/AlternateEmail";
+import InstagramIcon from "@mui/icons-material/Instagram";
 export const UserLinks = [
   {
     id: 1,
@@ -93,5 +96,28 @@ export const LogedOutUserLinks = [
     link: "/register",
     title: "ثبت نام",
     icon: <HowToRegIcon color="primary" />,
+  },
+];
+
+export const socials = [
+  {
+    id: 1,
+    link: "https://wa.me/+989113360715",
+    icon: <WhatsAppIcon />,
+  },
+  {
+    id: 2,
+    icon: <TelegramIcon />,
+    link: "https://telegram.me/mansourlotfi",
+  },
+  {
+    id: 3,
+    icon: <AlternateEmailIcon />,
+    link: "mailto:mansourlotfi@gmail.com",
+  },
+  {
+    id: 4,
+    icon: <InstagramIcon />,
+    link: "instagrampage",
   },
 ];

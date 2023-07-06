@@ -66,7 +66,7 @@ export default function FilterAccordion() {
           aria-controls="panel3a-content"
           id="panel3a-header"
         >
-          <Typography variant="body1">انتخاب نوع کالا</Typography>
+          <Typography variant="body1">دسته بندی کالاها</Typography>
         </AccordionSummary>
         <AccordionDetails>
           <CheckBoxButtons
