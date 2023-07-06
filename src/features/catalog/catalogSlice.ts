@@ -130,6 +130,8 @@ export const catalogSlice = createSlice({
     },
     resetProductParams: (state) => {
       state.productParams = initParams();
+      state.filtersLoaded = false;
+      state.productsLoaded = false;
     },
     setProduct: (state, action) => {
       productsAdapter.upsertOne(state, action.payload);

@@ -54,9 +54,9 @@ export default function FilterAccordion() {
           <CheckBoxButtons
             items={brands.map((b) => b.name)}
             checked={productParams.brands}
-            onChange={(items: string[]) =>
-              dispatch(setProductParams({ brands: items }))
-            }
+            onChange={(items: string[]) => {
+              dispatch(setProductParams({ brands: items }));
+            }}
           />
         </AccordionDetails>
       </Accordion>
