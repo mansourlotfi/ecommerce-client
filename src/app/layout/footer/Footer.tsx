@@ -1,8 +1,14 @@
-// import { Container, List, ListItem, useMediaQuery } from "@mui/material";
-// import { NavLink } from "react-router-dom";
-// import { links } from "./data";
-// import "./styles.css";
-// import * as styles from "./styles";
+import { Box, useMediaQuery } from "@mui/material";
+import { useNavigate } from "react-router-dom";
+import BottomNavigation from "@mui/material/BottomNavigation";
+import BottomNavigationAction from "@mui/material/BottomNavigationAction";
+import HomeIcon from "@mui/icons-material/Home";
+import CategoryIcon from "@mui/icons-material/Category";
+import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
+import ConnectWithoutContactIcon from "@mui/icons-material/ConnectWithoutContact";
+import { socials } from "./data";
+import "./styles.css";
+import { useState } from "react";
 
 // const navStyles = {
 //   color: "inherit",
@@ -18,24 +24,60 @@
 // };
 
 const Footer = () => {
-  // const isMobile = useMediaQuery("(max-width:600px)");
+  const isMobile = useMediaQuery("(max-width:600px)");
+  const navigate = useNavigate();
+  const [value, setValue] = useState("");
 
+  const handleChange = (event: React.SyntheticEvent, newValue: string) => {
+    setValue(newValue);
+    navigate(`/${newValue}`);
+    window.scrollTo({
+      top: 0,
+      left: 0,
+      behavior: "smooth",
+    });
+  };
   return (
-    <footer>
-      <div>
-        {/* <Container>
-          <List sx={!isMobile ? { display: "flex" } : null}>
-            {links.map(({ title, link }) => (
-              <ListItem component={NavLink} to={link} key={link} sx={navStyles}>
-                {title.toUpperCase()}
-              </ListItem>
-            ))}
-          </List>
-        </Container> */}
-        {/* <div className="footer__socials">
+    <footer style={{ background: "primary" }}>
+      {isMobile ? (
+        <Box sx={{ width: "100%" }}>
+          <BottomNavigation value={value} onChange={handleChange}>
+            <BottomNavigationAction label="خانه" value="" icon={<HomeIcon />} />
+            <BottomNavigationAction
+              label="محصولات"
+              value="catalog"
+              icon={<CategoryIcon />}
+            />
+            <BottomNavigationAction
+              label="تماس با ما"
+              value="contact"
+              icon={<ConnectWithoutContactIcon />}
+            />
+
+            <BottomNavigationAction
+              label="سبد خرید"
+              value="basket"
+              icon={<ShoppingCartIcon />}
+            />
+          </BottomNavigation>
+        </Box>
+      ) : (
+        <div className="footer__socials">
           <Box display="flex" justifyContent="center">
             <ul className="c-social-list">
-              <li>
+              {socials.map((social) => (
+                <li>
+                  <a
+                    key={social.id}
+                    href={social.link}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    {social.icon}
+                  </a>
+                </li>
+              ))}
+              {/* <li>
                 <a href="javascript:void(0);">
                   <svg
                     xmlnsXlink="http://www.w3.org/1999/xlink"
@@ -97,17 +139,11 @@ const Footer = () => {
                     />
                   </svg>
                 </a>
-              </li>
+              </li> */}
             </ul>
           </Box>
-        </div> */}
-      </div>
-      <div
-        className="footer__copyright"
-        style={{ display: "flex", justifyContent: "center" }}
-      >
-        <small>تمامی حقوق محفوظ می باشد</small>
-      </div>
+        </div>
+      )}
     </footer>
   );
 };

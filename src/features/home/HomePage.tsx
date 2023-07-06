@@ -26,7 +26,7 @@ export default function HomePage() {
   return (
     <>
       <TopSwiper />
-      <Container>
+      <Container sx={{ minHeight: "90vh" }}>
         <NewProducts />
         <Categories />
         <Brands />

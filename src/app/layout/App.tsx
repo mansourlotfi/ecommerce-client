@@ -4,7 +4,7 @@ import {
   CssBaseline,
   ThemeProvider,
 } from "@mui/material";
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import { Outlet, useLocation } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
 import Header from "./Header";
@@ -20,6 +20,8 @@ import createCache from "@emotion/cache";
 import { prefixer } from "stylis";
 import VazirmatnRegular from "../assets/font/Vazirmatn-Regular.woff2";
 import { grey } from "@mui/material/colors";
+import Footer from "./footer/Footer";
+import FloatingNav from "./floating-nav/FloatingNav";
 // import VazirMatnSemiBold from "../assets/font/Vazirmatn-SemiBold.woff2"
 
 function App() {
@@ -110,6 +112,41 @@ function App() {
     setDarkMode(!darkMode);
   }
 
+  const mainRef = useRef<HTMLInputElement>(null);
+  const [showFloatingNav, setShowFloatingNav] = useState(true);
+  const [siteYPostion, setSiteYPosition] = useState(0);
+
+  const showFloatingNavHandler = () => {
+    setShowFloatingNav(true);
+  };
+
+  const hideFloatingNavHandler = () => {
+    setShowFloatingNav(false);
+  };
+
+  useEffect(() => {
+    const floatingNavToggleHandler = () => {
+      // check if we scrolled up or down at least 20px
+
+      if (mainRef?.current) {
+        if (
+          siteYPostion < mainRef?.current?.getBoundingClientRect().y - 20 ||
+          siteYPostion > mainRef?.current?.getBoundingClientRect().y + 20
+        ) {
+          showFloatingNavHandler();
+        } else {
+          hideFloatingNavHandler();
+        }
+
+        setSiteYPosition(mainRef?.current?.getBoundingClientRect().y);
+      }
+    };
+    const checkYPosition = setInterval(floatingNavToggleHandler, 2000);
+
+    // cleanup function
+    return () => clearInterval(checkYPosition);
+  }, [siteYPostion]);
+
   return (
     <CacheProvider value={cacheRtl}>
       <ThemeProvider theme={theme}>
@@ -119,16 +156,25 @@ function App() {
           theme="colored"
         />
         <CssBaseline />
-        <Header darkMode={darkMode} handleThemeChange={handleThemeChange} />
-        {loading ? (
-          <LoadingComponent message="در حال بارگزاری..." />
-        ) : location.pathname === "/" ? (
-          <HomePage />
-        ) : (
-          <Container sx={{ mt: 4 }}>
-            <Outlet />
-          </Container>
-        )}
+        <main ref={mainRef}>
+          <Header darkMode={darkMode} handleThemeChange={handleThemeChange} />
+          {loading ? (
+            <LoadingComponent message="در حال بارگزاری..." />
+          ) : location.pathname === "/" ? (
+            <>
+              <HomePage />
+              <Footer />
+            </>
+          ) : (
+            <>
+              <Container sx={{ mt: 4, minHeight: "90vh" }}>
+                <Outlet />
+              </Container>
+              <Footer />
+            </>
+          )}
+          {showFloatingNav && <FloatingNav />}
+        </main>
       </ThemeProvider>
     </CacheProvider>
   );

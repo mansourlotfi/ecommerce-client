@@ -10,43 +10,88 @@ import HowToRegIcon from "@mui/icons-material/HowToReg";
 import VerifiedUserIcon from "@mui/icons-material/VerifiedUser";
 
 export const UserLinks = [
-  { id: 1, link: "/catalog", title: "محصولات", icon: <CategoryIcon /> },
-  { id: 2, link: "/basket", title: "سبد خرید", icon: <ShoppingCartIcon /> },
-  { id: 3, link: "/about", title: "درباره ما", icon: <InfoIcon /> },
+  {
+    id: 1,
+    link: "/catalog",
+    title: "محصولات",
+    icon: <CategoryIcon color="primary" />,
+  },
+  {
+    id: 2,
+    link: "/basket",
+    title: "سبد خرید",
+    icon: <ShoppingCartIcon color="primary" />,
+  },
+  {
+    id: 3,
+    link: "/about",
+    title: "درباره ما",
+    icon: <InfoIcon color="primary" />,
+  },
   {
     id: 4,
     link: "/contact",
     title: "تماس با ما",
-    icon: <ConnectWithoutContactIcon />,
+    icon: <ConnectWithoutContactIcon color="primary" />,
   },
 ];
 
 export const AdminLinks = [
-  { id: 1, link: "/catalog", title: "محصولات", icon: <CategoryIcon /> },
-  { id: 2, link: "/basket", title: "سبد خرید", icon: <ShoppingCartIcon /> },
-  { id: 3, link: "/about", title: "درباره ما", icon: <InfoIcon /> },
+  {
+    id: 1,
+    link: "/catalog",
+    title: "محصولات",
+    icon: <CategoryIcon color="primary" />,
+  },
+  {
+    id: 2,
+    link: "/basket",
+    title: "سبد خرید",
+    icon: <ShoppingCartIcon color="primary" />,
+  },
+  {
+    id: 3,
+    link: "/about",
+    title: "درباره ما",
+    icon: <InfoIcon color="primary" />,
+  },
   {
     id: 4,
     link: "/contact",
     title: "تماس با ما",
-    icon: <ConnectWithoutContactIcon />,
+    icon: <ConnectWithoutContactIcon color="primary" />,
   },
   {
     id: 5,
     link: "/admin-dashboard",
     title: "پنل ادمین",
-    icon: <InventoryIcon />,
+    icon: <InventoryIcon color="primary" />,
   },
 ];
 
 export const LogedInUserLinks = [
-  { id: 1, link: "/", title: "خانه", icon: <HomeIcon /> },
+  { id: 1, link: "/", title: "خانه", icon: <HomeIcon color="primary" /> },
   // { id: 2, link: "/profile", title: "پروفایل", icon: <AccountBoxIcon /> },
-  { id: 3, link: "/orders", title: "سفارشات", icon: <ShoppingBasketIcon /> },
+  {
+    id: 3,
+    link: "/orders",
+    title: "سفارشات",
+    icon: <ShoppingBasketIcon color="primary" />,
+  },
 ];
 
 export const LogedOutUserLinks = [
-  { id: 1, link: "/", title: "خانه", icon: <HomeIcon /> },
-  { id: 2, link: "/login", title: "ورود", icon: <VerifiedUserIcon /> },
-  { id: 3, link: "/register", title: "ثبت نام", icon: <HowToRegIcon /> },
+  { id: 1, link: "/", title: "خانه", icon: <HomeIcon color="primary" /> },
+  {
+    id: 2,
+    link: "/login",
+    title: "ورود",
+    icon: <VerifiedUserIcon color="primary" />,
+  },
+  {
+    id: 3,
+    link: "/register",
+    title: "ثبت نام",
+    icon: <HowToRegIcon color="primary" />,
+  },
 ];
