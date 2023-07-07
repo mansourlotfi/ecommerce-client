@@ -38,7 +38,7 @@
   #floating__nav a {
     padding: 0.6rem;
     border-radius: 50%;
-    font-size: 1.3rem;
+    /* font-size: 1.3rem; */
     color: white;
     display: grid;
   }

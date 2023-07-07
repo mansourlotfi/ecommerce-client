@@ -164,7 +164,6 @@ function App() {
           ) : location.pathname === "/" ? (
             <>
               <HomePage />
-              {showFloatingNav && <FloatingNav />}
               <Footer />
             </>
           ) : (
@@ -172,10 +171,10 @@ function App() {
               <Container sx={{ mt: 4, minHeight: "90vh" }}>
                 <Outlet />
               </Container>
-              {showFloatingNav && <FloatingNav />}
               <Footer />
             </>
           )}
+          {showFloatingNav && <FloatingNav />}
         </main>
       </ThemeProvider>
     </CacheProvider>
