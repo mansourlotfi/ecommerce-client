@@ -6,9 +6,8 @@ import HomeIcon from "@mui/icons-material/Home";
 import CategoryIcon from "@mui/icons-material/Category";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import ConnectWithoutContactIcon from "@mui/icons-material/ConnectWithoutContact";
-import { socials } from "./data";
 import { useState } from "react";
-import "./styles.css";
+import ContactSocials from "../contactSocials";
 
 // const navStyles = {
 //   color: "inherit",
@@ -62,24 +61,7 @@ const Footer = () => {
           </BottomNavigation>
         </Box>
       ) : (
-        <div className="footer__socials">
-          <Box display="flex" justifyContent="center">
-            <ul className="c-social-list">
-              {socials.map((social) => (
-                <li>
-                  <a
-                    key={social.id}
-                    href={social.link}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    {social.icon}
-                  </a>
-                </li>
-              ))}
-            </ul>
-          </Box>
-        </div>
+        <ContactSocials />
       )}
     </footer>
   );

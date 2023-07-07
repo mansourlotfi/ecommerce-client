@@ -1,4 +1,5 @@
-import { Container, Typography } from "@mui/material";
+import { Container, Grid, Typography } from "@mui/material";
+import ContactSocials from "../../app/layout/contactSocials";
 
 function ContactPage() {
   return (
@@ -12,6 +13,14 @@ function ContactPage() {
         ما از شنیدن نظرات شما خوشحال می شویم و در اسرع وقت به پیام های شما پاسخ
         خواهیم داد. بلاش گالری همیشه در کنار شماست.
       </Typography>
+      <ContactSocials />
+      <Grid container justifyContent="center" mt={5}>
+        <img
+          src="/android-chrome-192x192.png"
+          alt="Blush Gallery"
+          style={{ height: 100, width: 100, borderRadius: 50 }}
+        />
+      </Grid>
     </Container>
   );
 }

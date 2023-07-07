@@ -23,6 +23,7 @@ import { grey } from "@mui/material/colors";
 import Footer from "./footer/Footer";
 import FloatingNav from "./floating-nav/FloatingNav";
 // import VazirMatnSemiBold from "../assets/font/Vazirmatn-SemiBold.woff2"
+import "./styles.css";
 
 function App() {
   const location = useLocation();

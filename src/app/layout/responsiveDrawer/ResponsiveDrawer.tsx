@@ -14,7 +14,6 @@ import {
   LogedInUserLinks,
   LogedOutUserLinks,
   UserLinks,
-  socials,
 } from "./data";
 import { signOut } from "../../../features/account/accountSlice";
 import { clearBasket } from "../../../features/basket/basketSlice";
@@ -26,8 +25,8 @@ import AccordionDetails from "@mui/material/AccordionDetails";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import useCategories from "../../hooks/useCategories";
 import { setProductParams } from "../../../features/catalog/catalogSlice";
-import "./styles.css";
 import useBrands from "../../hooks/useBrands";
+import ContactSocials from "../contactSocials";
 
 const navStyles = {
   color: "inherit",
@@ -249,24 +248,7 @@ export default function ResponsiveDrawer({
             ) : null}
           </Grid>
         </Grid>
-        <div className="footer__socials">
-          <Box display="flex" justifyContent="center">
-            <ul className="c-social-list">
-              {socials.map((social) => (
-                <li>
-                  <a
-                    key={social.id}
-                    href={social.link}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    {social.icon}
-                  </a>
-                </li>
-              ))}
-            </ul>
-          </Box>
-        </div>
+        <ContactSocials />
       </Grid>
     </Box>
   );
