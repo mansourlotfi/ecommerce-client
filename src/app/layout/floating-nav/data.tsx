@@ -3,14 +3,14 @@ import CategoryIcon from "@mui/icons-material/Category";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import ConnectWithoutContactIcon from "@mui/icons-material/ConnectWithoutContact";
 const data = [
-  { id: 1, link: "/", icon: <HomeIcon fontSize="large" /> },
-  { id: 2, link: "/catalog", icon: <CategoryIcon fontSize="large" /> },
+  { id: 1, link: "/", icon: <HomeIcon /> },
+  { id: 2, link: "/catalog", icon: <CategoryIcon /> },
   {
     id: 3,
     link: "/contact",
-    icon: <ConnectWithoutContactIcon fontSize="large" />,
+    icon: <ConnectWithoutContactIcon />,
   },
-  { id: 4, link: "/basket", icon: <ShoppingCartIcon fontSize="large" /> },
+  { id: 4, link: "/basket", icon: <ShoppingCartIcon /> },
 ];
 
 export const links = [
