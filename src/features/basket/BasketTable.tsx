@@ -45,7 +45,7 @@ export default function BasketTable({ items, isBasket = true }: Props) {
                 <Box display="flex" alignItems="center">
                   <img
                     style={{ height: 50, marginRight: 20 }}
-                    src={item.pictureUrl}
+                    src={`${process.env.REACT_APP_BASE_IMAGE_URL}${item.pictureUrl}`}
                     alt={item.name}
                   />
                   <span>{item.name}</span>
