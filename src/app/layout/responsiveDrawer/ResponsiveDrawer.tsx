@@ -27,6 +27,7 @@ import useCategories from "../../hooks/useCategories";
 import { setProductParams } from "../../../features/catalog/catalogSlice";
 import useBrands from "../../hooks/useBrands";
 import ContactSocials from "../contactSocials";
+import "./styles.css";
 
 const navStyles = {
   color: "inherit",
@@ -73,7 +74,10 @@ export default function ResponsiveDrawer({
         height="100vh"
         flexDirection="column"
         flexWrap="nowrap"
-        sx={{ height: "100vh", overflowy: "scroll" }}
+        sx={{
+          height: "100vh",
+          overflowy: "scroll",
+        }}
       >
         <Grid container justifyContent="space-between">
           <Grid item xs={2}>
@@ -90,15 +94,15 @@ export default function ResponsiveDrawer({
           <Grid
             item
             container
-            justifyContent="center"
+            justifyContent="flex-end"
             alignItems="center"
-            textAlign="center"
+            // textAlign="center"
             xs={10}
           >
             <img
               src="/android-chrome-192x192.png"
               alt="Blush Gallery"
-              style={{ height: 100, width: 100 }}
+              style={{ height: 100, width: 100, borderRadius: 50 }}
             />
           </Grid>
         </Grid>
@@ -216,7 +220,6 @@ export default function ResponsiveDrawer({
                 </ListItem>
               ))}
         </List>
-        \{" "}
         <Grid container>
           <Grid item container xs={12} justifyContent="flex-end" mr={2}>
             {user ? (
@@ -264,7 +267,18 @@ export default function ResponsiveDrawer({
         <MenuIcon />
       </IconButton>
 
-      <Drawer anchor={"left"} open={isOpen} onClose={toggleDrawer}>
+      <Drawer
+        anchor={"left"}
+        open={isOpen}
+        onClose={toggleDrawer}
+        PaperProps={{
+          elevation: 0,
+          style: {
+            borderRadius: "50px 0 0 0",
+          },
+          className: "hideScrollbar",
+        }}
+      >
         {list()}
       </Drawer>
     </Grid>
