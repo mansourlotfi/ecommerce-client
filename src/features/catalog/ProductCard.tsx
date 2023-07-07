@@ -8,6 +8,8 @@ import {
   Typography,
   CardHeader,
   Avatar,
+  useMediaQuery,
+  Grid,
 } from "@mui/material";
 import { Link } from "react-router-dom";
 import { Product } from "../../app/models/product";
@@ -21,6 +23,7 @@ interface IProps {
 function ProductCard({ product }: IProps) {
   const { status } = useAppSelector((state) => state.basket);
   const dispatch = useAppDispatch();
+  const isMobile = useMediaQuery("(max-width:600px)");
 
   return (
     <Card>
@@ -35,37 +38,60 @@ function ProductCard({ product }: IProps) {
           sx: { fontWeight: "bold", color: "primary.main" },
         }}
       />
-      <CardMedia
-        sx={{
-          height: 140,
-          backgroundSize: "contain",
-          // bgcolor: "primary.light",
-        }}
-        image={product.pictureUrl}
-        title={product.name}
-      />
-      <CardContent>
-        <Typography gutterBottom color="secondry" variant="h5" component="div">
-          {currencyFormat(product.price)}
-        </Typography>
-        <Typography variant="body2" color="text.secondary">
-          {product.brand} / {product.type}
-        </Typography>
-      </CardContent>
+      <Grid container>
+        <Grid item xs={isMobile ? 5 : 12}>
+          <CardMedia
+            sx={{
+              height: 140,
+              backgroundSize: isMobile ? "cover" : "contain",
+              // bgcolor: "primary.light",
+              borderRadius: 4,
+              marginLeft: 1,
+            }}
+            image={product.pictureUrl}
+            title={product.name}
+          />
+        </Grid>
+        <Grid item container alignItems="center" xs={isMobile ? 7 : 12}>
+          <CardContent>
+            <Typography
+              gutterBottom
+              color="secondry"
+              variant="h5"
+              component="div"
+              sx={{
+                overflow: "hidden",
+                textOverflow: "ellipsis",
+              }}
+            >
+              {currencyFormat(product.price)}
+            </Typography>
+            <Typography variant="body2" color="text.secondary">
+              {product.brand} / {product.type}
+            </Typography>
+          </CardContent>
+        </Grid>
+      </Grid>
+
       <CardActions>
-        <LoadingButton
-          loading={status.includes("pendingAddItem" + product.id)}
-          // onClick={() => handleAddItem(product.id)}
-          onClick={() =>
-            dispatch(addBasketItemAsync({ productId: product.id }))
-          }
-          size="small"
-        >
-          افزودن به سبد خرید
-        </LoadingButton>
-        <Button component={Link} to={`/catalog/${product.id}`} size="small">
-          جزئیات
-        </Button>
+        <Grid container justifyContent="space-between" mt={1}>
+          <LoadingButton
+            loading={status.includes("pendingAddItem" + product.id)}
+            onClick={() =>
+              dispatch(addBasketItemAsync({ productId: product.id }))
+            }
+            variant="contained"
+          >
+            افزودن به سبد خرید
+          </LoadingButton>
+          <Button
+            component={Link}
+            to={`/catalog/${product.id}`}
+            variant="outlined"
+          >
+            جزئیات
+          </Button>
+        </Grid>
       </CardActions>
     </Card>
   );

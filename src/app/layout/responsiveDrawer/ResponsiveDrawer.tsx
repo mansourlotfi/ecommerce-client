@@ -223,7 +223,6 @@ export default function ResponsiveDrawer({
               <Typography
                 style={{
                   // direction: "ltr",
-
                   overflow: "hidden",
                   textOverflow: "ellipsis",
                   textAlign: "center",
