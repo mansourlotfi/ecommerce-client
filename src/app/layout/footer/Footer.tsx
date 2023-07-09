@@ -1,4 +1,4 @@
-import { Box, useMediaQuery } from "@mui/material";
+import { Avatar, Box, useMediaQuery } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 import BottomNavigation from "@mui/material/BottomNavigation";
 import BottomNavigationAction from "@mui/material/BottomNavigationAction";
@@ -41,22 +41,50 @@ const Footer = () => {
       {isMobile ? (
         <Box sx={{ width: "100%" }}>
           <BottomNavigation value={value} onChange={handleChange}>
-            <BottomNavigationAction label="خانه" value="" icon={<HomeIcon />} />
+            <BottomNavigationAction
+              label="خانه"
+              value=""
+              icon={
+                <Avatar
+                  variant="square"
+                  alt="خانه"
+                  src="/assets/icons/home.png"
+                />
+              }
+            />
             <BottomNavigationAction
               label="محصولات"
               value="catalog"
-              icon={<CategoryIcon />}
+              icon={
+                <Avatar
+                  variant="square"
+                  alt="محصولات"
+                  src="/assets/icons/catalog.png"
+                />
+              }
             />
             <BottomNavigationAction
               label="تماس با ما"
               value="contact"
-              icon={<ConnectWithoutContactIcon />}
+              icon={
+                <Avatar
+                  variant="square"
+                  alt="تماس با ما"
+                  src="/assets/icons/contact.png"
+                />
+              }
             />
 
             <BottomNavigationAction
               label="سبد خرید"
               value="basket"
-              icon={<ShoppingCartIcon />}
+              icon={
+                <Avatar
+                  variant="square"
+                  alt="سبد خرید"
+                  src="/assets/icons/cart.png"
+                />
+              }
             />
           </BottomNavigation>
         </Box>

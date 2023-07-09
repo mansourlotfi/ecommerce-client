@@ -4,7 +4,7 @@ import {
   CssBaseline,
   ThemeProvider,
 } from "@mui/material";
-import { useCallback, useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { Outlet, useLocation } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
 import Header from "./Header";
@@ -18,11 +18,9 @@ import rtlPlugin from "stylis-plugin-rtl";
 import { CacheProvider } from "@emotion/react";
 import createCache from "@emotion/cache";
 import { prefixer } from "stylis";
-import VazirmatnRegular from "../assets/font/Vazirmatn-Regular.woff2";
 import { grey } from "@mui/material/colors";
 import Footer from "./footer/Footer";
-import FloatingNav from "./floating-nav/FloatingNav";
-// import VazirMatnSemiBold from "../assets/font/Vazirmatn-SemiBold.woff2"
+// import FloatingNav from "./floating-nav/FloatingNav";
 import "./styles.css";
 
 function App() {
@@ -91,21 +89,21 @@ function App() {
     },
     direction: "rtl",
     typography: {
-      fontFamily: "Vazir,Arial",
+      fontFamily: "dana,Arial",
     },
     components: {
-      MuiCssBaseline: {
-        styleOverrides: `
-          @font-face {
-            font-family: 'Vazir';
-            font-style: normal;
-            font-display: swap;
-            font-weight: 400;
-            src: local('Vazir'), local('Vazirmatn-Regular'), url(${VazirmatnRegular}) format('woff2');
-            unicodeRange: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF;
-          }
-        `,
-      },
+      // MuiCssBaseline: {
+      //   styleOverrides: `
+      //     @font-face {
+      //       font-family: 'Vazir';
+      //       font-style: normal;
+      //       font-display: swap;
+      //       font-weight: 400;
+      //       src: local('Vazir'), local('Vazirmatn-Regular'), url(${VazirmatnRegular}) format('woff2');
+      //       unicodeRange: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF;
+      //     }
+      //   `,
+      // },
     },
   });
 
@@ -113,40 +111,40 @@ function App() {
     setDarkMode(!darkMode);
   }
 
-  const mainRef = useRef<HTMLInputElement>(null);
-  const [showFloatingNav, setShowFloatingNav] = useState(true);
-  const [siteYPostion, setSiteYPosition] = useState(0);
+  // const mainRef = useRef<HTMLInputElement>(null);
+  // const [showFloatingNav, setShowFloatingNav] = useState(true);
+  // const [siteYPostion, setSiteYPosition] = useState(0);
 
-  const showFloatingNavHandler = () => {
-    setShowFloatingNav(true);
-  };
+  // const showFloatingNavHandler = () => {
+  //   setShowFloatingNav(true);
+  // };
 
-  const hideFloatingNavHandler = () => {
-    setShowFloatingNav(false);
-  };
+  // const hideFloatingNavHandler = () => {
+  //   setShowFloatingNav(false);
+  // };
 
-  useEffect(() => {
-    const floatingNavToggleHandler = () => {
-      // check if we scrolled up or down at least 20px
+  // useEffect(() => {
+  //   const floatingNavToggleHandler = () => {
+  //     // check if we scrolled up or down at least 20px
 
-      if (mainRef?.current) {
-        if (
-          siteYPostion < mainRef?.current?.getBoundingClientRect().y - 20 ||
-          siteYPostion > mainRef?.current?.getBoundingClientRect().y + 20
-        ) {
-          showFloatingNavHandler();
-        } else {
-          hideFloatingNavHandler();
-        }
+  //     if (mainRef?.current) {
+  //       if (
+  //         siteYPostion < mainRef?.current?.getBoundingClientRect().y - 20 ||
+  //         siteYPostion > mainRef?.current?.getBoundingClientRect().y + 20
+  //       ) {
+  //         showFloatingNavHandler();
+  //       } else {
+  //         hideFloatingNavHandler();
+  //       }
 
-        setSiteYPosition(mainRef?.current?.getBoundingClientRect().y);
-      }
-    };
-    const checkYPosition = setInterval(floatingNavToggleHandler, 2000);
+  //       setSiteYPosition(mainRef?.current?.getBoundingClientRect().y);
+  //     }
+  //   };
+  //   const checkYPosition = setInterval(floatingNavToggleHandler, 2000);
 
-    // cleanup function
-    return () => clearInterval(checkYPosition);
-  }, [siteYPostion]);
+  //   // cleanup function
+  //   return () => clearInterval(checkYPosition);
+  // }, [siteYPostion]);
 
   return (
     <CacheProvider value={cacheRtl}>
@@ -157,25 +155,25 @@ function App() {
           theme="colored"
         />
         <CssBaseline />
-        <main ref={mainRef}>
-          <Header darkMode={darkMode} handleThemeChange={handleThemeChange} />
-          {loading ? (
-            <LoadingComponent message="در حال بارگزاری..." />
-          ) : location.pathname === "/" ? (
-            <>
-              <HomePage />
-              <Footer />
-            </>
-          ) : (
-            <>
-              <Container sx={{ mt: 4, minHeight: "90vh" }}>
-                <Outlet />
-              </Container>
-              <Footer />
-            </>
-          )}
-          {showFloatingNav && <FloatingNav />}
-        </main>
+        {/* <main ref={mainRef}> */}
+        <Header darkMode={darkMode} handleThemeChange={handleThemeChange} />
+        {loading ? (
+          <LoadingComponent message="در حال بارگزاری..." />
+        ) : location.pathname === "/" ? (
+          <>
+            <HomePage />
+            <Footer />
+          </>
+        ) : (
+          <>
+            <Container sx={{ mt: 4, minHeight: "90vh" }}>
+              <Outlet />
+            </Container>
+            <Footer />
+          </>
+        )}
+        {/* {showFloatingNav && <FloatingNav />} */}
+        {/* </main> */}
       </ThemeProvider>
     </CacheProvider>
   );

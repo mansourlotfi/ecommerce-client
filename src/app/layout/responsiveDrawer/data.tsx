@@ -8,31 +8,44 @@ import InventoryIcon from "@mui/icons-material/Inventory";
 import ShoppingBasketIcon from "@mui/icons-material/ShoppingBasket";
 import HowToRegIcon from "@mui/icons-material/HowToReg";
 import VerifiedUserIcon from "@mui/icons-material/VerifiedUser";
+import Avatar from "@mui/material/Avatar";
 
 export const UserLinks = [
   {
     id: 1,
     link: "/catalog",
     title: "محصولات",
-    icon: <CategoryIcon color="primary" />,
+    icon: (
+      <Avatar variant="square" alt="محصولات" src="/assets/icons/catalog.png" />
+    ),
   },
   {
     id: 2,
     link: "/basket",
     title: "سبد خرید",
-    icon: <ShoppingCartIcon color="primary" />,
+    icon: (
+      <Avatar variant="square" alt="سبد خرید" src="/assets/icons/cart.png" />
+    ),
   },
   {
     id: 3,
     link: "/about",
     title: "درباره ما",
-    icon: <InfoIcon color="primary" />,
+    icon: (
+      <Avatar variant="square" alt="درباره ما" src="/assets/icons/about.png" />
+    ),
   },
   {
     id: 4,
     link: "/contact",
     title: "تماس با ما",
-    icon: <ConnectWithoutContactIcon color="primary" />,
+    icon: (
+      <Avatar
+        variant="square"
+        alt="تماس با ما"
+        src="/assets/icons/contact.png"
+      />
+    ),
   },
 ];
 
@@ -41,25 +54,37 @@ export const AdminLinks = [
     id: 1,
     link: "/catalog",
     title: "محصولات",
-    icon: <CategoryIcon color="primary" />,
+    icon: (
+      <Avatar variant="square" alt="محصولات" src="/assets/icons/catalog.png" />
+    ),
   },
   {
     id: 2,
     link: "/basket",
     title: "سبد خرید",
-    icon: <ShoppingCartIcon color="primary" />,
+    icon: (
+      <Avatar variant="square" alt="سبد خرید" src="/assets/icons/cart.png" />
+    ),
   },
   {
     id: 3,
     link: "/about",
     title: "درباره ما",
-    icon: <InfoIcon color="primary" />,
+    icon: (
+      <Avatar variant="square" alt="درباره ما" src="/assets/icons/about.png" />
+    ),
   },
   {
     id: 4,
     link: "/contact",
     title: "تماس با ما",
-    icon: <ConnectWithoutContactIcon color="primary" />,
+    icon: (
+      <Avatar
+        variant="square"
+        alt="تماس با ما"
+        src="/assets/icons/contact.png"
+      />
+    ),
   },
   {
     id: 5,
@@ -81,17 +106,24 @@ export const LogedInUserLinks = [
 ];
 
 export const LogedOutUserLinks = [
-  { id: 1, link: "/", title: "خانه", icon: <HomeIcon color="primary" /> },
+  {
+    id: 1,
+    link: "/",
+    title: "خانه",
+    icon: <Avatar variant="square" alt="خانه" src="/assets/icons/home.png" />,
+  },
   {
     id: 2,
     link: "/login",
     title: "ورود",
-    icon: <VerifiedUserIcon color="primary" />,
+    icon: <Avatar variant="square" alt="ورود" src="/assets/icons/login.png" />,
   },
   {
     id: 3,
     link: "/register",
     title: "ثبت نام",
-    icon: <HowToRegIcon color="primary" />,
+    icon: (
+      <Avatar variant="square" alt="ثبت نام" src="/assets/icons/register.png" />
+    ),
   },
 ];
