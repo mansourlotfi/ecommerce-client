@@ -1,65 +1,61 @@
 import Typography from "@mui/material/Typography";
-import { Swiper, SwiperSlide } from "swiper/react";
-import "swiper/css";
-import "swiper/css/pagination";
-import "swiper/css/navigation";
-import { Pagination, Navigation, Autoplay } from "swiper";
+import Slider from "react-slick";
 import { Grid } from "@mui/material";
 import useMediaQuery from "@mui/material/useMediaQuery";
 import useProducts from "../../app/hooks/useProducts";
 import { NavLink } from "react-router-dom";
+import Badge from "./badge";
 
 function NewProducts() {
   const isMobile = useMediaQuery("(max-width:600px)");
   const { products } = useProducts();
-
+  const settings = {
+    dots: true,
+    infinite: true,
+    slidesToShow: isMobile ? 2 : 4,
+    slidesToScroll: 1,
+    arrows: false,
+    rtl: true,
+    // autoplay: true,
+    speed: 1000,
+    cssEase: "linear",
+  };
   return (
-    <Grid container justifyContent="center" mt={10}>
-      <Typography variant="h5">جدید ترین ها</Typography>
-      <Grid container mt={10} spacing={5} p={isMobile ? 0 : 2}>
-        <Swiper
-          slidesPerView={isMobile ? 1 : 4}
-          spaceBetween={30}
-          slidesPerGroup={1}
-          loop={true}
-          pagination={{
-            clickable: true,
-          }}
-          autoplay
-          speed={1000}
-          navigation={isMobile ? false : true}
-          modules={[Pagination, Navigation, Autoplay]}
-          style={{
-            width: "100%",
-            overflow: "hidden",
-            display: "flex",
-            justifyContent: "center",
-            marginRight: 40,
-          }}
-        >
-          {products.map((P, i) => (
-            <SwiperSlide key={i}>
-              <Grid
-                container
-                // height={400}
-                // p={10}
-                width="100%"
-                component={NavLink}
-                to={`/catalog/${P.id}`}
-                justifyContent="center"
-              >
-                <img
-                  src={P.pictureUrl}
-                  alt={P.name}
-                  width="100%"
-                  style={{ borderRadius: 16 }}
-                />
-              </Grid>
-            </SwiperSlide>
-          ))}
-        </Swiper>
-      </Grid>
-    </Grid>
+    <>
+      <Typography variant="h5" textAlign="center" m="40px 0 10px 0">
+        جدید ترین ها
+      </Typography>
+
+      <Slider {...settings}>
+        {products.map((P, i) => (
+          <Grid container justifyContent="center" key={i}>
+            <Grid
+              container
+              item
+              xs={11}
+              component={NavLink}
+              to={`/catalog/${P.id}`}
+              justifyContent="center"
+              style={{
+                backgroundImage: `url(${P.pictureUrl})`,
+                width: "auto",
+                height: "auto",
+                margin: "auto",
+                aspectRatio: "1/1",
+                backgroundRepeat: "no-repeat",
+                backgroundPosition: "center center",
+                // objectFit: "fill",
+                backgroundSize: "cover",
+                borderRadius: 8,
+                position: "relative",
+              }}
+            >
+              <Badge amount={P.price} />
+            </Grid>
+          </Grid>
+        ))}
+      </Slider>
+    </>
   );
 }
 

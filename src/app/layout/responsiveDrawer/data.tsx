@@ -1,13 +1,13 @@
 import HomeIcon from "@mui/icons-material/Home";
-import InfoIcon from "@mui/icons-material/Info";
-import CategoryIcon from "@mui/icons-material/Category";
-import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
-import ConnectWithoutContactIcon from "@mui/icons-material/ConnectWithoutContact";
+// import InfoIcon from "@mui/icons-material/Info";
+// import CategoryIcon from "@mui/icons-material/Category";
+// import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
+// import ConnectWithoutContactIcon from "@mui/icons-material/ConnectWithoutContact";
+// import HowToRegIcon from "@mui/icons-material/HowToReg";
+// import VerifiedUserIcon from "@mui/icons-material/VerifiedUser";
 import InventoryIcon from "@mui/icons-material/Inventory";
 // import AccountBoxIcon from "@mui/icons-material/AccountBox";
 import ShoppingBasketIcon from "@mui/icons-material/ShoppingBasket";
-import HowToRegIcon from "@mui/icons-material/HowToReg";
-import VerifiedUserIcon from "@mui/icons-material/VerifiedUser";
 import Avatar from "@mui/material/Avatar";
 
 export const UserLinks = [

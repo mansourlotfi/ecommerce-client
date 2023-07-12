@@ -2,10 +2,10 @@ import { Avatar, Box, useMediaQuery } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 import BottomNavigation from "@mui/material/BottomNavigation";
 import BottomNavigationAction from "@mui/material/BottomNavigationAction";
-import HomeIcon from "@mui/icons-material/Home";
-import CategoryIcon from "@mui/icons-material/Category";
-import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
-import ConnectWithoutContactIcon from "@mui/icons-material/ConnectWithoutContact";
+// import HomeIcon from "@mui/icons-material/Home";
+// import CategoryIcon from "@mui/icons-material/Category";
+// import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
+// import ConnectWithoutContactIcon from "@mui/icons-material/ConnectWithoutContact";
 import { useState } from "react";
 import ContactSocials from "../contactSocials";
 
