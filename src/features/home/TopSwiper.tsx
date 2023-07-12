@@ -12,6 +12,7 @@ const settings = {
   autoplay: true,
   speed: 1000,
   cssEase: "linear",
+  autoplaySpeed: 8000,
 };
 function TopSwiper() {
   const isMobile = useMediaQuery("(max-width:600px)");

@@ -30,7 +30,7 @@ function Badge(props: IProps) {
           y="130"
           //   transform="translate(0,0) rotate(-10)"
           //   rotate={10}
-          transform="translate(-15, 10) rotate(-12)"
+          transform="translate(-10, 10) rotate(-12)"
           font-size="24"
           fill="white"
         >
@@ -90,7 +90,7 @@ function Badge(props: IProps) {
           text-anchor="middle"
           x="90"
           y="160"
-          transform="translate(-35, 25) rotate(-15)"
+          transform="translate(-50, 25) rotate(-15)"
           font-size="24"
           fill="white"
         >

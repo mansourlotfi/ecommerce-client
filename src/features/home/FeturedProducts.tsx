@@ -13,13 +13,16 @@ function FeturedProducts() {
   const settings = {
     dots: true,
     infinite: true,
-    slidesToShow: isMobile ? 2 : 4,
+    slidesToShow: isMobile ? 1 : 4,
     slidesToScroll: 1,
     arrows: false,
     rtl: true,
     autoplay: true,
     speed: 1000,
     cssEase: "linear",
+    className: "center",
+    centerMode: true,
+    centerPadding: "60px",
   };
 
   return (
