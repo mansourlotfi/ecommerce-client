@@ -9,9 +9,11 @@ import { useAppDispatch } from "../../app/store/configureStore";
 import { setProductParams } from "../catalog/catalogSlice";
 import { NavLink } from "react-router-dom";
 import useBrands from "../../app/hooks/useBrands";
+import useProducts from "../../app/hooks/useProducts";
 
 function Brands() {
   const { brands, brandsLoaded } = useBrands();
+  const { products } = useProducts();
   const dispatch = useAppDispatch();
   const navStyles = {
     borderRadius: 4,
@@ -27,11 +29,14 @@ function Brands() {
     },
   };
   if (!brandsLoaded) return <LoadingComponent />;
+  const unique = [...new Set(products.map((item) => item.brand))];
+  const filtered = brands.filter((x) => unique.includes(x.name));
+
   return (
     <Grid container justifyContent="center" mt={10}>
       <Typography variant="h5">برند ها</Typography>
       <Grid container spacing={5} mt={1}>
-        {brands.map((C, i) => (
+        {filtered.map((C, i) => (
           <Grid item xs={6} md={2} key={C.id}>
             <Card
               component={NavLink}

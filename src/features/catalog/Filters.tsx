@@ -20,7 +20,6 @@ export default function FilterAccordion() {
   const { productParams } = useAppSelector((state) => state.catalog);
   const { categories } = useCategories();
   const { brands } = useBrands();
-
   const dispatch = useAppDispatch();
   return (
     <div>

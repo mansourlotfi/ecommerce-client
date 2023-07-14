@@ -8,7 +8,6 @@ import {
   ListItem,
   Switch,
   Toolbar,
-  makeStyles,
   useTheme,
 } from "@mui/material";
 import { Box } from "@mui/system";
