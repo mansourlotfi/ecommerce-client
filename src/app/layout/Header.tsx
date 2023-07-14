@@ -80,7 +80,7 @@ export default function Header({ handleThemeChange, darkMode }: Props) {
               {/* <DarkMode /> */}
               <Switch
                 style={{
-                  color: "secondary.main",
+                  color: theme.palette.secondary.main,
                 }}
                 checked={darkMode}
                 onChange={handleThemeChange}
