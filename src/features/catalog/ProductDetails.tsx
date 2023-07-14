@@ -1,8 +1,10 @@
 import { useEffect, useState } from "react";
-import { useParams, useSearchParams } from "react-router-dom";
+import { Link, useParams, useSearchParams } from "react-router-dom";
 import {
+  Avatar,
   Divider,
   Grid,
+  IconButton,
   Table,
   TableBody,
   TableCell,
@@ -92,85 +94,104 @@ function ProductDetails() {
   if (!product) return <NotFound />;
 
   return (
-    <Grid container spacing={6}>
-      <Grid item xs={3} md={6}>
-        <img
-          src={product.pictureUrl}
-          alt={product.name}
-          style={{ width: "100%" }}
-        />
+    <Grid container>
+      <Grid container>
+        <IconButton
+          component={Link}
+          to="/catalog"
+          size="large"
+          edge="start"
+          color="inherit"
+          sx={{ mr: 2, mb: 2 }}
+        >
+          <Avatar
+            variant="square"
+            alt="back"
+            src="/assets/icons/back.png"
+            sx={{ width: 24, height: 24 }}
+          />
+        </IconButton>
       </Grid>
-      {isMobile ? (
-        <Grid item xs={9}>
-          <Typography variant="h6">{product.name}</Typography>
+      <Grid container spacing={6}>
+        <Grid item xs={4} md={6}>
+          <img
+            src={product.pictureUrl}
+            alt={product.name}
+            style={{ width: "100%" }}
+          />
         </Grid>
-      ) : null}
-      <Grid item xs={12} md={6}>
-        {!isMobile ? (
-          <Typography variant="h4">{product.name}</Typography>
-        ) : null}
-        <Divider sx={{ mb: 2 }} />
-        <Typography variant="h4" color="secondary">
-          {currencyFormat(product.price)}
-        </Typography>
-        <TableContainer>
-          <Table>
-            <TableBody>
-              <TableRow>
-                <TableCell>نام</TableCell>
-                <TableCell>{product.name}</TableCell>
-              </TableRow>
-              <TableRow>
-                <TableCell>توضیحات</TableCell>
-                <TableCell>{product.description}</TableCell>
-              </TableRow>
-              <TableRow>
-                <TableCell>نوع</TableCell>
-                <TableCell>{product.type}</TableCell>
-              </TableRow>
-              <TableRow>
-                <TableCell>برند</TableCell>
-                <TableCell>{product.brand}</TableCell>
-              </TableRow>
-              <TableRow>
-                <TableCell>تعداد موجود</TableCell>
-                <TableCell>{product.quantityInStock}</TableCell>
-              </TableRow>
-            </TableBody>
-          </Table>
-        </TableContainer>
-        <Grid container spacing={2}>
-          <Grid item xs={6}>
-            <TextField
-              onChange={handleInputeChange}
-              variant="outlined"
-              type="number"
-              label="تعداد خرید"
-              fullWidth
-              value={quantity}
-              sx={{
-                borderColor: "secondary.main",
-              }}
-            />
+        {isMobile ? (
+          <Grid item xs={8} alignSelf="center">
+            <Typography variant="h6">{product.name}</Typography>
           </Grid>
-          <Grid item xs={6}>
-            <LoadingButton
-              disabled={
-                item?.quantity === quantity || (!item && quantity === 0)
-              }
-              loading={status.includes("pending")}
-              onClick={handleUpdateCart}
-              color="primary"
-              size="large"
-              variant="contained"
-              fullWidth
-              sx={{
-                height: 55,
-                backgroundColor: "secondary.main",
-              }}
-            >
-              {item ? "بروزرسانی تعداد" : "افزودن به سبد خرید"}
-            </LoadingButton>
+        ) : null}
+        <Grid item xs={12} md={6}>
+          {!isMobile ? (
+            <Typography variant="h4">{product.name}</Typography>
+          ) : null}
+          <Divider sx={{ mb: 2 }} />
+          <Typography variant="h4" color="secondary">
+            {currencyFormat(product.price)}
+          </Typography>
+          <TableContainer>
+            <Table>
+              <TableBody>
+                <TableRow>
+                  <TableCell>نام</TableCell>
+                  <TableCell>{product.name}</TableCell>
+                </TableRow>
+                <TableRow>
+                  <TableCell>توضیحات</TableCell>
+                  <TableCell>{product.description}</TableCell>
+                </TableRow>
+                <TableRow>
+                  <TableCell>نوع</TableCell>
+                  <TableCell>{product.type}</TableCell>
+                </TableRow>
+                <TableRow>
+                  <TableCell>برند</TableCell>
+                  <TableCell>{product.brand}</TableCell>
+                </TableRow>
+                <TableRow>
+                  <TableCell>تعداد موجود</TableCell>
+                  <TableCell>{product.quantityInStock}</TableCell>
+                </TableRow>
+              </TableBody>
+            </Table>
+          </TableContainer>
+          <Grid container spacing={2}>
+            <Grid item xs={6}>
+              <TextField
+                onChange={handleInputeChange}
+                variant="outlined"
+                type="number"
+                label="تعداد خرید"
+                fullWidth
+                value={quantity}
+                sx={{
+                  borderColor: "secondary.main",
+                }}
+              />
+            </Grid>
+            <Grid item xs={6}>
+              <LoadingButton
+                disabled={
+                  item?.quantity === quantity || (!item && quantity === 0)
+                }
+                loading={status.includes("pending")}
+                onClick={handleUpdateCart}
+                color="primary"
+                size="large"
+                variant="contained"
+                fullWidth
+                sx={{
+                  height: 55,
+                  backgroundColor: "secondary.main",
+                }}
+              >
+                {item ? "بروزرسانی تعداد" : "افزودن به سبد خرید"}
+              </LoadingButton>
+            </Grid>
           </Grid>
         </Grid>
       </Grid>
