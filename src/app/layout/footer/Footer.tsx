@@ -59,7 +59,7 @@ const Footer = () => {
                 <Avatar
                   variant="square"
                   alt="محصولات"
-                  src="/assets/icons/catalog.png"
+                  src="/assets/icons/products.png"
                 />
               }
             />
@@ -70,7 +70,7 @@ const Footer = () => {
                 <Avatar
                   variant="square"
                   alt="تماس با ما"
-                  src="/assets/icons/contact.png"
+                  src="/assets/icons/contactUs.png"
                 />
               }
             />

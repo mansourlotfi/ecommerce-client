@@ -1,6 +1,7 @@
-import { ShoppingCart, DarkMode, Home } from "@mui/icons-material";
+// import { ShoppingCart, DarkMode, Home } from "@mui/icons-material";
 import {
   AppBar,
+  Avatar,
   Badge,
   IconButton,
   List,
@@ -51,7 +52,12 @@ export default function Header({ handleThemeChange, darkMode }: Props) {
   const isMobile = useMediaQuery("(max-width:600px)");
 
   return (
-    <AppBar position="static">
+    <AppBar
+      position="static"
+      style={{
+        background: "#E8C7C8",
+      }}
+    >
       <Toolbar
         sx={{
           display: "flex",
@@ -62,16 +68,21 @@ export default function Header({ handleThemeChange, darkMode }: Props) {
         {!isMobile ? (
           <>
             <Box display="flex" alignItems="center">
-              <DarkMode />
-              <Switch checked={darkMode} onChange={handleThemeChange} />
-              <IconButton
+              {/* <DarkMode /> */}
+              <Switch
                 style={{
-                  color: "white",
+                  color: "#F25081",
                 }}
-                component={NavLink}
-                to={"/"}
-              >
-                <Home />
+                checked={darkMode}
+                onChange={handleThemeChange}
+              />
+              <IconButton component={NavLink} to={"/"}>
+                <Avatar
+                  variant="square"
+                  alt="home"
+                  src="/assets/icons/home.png"
+                  sx={{ width: 24, height: 24 }}
+                />
               </IconButton>
             </Box>
             <List sx={{ display: "flex" }}>
@@ -115,7 +126,13 @@ export default function Header({ handleThemeChange, darkMode }: Props) {
             sx={{ mr: 2 }}
           >
             <Badge badgeContent={itemCount} color="secondary">
-              <ShoppingCart />
+              {/* <ShoppingCart /> */}
+              <Avatar
+                variant="square"
+                alt="cart"
+                src="/assets/icons/cart.png"
+                sx={{ width: 24, height: 24 }}
+              />
             </Badge>
           </IconButton>
 

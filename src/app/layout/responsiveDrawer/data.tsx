@@ -1,13 +1,3 @@
-import HomeIcon from "@mui/icons-material/Home";
-// import InfoIcon from "@mui/icons-material/Info";
-// import CategoryIcon from "@mui/icons-material/Category";
-// import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
-// import ConnectWithoutContactIcon from "@mui/icons-material/ConnectWithoutContact";
-// import HowToRegIcon from "@mui/icons-material/HowToReg";
-// import VerifiedUserIcon from "@mui/icons-material/VerifiedUser";
-import InventoryIcon from "@mui/icons-material/Inventory";
-// import AccountBoxIcon from "@mui/icons-material/AccountBox";
-import ShoppingBasketIcon from "@mui/icons-material/ShoppingBasket";
 import Avatar from "@mui/material/Avatar";
 
 export const UserLinks = [
@@ -16,7 +6,12 @@ export const UserLinks = [
     link: "/catalog",
     title: "محصولات",
     icon: (
-      <Avatar variant="square" alt="محصولات" src="/assets/icons/catalog.png" />
+      <Avatar
+        variant="square"
+        sx={{ width: 24, height: 24 }}
+        alt="محصولات"
+        src="/assets/icons/products.png"
+      />
     ),
   },
   {
@@ -24,7 +19,12 @@ export const UserLinks = [
     link: "/basket",
     title: "سبد خرید",
     icon: (
-      <Avatar variant="square" alt="سبد خرید" src="/assets/icons/cart.png" />
+      <Avatar
+        variant="square"
+        sx={{ width: 24, height: 24 }}
+        alt="سبد خرید"
+        src="/assets/icons/cart.png"
+      />
     ),
   },
   {
@@ -32,7 +32,12 @@ export const UserLinks = [
     link: "/about",
     title: "درباره ما",
     icon: (
-      <Avatar variant="square" alt="درباره ما" src="/assets/icons/about.png" />
+      <Avatar
+        variant="square"
+        sx={{ width: 24, height: 24 }}
+        alt="درباره ما"
+        src="/assets/icons/about.png"
+      />
     ),
   },
   {
@@ -42,8 +47,9 @@ export const UserLinks = [
     icon: (
       <Avatar
         variant="square"
+        sx={{ width: 24, height: 24 }}
         alt="تماس با ما"
-        src="/assets/icons/contact.png"
+        src="/assets/icons/contactUs.png"
       />
     ),
   },
@@ -55,7 +61,12 @@ export const AdminLinks = [
     link: "/catalog",
     title: "محصولات",
     icon: (
-      <Avatar variant="square" alt="محصولات" src="/assets/icons/catalog.png" />
+      <Avatar
+        variant="square"
+        sx={{ width: 24, height: 24 }}
+        alt="محصولات"
+        src="/assets/icons/products.png"
+      />
     ),
   },
   {
@@ -63,7 +74,12 @@ export const AdminLinks = [
     link: "/basket",
     title: "سبد خرید",
     icon: (
-      <Avatar variant="square" alt="سبد خرید" src="/assets/icons/cart.png" />
+      <Avatar
+        variant="square"
+        sx={{ width: 24, height: 24 }}
+        alt="سبد خرید"
+        src="/assets/icons/cart.png"
+      />
     ),
   },
   {
@@ -71,7 +87,12 @@ export const AdminLinks = [
     link: "/about",
     title: "درباره ما",
     icon: (
-      <Avatar variant="square" alt="درباره ما" src="/assets/icons/about.png" />
+      <Avatar
+        variant="square"
+        sx={{ width: 24, height: 24 }}
+        alt="درباره ما"
+        src="/assets/icons/about.png"
+      />
     ),
   },
   {
@@ -81,8 +102,9 @@ export const AdminLinks = [
     icon: (
       <Avatar
         variant="square"
+        sx={{ width: 24, height: 24 }}
         alt="تماس با ما"
-        src="/assets/icons/contact.png"
+        src="/assets/icons/contactUs.png"
       />
     ),
   },
@@ -90,18 +112,44 @@ export const AdminLinks = [
     id: 5,
     link: "/admin-dashboard",
     title: "پنل ادمین",
-    icon: <InventoryIcon color="primary" />,
+    icon: (
+      <Avatar
+        variant="square"
+        sx={{ width: 24, height: 24 }}
+        alt="admin"
+        src="/assets/icons/admin.png"
+      />
+    ),
   },
 ];
 
 export const LogedInUserLinks = [
-  { id: 1, link: "/", title: "خانه", icon: <HomeIcon color="primary" /> },
+  {
+    id: 1,
+    link: "/",
+    title: "خانه",
+    icon: (
+      <Avatar
+        variant="square"
+        sx={{ width: 24, height: 24 }}
+        alt="home"
+        src="/assets/icons/home.png"
+      />
+    ),
+  },
   // { id: 2, link: "/profile", title: "پروفایل", icon: <AccountBoxIcon /> },
   {
     id: 3,
     link: "/orders",
     title: "سفارشات",
-    icon: <ShoppingBasketIcon color="primary" />,
+    icon: (
+      <Avatar
+        variant="square"
+        sx={{ width: 24, height: 24 }}
+        alt="سبد خرید"
+        src="/assets/icons/cart.png"
+      />
+    ),
   },
 ];
 
@@ -110,20 +158,39 @@ export const LogedOutUserLinks = [
     id: 1,
     link: "/",
     title: "خانه",
-    icon: <Avatar variant="square" alt="خانه" src="/assets/icons/home.png" />,
+    icon: (
+      <Avatar
+        variant="square"
+        sx={{ width: 24, height: 24 }}
+        alt="خانه"
+        src="/assets/icons/home.png"
+      />
+    ),
   },
   {
     id: 2,
     link: "/login",
     title: "ورود",
-    icon: <Avatar variant="square" alt="ورود" src="/assets/icons/login.png" />,
+    icon: (
+      <Avatar
+        variant="square"
+        sx={{ width: 24, height: 24 }}
+        alt="ورود"
+        src="/assets/icons/login.png"
+      />
+    ),
   },
   {
     id: 3,
     link: "/register",
     title: "ثبت نام",
     icon: (
-      <Avatar variant="square" alt="ثبت نام" src="/assets/icons/register.png" />
+      <Avatar
+        variant="square"
+        sx={{ width: 24, height: 24 }}
+        alt="ثبت نام"
+        src="/assets/icons/register.png"
+      />
     ),
   },
 ];

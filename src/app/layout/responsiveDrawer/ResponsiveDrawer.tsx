@@ -1,13 +1,20 @@
 import * as React from "react";
 import Box from "@mui/material/Box";
 import Drawer from "@mui/material/Drawer";
-import MenuIcon from "@mui/icons-material/Menu";
+// import MenuIcon from "@mui/icons-material/Menu";
 import List from "@mui/material/List";
 import ListItem from "@mui/material/ListItem";
 import ListItemButton from "@mui/material/ListItemButton";
 import ListItemIcon from "@mui/material/ListItemIcon";
 import ListItemText from "@mui/material/ListItemText";
-import { Button, Grid, IconButton, MenuItem, Typography } from "@mui/material";
+import {
+  Avatar,
+  Button,
+  Grid,
+  IconButton,
+  MenuItem,
+  Typography,
+} from "@mui/material";
 import { useAppDispatch, useAppSelector } from "../../store/configureStore";
 import {
   AdminLinks,
@@ -18,7 +25,7 @@ import {
 import { signOut } from "../../../features/account/accountSlice";
 import { clearBasket } from "../../../features/basket/basketSlice";
 import { Link, NavLink } from "react-router-dom";
-import { DarkMode, LightMode } from "@mui/icons-material";
+// import { DarkMode, LightMode } from "@mui/icons-material";
 import Accordion from "@mui/material/Accordion";
 import AccordionSummary from "@mui/material/AccordionSummary";
 import AccordionDetails from "@mui/material/AccordionDetails";
@@ -88,7 +95,12 @@ export default function ResponsiveDrawer({
               }}
               sx={{ margin: 2 }}
             >
-              {!darkMode ? <DarkMode /> : <LightMode />}
+              {/* {!darkMode ? <DarkMode /> : <LightMode />} */}
+              <Avatar
+                variant="square"
+                alt="brightness"
+                src="/assets/icons/brightness.png"
+              />
             </IconButton>
           </Grid>
           <Grid
@@ -146,7 +158,15 @@ export default function ResponsiveDrawer({
               e.stopPropagation();
             }}
           >
-            <Typography variant="body1">دسته بندی کالاها</Typography>
+            <Avatar
+              variant="square"
+              alt="category"
+              src="/assets/icons/category.png"
+              sx={{ width: 24, height: 24 }}
+            />
+            <Typography variant="body1" ml={1} alignSelf="center">
+              دسته بندی کالاها
+            </Typography>
           </AccordionSummary>
           <AccordionDetails>
             {categories.map((C, i) => (
@@ -172,7 +192,15 @@ export default function ResponsiveDrawer({
               e.stopPropagation();
             }}
           >
-            <Typography variant="body1">برند کالا</Typography>
+            <Avatar
+              variant="square"
+              alt="brand"
+              src="/assets/icons/brand.png"
+              sx={{ width: 24, height: 24 }}
+            />
+            <Typography variant="body1" ml={1} alignSelf="center">
+              برند کالا
+            </Typography>
           </AccordionSummary>
           <AccordionDetails>
             {brands.map((C, i) => (
@@ -264,7 +292,12 @@ export default function ResponsiveDrawer({
         sx={{ mr: 2 }}
         onClick={toggleDrawer}
       >
-        <MenuIcon />
+        <Avatar
+          variant="square"
+          alt="menu"
+          src="/assets/icons/menu.png"
+          sx={{ width: 24, height: 24 }}
+        />
       </IconButton>
 
       <Drawer
