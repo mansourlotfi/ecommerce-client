@@ -10,6 +10,7 @@ import {
   Avatar,
   useMediaQuery,
   Grid,
+  useTheme,
 } from "@mui/material";
 import { Link } from "react-router-dom";
 import { Product } from "../../app/models/product";
@@ -24,12 +25,13 @@ function ProductCard({ product }: IProps) {
   const { status } = useAppSelector((state) => state.basket);
   const dispatch = useAppDispatch();
   const isMobile = useMediaQuery("(max-width:600px)");
+  const theme = useTheme();
 
   return (
     <Card>
       <CardHeader
         avatar={
-          <Avatar sx={{ bgcolor: "secondary.main" }}>
+          <Avatar sx={{ bgcolor: theme.palette.secondary.main }}>
             {product.name.charAt(0).toUpperCase()}
           </Avatar>
         }
@@ -81,6 +83,17 @@ function ProductCard({ product }: IProps) {
               dispatch(addBasketItemAsync({ productId: product.id }))
             }
             variant="contained"
+            sx={{
+              background: theme.palette.secondary.main,
+              "&:hover": {
+                boxShadow: "none",
+                background: theme.palette.secondary.main,
+              },
+              "&:active": {
+                boxShadow: "none",
+                background: theme.palette.secondary.main,
+              },
+            }}
           >
             افزودن به سبد خرید
           </LoadingButton>
@@ -88,6 +101,9 @@ function ProductCard({ product }: IProps) {
             component={Link}
             to={`/catalog/${product.id}`}
             variant="outlined"
+            sx={{
+              borderColor: theme.palette.secondary.main,
+            }}
           >
             جزئیات
           </Button>

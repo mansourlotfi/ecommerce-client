@@ -5,7 +5,7 @@ import Box from "@mui/material/Box";
 import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
-import { Paper } from "@mui/material";
+import { Paper, useTheme } from "@mui/material";
 import { Link, useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { LoadingButton } from "@mui/lab";
@@ -13,6 +13,7 @@ import agent from "../../app/api/agent";
 import { toast } from "react-toastify";
 
 export default function Register() {
+  const theme = useTheme();
   const navigate = useNavigate();
   const {
     register,
@@ -72,6 +73,7 @@ export default function Register() {
           fullWidth
           label="نام کاربری"
           autoFocus
+          size="small"
           {...register("username", { required: "نام کاربری اجباری" })}
           error={!!errors.username}
           helperText={<>{errors?.username?.message}</>}
@@ -80,6 +82,7 @@ export default function Register() {
           margin="normal"
           fullWidth
           label="آدرس ایمیل"
+          size="small"
           {...register("email", {
             required: "ایمیل اجباری",
             pattern: {
@@ -95,6 +98,7 @@ export default function Register() {
           fullWidth
           label="رمز عبور"
           type="password"
+          size="small"
           {...register("password", {
             required: "رمز عبور اجباری",
             // pattern: {
@@ -112,7 +116,19 @@ export default function Register() {
           type="submit"
           fullWidth
           variant="contained"
-          sx={{ mt: 3, mb: 2 }}
+          sx={{
+            mt: 3,
+            mb: 2,
+            background: theme.palette.secondary.main,
+            "&:hover": {
+              boxShadow: "none",
+              background: theme.palette.secondary.main,
+            },
+            "&:active": {
+              boxShadow: "none",
+              background: theme.palette.secondary.main,
+            },
+          }}
         >
           ثبت نام
         </LoadingButton>

@@ -8,6 +8,8 @@ import {
   ListItem,
   Switch,
   Toolbar,
+  makeStyles,
+  useTheme,
 } from "@mui/material";
 import { Box } from "@mui/system";
 import { Link, NavLink } from "react-router-dom";
@@ -45,7 +47,15 @@ interface Props {
   handleThemeChange: () => void;
 }
 
+// const useTheme = makeStyles((theme: any) => ({
+//   header: {
+//     color: theme.pale.main,
+//   },
+// }));
+
 export default function Header({ handleThemeChange, darkMode }: Props) {
+  const theme = useTheme();
+
   const { basket } = useAppSelector((state) => state.basket);
   const { user } = useAppSelector((state) => state.account);
   const itemCount = basket?.items.reduce((sum, item) => sum + item.quantity, 0);
@@ -55,7 +65,7 @@ export default function Header({ handleThemeChange, darkMode }: Props) {
     <AppBar
       position="static"
       style={{
-        background: "#E8C7C8",
+        background: theme.palette.secondary.light,
       }}
     >
       <Toolbar
@@ -71,7 +81,7 @@ export default function Header({ handleThemeChange, darkMode }: Props) {
               {/* <DarkMode /> */}
               <Switch
                 style={{
-                  color: "#F25081",
+                  color: "secondary.main",
                 }}
                 checked={darkMode}
                 onChange={handleThemeChange}

@@ -49,6 +49,7 @@ const Footer = () => {
                   variant="square"
                   alt="خانه"
                   src="/assets/icons/home.png"
+                  sx={{ width: 24, height: 24 }}
                 />
               }
             />
@@ -60,6 +61,7 @@ const Footer = () => {
                   variant="square"
                   alt="محصولات"
                   src="/assets/icons/products.png"
+                  sx={{ width: 24, height: 24 }}
                 />
               }
             />
@@ -71,6 +73,7 @@ const Footer = () => {
                   variant="square"
                   alt="تماس با ما"
                   src="/assets/icons/contactUs.png"
+                  sx={{ width: 24, height: 24 }}
                 />
               }
             />
@@ -83,6 +86,7 @@ const Footer = () => {
                   variant="square"
                   alt="سبد خرید"
                   src="/assets/icons/cart.png"
+                  sx={{ width: 24, height: 24 }}
                 />
               }
             />

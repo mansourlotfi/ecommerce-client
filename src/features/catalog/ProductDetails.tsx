@@ -148,6 +148,9 @@ function ProductDetails() {
               label="تعداد خرید"
               fullWidth
               value={quantity}
+              sx={{
+                borderColor: "secondary.main",
+              }}
             />
           </Grid>
           <Grid item xs={6}>
@@ -157,11 +160,14 @@ function ProductDetails() {
               }
               loading={status.includes("pending")}
               onClick={handleUpdateCart}
-              sx={{ height: 55 }}
               color="primary"
               size="large"
               variant="contained"
               fullWidth
+              sx={{
+                height: 55,
+                backgroundColor: "secondary.main",
+              }}
             >
               {item ? "بروزرسانی تعداد" : "افزودن به سبد خرید"}
             </LoadingButton>

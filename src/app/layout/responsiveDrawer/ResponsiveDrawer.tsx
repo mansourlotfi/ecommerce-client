@@ -14,6 +14,7 @@ import {
   IconButton,
   MenuItem,
   Typography,
+  useTheme,
 } from "@mui/material";
 import { useAppDispatch, useAppSelector } from "../../store/configureStore";
 import {
@@ -59,6 +60,7 @@ export default function ResponsiveDrawer({
   handleThemeChange,
   darkMode,
 }: Props) {
+  const theme = useTheme();
   const [isOpen, setIsOpen] = React.useState(false);
   const { user } = useAppSelector((state) => state.account);
   const { categories } = useCategories();
@@ -267,10 +269,13 @@ export default function ResponsiveDrawer({
             {user ? (
               <Button
                 variant="outlined"
-                sx={{ ml: 2 }}
                 onClick={() => {
                   dispatch(signOut());
                   dispatch(clearBasket());
+                }}
+                sx={{
+                  borderColor: theme.palette.secondary.main,
+                  ml: 2,
                 }}
               >
                 خروج
