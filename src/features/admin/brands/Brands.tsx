@@ -11,6 +11,7 @@ import {
   TableRow,
   TableCell,
   TableBody,
+  useTheme,
 } from "@mui/material";
 import { useState } from "react";
 import agent from "../../../app/api/agent";
@@ -20,6 +21,7 @@ import useBrands from "../../../app/hooks/useBrands";
 import { removeBrand } from "./brandSlice";
 
 export default function AdminBrands() {
+  const theme = useTheme();
   const { brands, brandsLoaded, status } = useBrands();
   const dispatch = useAppDispatch();
   const [createBrandMode, setCreateBrandMode] = useState(false);
@@ -49,7 +51,18 @@ export default function AdminBrands() {
         </Typography>
         <Button
           onClick={() => setCreateBrandMode(true)}
-          sx={{ m: 2 }}
+          sx={{
+            m: 2,
+            background: theme.palette.secondary.main,
+            "&:hover": {
+              boxShadow: "none",
+              background: theme.palette.secondary.main,
+            },
+            "&:active": {
+              boxShadow: "none",
+              background: theme.palette.secondary.main,
+            },
+          }}
           size="large"
           variant="contained"
         >

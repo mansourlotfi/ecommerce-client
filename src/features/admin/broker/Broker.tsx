@@ -11,6 +11,7 @@ import {
   TableRow,
   TableCell,
   TableBody,
+  useTheme,
 } from "@mui/material";
 import { useState } from "react";
 import agent from "../../../app/api/agent";
@@ -20,6 +21,7 @@ import { removeBroker } from "./brokerSlice";
 import useBrokers from "../../../app/hooks/useBrokers";
 
 export default function AdminBrokers() {
+  const theme = useTheme();
   const { brokers, brokersLoaded, status } = useBrokers();
   const dispatch = useAppDispatch();
   const [createBrokerMode, setCreateBrokerMode] = useState(false);
@@ -49,7 +51,18 @@ export default function AdminBrokers() {
         </Typography>
         <Button
           onClick={() => setCreateBrokerMode(true)}
-          sx={{ m: 2 }}
+          sx={{
+            m: 2,
+            background: theme.palette.secondary.main,
+            "&:hover": {
+              boxShadow: "none",
+              background: theme.palette.secondary.main,
+            },
+            "&:active": {
+              boxShadow: "none",
+              background: theme.palette.secondary.main,
+            },
+          }}
           size="large"
           variant="contained"
         >

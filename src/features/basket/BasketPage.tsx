@@ -1,4 +1,4 @@
-import { Button, Grid } from "@mui/material";
+import { Button, Grid, useTheme } from "@mui/material";
 import { Link } from "react-router-dom";
 import { useAppSelector } from "../../app/store/configureStore";
 import BasketSummary from "./BasketSummary";
@@ -8,6 +8,7 @@ import BasketDetail from "./BasketDetail";
 import EmptyBasket from "./EmptyBasket";
 
 export default function BasketPage() {
+  const theme = useTheme();
   const { basket } = useAppSelector((state) => state.basket);
   const isMobile = useMediaQuery("(max-width:600px)");
 
@@ -31,6 +32,17 @@ export default function BasketPage() {
                 variant="contained"
                 size="large"
                 fullWidth
+                sx={{
+                  background: theme.palette.secondary.main,
+                  "&:hover": {
+                    boxShadow: "none",
+                    background: theme.palette.secondary.main,
+                  },
+                  "&:active": {
+                    boxShadow: "none",
+                    background: theme.palette.secondary.main,
+                  },
+                }}
               >
                 تکمیل سفارش
               </Button>

@@ -11,6 +11,7 @@ import {
   TableRow,
   TableCell,
   TableBody,
+  useTheme,
 } from "@mui/material";
 import { useState } from "react";
 import agent from "../../../app/api/agent";
@@ -20,6 +21,8 @@ import useCategories from "../../../app/hooks/useCategories";
 import { removeCategory } from "./categorySlice";
 
 export default function AdminCategory() {
+  const theme = useTheme();
+
   const { categories, categoriesLoaded, status } = useCategories();
   const dispatch = useAppDispatch();
   //   const [editMode, setEditMode] = useState(false);
@@ -52,7 +55,18 @@ export default function AdminCategory() {
         </Typography>
         <Button
           onClick={() => setCreateCategoryMode(true)}
-          sx={{ m: 2 }}
+          sx={{
+            m: 2,
+            background: theme.palette.secondary.main,
+            "&:hover": {
+              boxShadow: "none",
+              background: theme.palette.secondary.main,
+            },
+            "&:active": {
+              boxShadow: "none",
+              background: theme.palette.secondary.main,
+            },
+          }}
           size="large"
           variant="contained"
         >

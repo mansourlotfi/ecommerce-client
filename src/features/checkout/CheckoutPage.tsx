@@ -7,6 +7,7 @@ import {
   StepLabel,
   Stepper,
   Typography,
+  useTheme,
 } from "@mui/material";
 import { useEffect, useState } from "react";
 import { FieldValues, FormProvider, useForm } from "react-hook-form";
@@ -26,6 +27,7 @@ import { useCookies } from "react-cookie";
 const steps = ["آدرس ارسال", "مرور سفارش", "پرداخت"];
 
 export default function CheckoutPage() {
+  const theme = useTheme();
   const [searchParams] = useSearchParams();
 
   let callback = searchParams.get("callback");
@@ -211,7 +213,19 @@ export default function CheckoutPage() {
                   disabled={submitDisabled()}
                   variant="contained"
                   type="submit"
-                  sx={{ mt: 3, ml: 1 }}
+                  sx={{
+                    mt: 3,
+                    ml: 1,
+                    background: theme.palette.secondary.main,
+                    "&:hover": {
+                      boxShadow: "none",
+                      background: theme.palette.secondary.main,
+                    },
+                    "&:active": {
+                      boxShadow: "none",
+                      background: theme.palette.secondary.main,
+                    },
+                  }}
                 >
                   {activeStep === 1
                     ? "پرداخت با درگاه اینترنتی معتبر"

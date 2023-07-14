@@ -11,6 +11,7 @@ import {
   TableRow,
   TableCell,
   TableBody,
+  useTheme,
 } from "@mui/material";
 import { useState } from "react";
 import agent from "../../../app/api/agent";
@@ -23,6 +24,8 @@ import { removeProduct, setPageNumber } from "../../catalog/catalogSlice";
 import ProductForm from "./ProductForm";
 
 export default function AdminInventory() {
+  const theme = useTheme();
+
   const { products, metaData } = useProducts();
   const dispatch = useAppDispatch();
   const [editMode, setEditMode] = useState(false);
@@ -62,7 +65,18 @@ export default function AdminInventory() {
         </Typography>
         <Button
           onClick={() => setEditMode(true)}
-          sx={{ m: 2 }}
+          sx={{
+            m: 2,
+            background: theme.palette.secondary.main,
+            "&:hover": {
+              boxShadow: "none",
+              background: theme.palette.secondary.main,
+            },
+            "&:active": {
+              boxShadow: "none",
+              background: theme.palette.secondary.main,
+            },
+          }}
           size="large"
           variant="contained"
         >
