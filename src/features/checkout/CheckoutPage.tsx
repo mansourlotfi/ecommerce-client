@@ -52,12 +52,19 @@ export default function CheckoutPage() {
   //   0;
   // const deliveryFee = subtotal > 300000 ? 0 : 30000;
 
+  const currentValidationSchema = validationSchema[activeStep];
+
+  const methods = useForm({
+    mode: "all",
+    resolver: yupResolver(currentValidationSchema),
+  });
+
   function getStepContent(step: number) {
     switch (step) {
       case 0:
         return <AddressForm />;
       case 1:
-        return <Review />;
+        return <Review {...methods} />;
       case 2:
         return (
           <PaymentForm
@@ -71,13 +78,6 @@ export default function CheckoutPage() {
         throw new Error("Unknown step");
     }
   }
-
-  const currentValidationSchema = validationSchema[activeStep];
-
-  const methods = useForm({
-    mode: "all",
-    resolver: yupResolver(currentValidationSchema),
-  });
 
   useEffect(() => {
     agent.Account.fetchAddress().then((response) => {
@@ -110,6 +110,7 @@ export default function CheckoutPage() {
         saveAddress,
         shippingAddress: address,
         ref: cookies.ref ?? null,
+        noDelivery: address.noDelivery ?? false,
       })
         .then((res) => {
           if (res.code === -1) {
@@ -136,13 +137,13 @@ export default function CheckoutPage() {
     setActiveStep(activeStep - 1);
   };
 
-  function submitDisabled(): boolean {
-    if (activeStep === steps.length - 1) {
-      return !methods.formState.isValid;
-    } else {
-      return !methods.formState.isValid;
-    }
-  }
+  // function submitDisabled(): boolean {
+  //   if (activeStep === steps.length - 1) {
+  //     return !methods.formState.isValid;
+  //   } else {
+  //     return !methods.formState.isValid;
+  //   }
+  // }
 
   useEffect(() => {
     if (callback === "true") {
@@ -210,7 +211,7 @@ export default function CheckoutPage() {
 
                 <LoadingButton
                   loading={loading}
-                  disabled={submitDisabled()}
+                  // disabled={submitDisabled()}
                   variant="contained"
                   type="submit"
                   sx={{

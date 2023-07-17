@@ -23,7 +23,7 @@ export default function AppTextInput(props: Props) {
       fullWidth
       variant="outlined"
       error={!!fieldState.error}
-      helperText={fieldState.error?.message}
+      // helperText={fieldState.error?.message}
     />
   );
 }

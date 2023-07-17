@@ -46,6 +46,14 @@ export default function AddressForm() {
           control={control}
         />
       </Grid>
+      <Grid item xs={12}>
+        <AppCheckbox
+          disabled={false}
+          name="noDelivery"
+          label="تحویل حضوری بدون هزینه ارسال"
+          control={control}
+        />
+      </Grid>
     </>
   );
 }

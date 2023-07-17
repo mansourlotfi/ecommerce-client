@@ -6,6 +6,7 @@ export interface ShippingAddress {
   state: string;
   zip: string;
   country: string;
+  noDelivery: boolean;
 }
 
 export interface OrderItem {

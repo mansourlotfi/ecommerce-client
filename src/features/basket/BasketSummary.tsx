@@ -8,12 +8,18 @@ import {
 } from "@mui/material";
 import { useAppSelector } from "../../app/store/configureStore";
 import { currencyFormat } from "../../app/util/util";
+import { useFormContext } from "react-hook-form";
 
 interface Props {
   subtotal?: number;
 }
 
-export default function BasketSummary({ subtotal }: Props) {
+export default function BasketSummary(props: Props) {
+  let { subtotal } = props;
+  const x = useFormContext();
+  let noDelivery;
+  if (x) noDelivery = x.getValues("noDelivery");
+
   const { basket } = useAppSelector((state) => state.basket);
   if (subtotal === undefined)
     subtotal =
@@ -21,7 +27,9 @@ export default function BasketSummary({ subtotal }: Props) {
         (sum, item) => sum + item.quantity * item.price,
         0
       ) ?? 0;
-  const deliveryFee = subtotal > 300000 ? 0 : 30000;
+  let deliveryFee = subtotal > 300000 ? 0 : 30000;
+
+  if (noDelivery) deliveryFee = 0;
 
   return (
     <>
@@ -29,16 +37,35 @@ export default function BasketSummary({ subtotal }: Props) {
         <Table>
           <TableBody>
             <TableRow>
-              <TableCell colSpan={2}>جمع</TableCell>
-              <TableCell align="right">{currencyFormat(subtotal)}</TableCell>
+              <TableCell>جمع</TableCell>
+              <TableCell
+                style={{
+                  whiteSpace: "nowrap",
+                }}
+                align="right"
+              >
+                {currencyFormat(subtotal)}
+              </TableCell>
             </TableRow>
             <TableRow>
-              <TableCell colSpan={2}>هزینه ارسال*</TableCell>
-              <TableCell align="right">{currencyFormat(deliveryFee)}</TableCell>
+              <TableCell>هزینه ارسال*</TableCell>
+              <TableCell
+                style={{
+                  whiteSpace: "nowrap",
+                }}
+                align="right"
+              >
+                {currencyFormat(deliveryFee)}
+              </TableCell>
             </TableRow>
             <TableRow>
-              <TableCell colSpan={2}>جمع کل</TableCell>
-              <TableCell align="right">
+              <TableCell>جمع کل</TableCell>
+              <TableCell
+                align="right"
+                style={{
+                  whiteSpace: "nowrap",
+                }}
+              >
                 {currencyFormat(subtotal + deliveryFee)}
               </TableCell>
             </TableRow>
@@ -46,6 +73,9 @@ export default function BasketSummary({ subtotal }: Props) {
               <TableCell>
                 <span style={{ fontStyle: "italic" }}>
                   *ارسال رایگان بالای 300 هزار تومان
+                </span>
+                <span style={{ fontStyle: "italic", display: "inline-block" }}>
+                  (تحویل حضوری بدون هزینه)
                 </span>
               </TableCell>
             </TableRow>
