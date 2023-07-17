@@ -1,14 +1,6 @@
-import {
-  Box,
-  Paper,
-  Typography,
-  Grid,
-  Button,
-  Checkbox,
-  FormControlLabel,
-} from "@mui/material";
+import { Box, Paper, Typography, Grid, Button } from "@mui/material";
 import { useEffect } from "react";
-import { Controller, FieldValues, useForm } from "react-hook-form";
+import { FieldValues, useForm } from "react-hook-form";
 import AppDropzone from "../../../app/components/AppDropzone";
 import AppSelectList from "../../../app/components/AppSelectList";
 import AppTextInput from "../../../app/components/AppTextInput";
@@ -22,6 +14,7 @@ import { LoadingButton } from "@mui/lab";
 import useCategories from "../../../app/hooks/useCategories";
 import useBrands from "../../../app/hooks/useBrands";
 import { toast } from "react-toastify";
+import AppCheckbox from "../../../app/components/AppCheckbox";
 
 interface Props {
   product?: Product;
@@ -123,15 +116,11 @@ export default function ProductForm({ product, cancelEdit }: Props) {
           </Grid>
           <Grid item xs={12}>
             <Box>
-              <FormControlLabel
-                control={
-                  <Controller
-                    name="isFeatured"
-                    control={control}
-                    render={({ field }) => <Checkbox {...field} />}
-                  />
-                }
+              <AppCheckbox
+                disabled={false}
+                name="isFeatured"
                 label="محصول پرفروش"
+                control={control}
               />
             </Box>
           </Grid>
