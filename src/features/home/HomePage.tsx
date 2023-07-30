@@ -6,7 +6,7 @@ import TopSwiper from "./TopSwiper";
 import NewProducts from "./newProducts ";
 import { useSearchParams } from "react-router-dom";
 import { useEffect } from "react";
-import { Container } from "@mui/material";
+import { Container, Grid } from "@mui/material";
 
 export default function HomePage() {
   const [searchParams] = useSearchParams();
@@ -31,6 +31,27 @@ export default function HomePage() {
         <Categories />
         <Brands />
         <FeturedProducts />
+        <Grid container justifyContent="center" mt={10}>
+          <a
+            referrerPolicy="origin"
+            rel="noopener noreferrer"
+            target="_blank"
+            href="https://trustseal.enamad.ir/?id=363760&amp;Code=QqnLQ39OKN6wJzDCx6Nm"
+          >
+            <img
+              referrerPolicy="origin"
+              src="https://Trustseal.eNamad.ir/logo.aspx?id=363760&amp;Code=QqnLQ39OKN6wJzDCx6Nm"
+              alt=""
+              style={{
+                cursor: "pointer",
+                width: 150,
+                height: 150,
+                borderRadius: 8,
+              }}
+              id="QqnLQ39OKN6wJzDCx6Nm"
+            />
+          </a>
+        </Grid>
       </Container>
     </>
   );
